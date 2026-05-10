@@ -52,19 +52,19 @@ Features:
 - Added flexible pagination modes (bullets/fraction/progressbar) with expanded visual controls
 - Added dynamic title tag and description clamp controls for better content structure
 
-= 5.2.1 =
+= 1.2.1 =
 - Added per-item badge icon picker and rendering beside badge label
 - Added badge icon styling controls (position, spacing, size, color)
 - Fixed button label centering issue by improving button label markup and alignment CSS
 
-= 5.2.0 =
+= 1.2.0 =
 - Added advanced slide direction controls (site auto, LTR, RTL, reverse autoplay)
 - Added full button customization suite (alignment, width modes, borders, shadows, normal/hover states, motion)
 - Added comprehensive badge styling controls (color, typography, size, position)
 - Added extended card hover effects (lift, scale, rotate, image zoom, transition speed, hover shadow/colors)
 - Added extensive arrow and pagination customization controls for professional layout precision
 
-= 5.1.0 =
+= 1.1.0 =
 - Full professional refactor of plugin bootstrap, widget controls, and rendering
 - Added Elementor/PHP dependency checks with admin notices
 - Hardened sanitization and escaping
