@@ -301,22 +301,3 @@
         display: none;
     }
 }
-/* WooCommerce Price Styling */
-.woo-price {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 16px;
-    font-weight: 800;
-    color: #00b894;
-}
-.woo-price del {
-    font-size: 13px;
-    color: #b2bec3;
-    font-weight: 500;
-    text-decoration: line-through;
-}
-.woo-price ins {
-    text-decoration: none;
-    color: inherit;
-}
