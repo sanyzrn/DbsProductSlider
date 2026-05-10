@@ -1,5 +1,5 @@
 === Product Carousel Elementor ===
-Contributors: saeed
+Contributors: Saeed Zarrini
 Tags: elementor, carousel, slider, products
 Requires at least: 6.2
 Tested up to: 6.8

@@ -1,7 +1,6 @@
 <?php
 /**
  * Plugin Name: Product Carousel Elementor
- * Plugin URI: https://dbsgraphic.ir/
  * Description: Professional product carousel widget for Elementor with advanced styling and slider controls.
  * Version: 2.1.0
  * Author: Saeed Zarrini
