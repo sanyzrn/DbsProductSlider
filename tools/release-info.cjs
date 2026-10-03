@@ -33,6 +33,19 @@ function releasePlan({ version, sourceSha, mainSha, existingRelease, tagSha, lat
     return { needed: true, latest: !latestVersion || compareVersions(version, latestVersion) > 0 };
 }
 
+function lookupRelease(tag, request) {
+    const published = request('releases/tags/' + tag, true);
+    if (published) return published;
+    // The tag endpoint does not resolve an unpublished draft with an uncreated tag.
+    for (let page = 1; ; page++) {
+        const releases = request('releases?per_page=100&page=' + page);
+        const matches = releases.filter(release => release.tag_name === tag);
+        if (matches.length > 1) throw new Error('Multiple releases share the candidate tag.');
+        if (matches.length) return matches[0];
+        if (releases.length < 100) return null;
+    }
+}
+
 function writeReleaseNotes(info) {
     const notes = `Dbs Product Slider ${info.version}\n\nResponsive Elementor carousels with manual cards, optional WooCommerce sources, Persian / RTL support and a local Swiper engine.\n\n## Changes\n\n${info.changes}\n\n## Installation\n\nDownload \`DbsProductSlider.zip\` or \`DbsProductSlider-${info.version}.zip\` below and upload it in **WordPress → Plugins → Add New → Upload Plugin**. WooCommerce is optional. GitHub's source archives are for development.\n\nRequires WordPress 6.2+, PHP 7.4+ and Elementor 3.15+. After upgrading, regenerate Elementor CSS and clear page caches.\n\n[راهنمای فارسی](https://github.com/sanyzrn/DbsProductSlider/blob/${info.tag}/README_FA.md) · [Changelog](https://github.com/sanyzrn/DbsProductSlider/blob/${info.tag}/readme.txt)\n\nAutomated PHP and Chromium checks pass for this commit. They do not replace full WordPress / Elementor site integration testing.\n`;
     fs.mkdirSync(path.join(root, 'dist'), { recursive: true });
@@ -41,5 +54,5 @@ function writeReleaseNotes(info) {
     return filename;
 }
 
-module.exports = { parseReleaseInfo, readReleaseInfo, compareVersions, releasePlan, writeReleaseNotes };
+module.exports = { parseReleaseInfo, readReleaseInfo, compareVersions, releasePlan, lookupRelease, writeReleaseNotes };
 if (require.main === module) { console.log(JSON.stringify(readReleaseInfo(), null, 2)); }

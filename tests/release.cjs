@@ -1,5 +1,5 @@
 const assert = require('node:assert/strict');
-const { parseReleaseInfo, readReleaseInfo, compareVersions, releasePlan } = require('../tools/release-info.cjs');
+const { parseReleaseInfo, readReleaseInfo, compareVersions, releasePlan, lookupRelease } = require('../tools/release-info.cjs');
 let checks = 0;
 function check(fn) { fn(); checks++; }
 const source = " * Version: 2.3.2\nprivate const VERSION = '2.3.2';";
@@ -22,4 +22,10 @@ check(() => assert.throws(() => releasePlan({ ...base, tagSha: 'b' })));
 check(() => assert.deepEqual(releasePlan({ ...base, existingRelease: { draft: true }, tagSha: 'a' }), { needed: true, latest: true }));
 check(() => assert.equal(releasePlan({ ...base, latestVersion: '2.4.0' }).latest, false));
 check(() => assert.equal(releasePlan({ ...base, latestVersion: '2.3.1' }).latest, true));
+const draft = { id: 123, tag_name: 'v2.3.2', draft: true };
+check(() => assert.equal(lookupRelease('v2.3.2', endpoint => endpoint.startsWith('releases/tags/') ? null : [draft]).id, 123));
+check(() => assert.equal(lookupRelease('v2.3.2', () => ({ ...draft, draft: false })).id, 123));
+check(() => assert.equal(lookupRelease('v2.3.2', endpoint => endpoint.startsWith('releases/tags/') ? null : []), null));
+check(() => assert.throws(() => lookupRelease('v2.3.2', endpoint => endpoint.startsWith('releases/tags/') ? null : [draft, draft])));
+check(() => assert.equal(lookupRelease('v2.3.2', endpoint => endpoint.startsWith('releases/tags/') ? null : endpoint.endsWith('page=1') ? Array.from({ length: 100 }, () => ({ tag_name: 'v1.0.0' })) : [draft]).id, 123));
 console.log('Release safety checks passed: ' + checks);

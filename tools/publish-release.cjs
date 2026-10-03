@@ -2,7 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const { execFileSync } = require('node:child_process');
-const { readReleaseInfo, releasePlan, writeReleaseNotes } = require('./release-info.cjs');
+const { readReleaseInfo, releasePlan, lookupRelease, writeReleaseNotes } = require('./release-info.cjs');
 const root = path.join(__dirname, '..');
 const repository = process.env.GITHUB_REPOSITORY || 'sanyzrn/DbsProductSlider';
 const sha = process.env.RELEASE_SHA;
@@ -22,7 +22,7 @@ const info = readReleaseInfo();
 if (execFileSync('git', ['rev-parse', 'HEAD'], { cwd: root, encoding: 'utf8' }).trim() !== sha) throw new Error('Checked-out source does not match the release commit.');
 const runs = api('actions/workflows/checks.yml/runs?head_sha=' + sha + '&event=push&branch=main&per_page=100').workflow_runs;
 if (!runs.some(run => run.head_sha === sha && run.event === 'push' && run.head_branch === 'main' && run.conclusion === 'success')) throw new Error('Successful regression checks for the exact main commit are required.');
-const existing = api('releases/tags/' + info.tag, true);
+const existing = lookupRelease(info.tag, api);
 const latest = api('releases/latest', true);
 const latestVersion = latest ? latest.tag_name.replace(/^v/, '') : null;
 const plan = releasePlan({ version: info.version, sourceSha: sha, mainSha: api('git/ref/heads/main').object.sha, existingRelease: existing,
@@ -40,9 +40,10 @@ const title = 'Dbs Product Slider ' + info.version;
 if (!existing) gh(['release', 'create', info.tag, ...files, '--repo', repository, '--target', sha, '--title', title, '--notes-file', notes, '--draft']);
 else {
     gh(['release', 'upload', info.tag, ...files, '--repo', repository, '--clobber']);
-    gh(['release', 'edit', info.tag, '--repo', repository, '--title', title, '--notes-file', notes]);
+    gh(['release', 'edit', info.tag, '--repo', repository, '--target', sha, '--title', title, '--notes-file', notes]);
 }
-const draft = api('releases/tags/' + info.tag);
+const draft = lookupRelease(info.tag, api);
+if (!draft) throw new Error('Uploaded draft could not be found.');
 if (!draft.draft) throw new Error('Release changed while uploading. Do not modify it.');
 for (let i = 0; i < names.length; i++) {
     const asset = draft.assets.find(asset => asset.name === names[i]);
@@ -51,6 +52,6 @@ for (let i = 0; i < names.length; i++) {
     if (!asset || asset.state !== 'uploaded' || asset.size !== bytes.length || (asset.digest && asset.digest !== digest)) throw new Error('Uploaded asset validation failed: ' + names[i]);
 }
 gh(['release', 'edit', info.tag, '--repo', repository, '--draft=false', '--latest=' + plan.latest]);
-const published = api('releases/tags/' + info.tag);
+const published = api('releases/' + draft.id);
 if (published.draft || published.prerelease) throw new Error('Release was not published as stable.');
 console.log(published.html_url);
