@@ -1,0 +1,15 @@
+{
+  "name": "dbs-product-slider-checks",
+  "private": true,
+  "scripts": {
+    "test": "php tests/bootstrap.php && php tests/bootstrap.php missing && php tests/bootstrap.php old && php tests/php.php && php tests/no-woocommerce.php && node tests/browser.cjs",
+    "build:vendor": "node tools/build-vendor.cjs",
+    "build:translations": "node tools/build-translations.cjs"
+  },
+  "devDependencies": {
+    "jquery": "3.7.1",
+    "playwright": "1.63.0",
+    "postcss": "8.5.28",
+    "swiper": "11.2.10"
+  }
+}

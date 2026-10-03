@@ -33,15 +33,20 @@ class PCE_Carousel_V5 extends Widget_Base {
     }
 
     public function get_keywords() {
-        return ['carousel', 'product', 'slider', 'elementor'];
+        return ['carousel', 'product', 'slider', 'elementor', 'woocommerce', 'اسلایدر', 'محصول', 'ووکامرس'];
     }
 
     public function get_script_depends() {
-        return ['swiper', 'pce-v5-script'];
+        return ['pce-v5-script'];
     }
 
     public function get_style_depends() {
-        return ['swiper', 'pce-v5-style'];
+        return ['pce-v5-style'];
+    }
+
+    protected function is_dynamic_content(): bool {
+        // Product prices and stock must not be frozen by Elementor element caching.
+        return true;
     }
 
     protected function register_controls() {
@@ -51,6 +56,52 @@ class PCE_Carousel_V5 extends Widget_Base {
                 'label' => __('Items', 'advanced-carousel-pro'),
             ]
         );
+
+        $this->add_control('source', [
+            'label' => __('Content Source', 'advanced-carousel-pro'),
+            'type' => Controls_Manager::SELECT,
+            'default' => 'manual',
+            'options' => ['manual' => __('Manual items', 'advanced-carousel-pro'), 'woocommerce' => __('WooCommerce products', 'advanced-carousel-pro')],
+        ]);
+        $woo_condition = ['source' => 'woocommerce'];
+        $this->add_control('product_query', [
+            'label' => __('Product Selection', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT,
+            'default' => 'latest', 'condition' => $woo_condition,
+            'options' => ['latest' => __('Latest products', 'advanced-carousel-pro'), 'selected' => __('Selected product IDs', 'advanced-carousel-pro'), 'sale' => __('On sale', 'advanced-carousel-pro'), 'featured' => __('Featured', 'advanced-carousel-pro')],
+        ]);
+        $this->add_control('selected_product_ids', [
+            'label' => __('Product IDs', 'advanced-carousel-pro'), 'type' => Controls_Manager::TEXT,
+            'description' => __('Comma-separated IDs, in display order. Maximum 40 products.', 'advanced-carousel-pro'),
+            'condition' => ['source' => 'woocommerce', 'product_query' => 'selected'],
+        ]);
+        $this->add_control('product_categories', [
+            'label' => __('Category Slugs', 'advanced-carousel-pro'), 'type' => Controls_Manager::TEXT,
+            'description' => __('Optional comma-separated category slugs. Leave empty for all categories.', 'advanced-carousel-pro'), 'condition' => $woo_condition,
+        ]);
+        $this->add_control('product_limit', [
+            'label' => __('Maximum Products', 'advanced-carousel-pro'), 'type' => Controls_Manager::NUMBER,
+            'default' => 8, 'min' => 1, 'max' => 40, 'condition' => $woo_condition,
+        ]);
+        $this->add_control('product_orderby', [
+            'label' => __('Order By', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT,
+            'default' => 'date', 'options' => ['date' => __('Date', 'advanced-carousel-pro'), 'name' => __('Name', 'advanced-carousel-pro'), 'modified' => __('Last updated', 'advanced-carousel-pro'), 'ID' => __('Product ID', 'advanced-carousel-pro')],
+            'condition' => ['source' => 'woocommerce', 'product_query!' => 'selected'],
+        ]);
+        $this->add_control('product_order', [
+            'label' => __('Order', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT, 'default' => 'DESC',
+            'options' => ['DESC' => __('Descending', 'advanced-carousel-pro'), 'ASC' => __('Ascending', 'advanced-carousel-pro')],
+            'condition' => ['source' => 'woocommerce', 'product_query!' => 'selected'],
+        ]);
+        $this->add_control('exclude_product_ids', [
+            'label' => __('Exclude Product IDs', 'advanced-carousel-pro'), 'type' => Controls_Manager::TEXT, 'condition' => $woo_condition,
+        ]);
+        foreach (['hide_out_of_stock' => __('Hide Out of Stock', 'advanced-carousel-pro'), 'exclude_current_product' => __('Exclude Current Product', 'advanced-carousel-pro')] as $name => $label) {
+            $this->add_control($name, ['label' => $label, 'type' => Controls_Manager::SWITCHER, 'default' => 'yes', 'condition' => $woo_condition]);
+        }
+        $this->add_control('product_action', [
+            'label' => __('Product Button Action', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT, 'default' => 'view',
+            'options' => ['view' => __('View product', 'advanced-carousel-pro'), 'purchase' => __('Purchase / select options', 'advanced-carousel-pro')], 'condition' => $woo_condition,
+        ]);
 
         $repeater = new Repeater();
 
@@ -101,6 +152,11 @@ class PCE_Carousel_V5 extends Widget_Base {
                 'default' => '$149.00',
             ]
         );
+
+        $repeater->add_control('image_alt', [
+            'label' => __('Image Alternative Text', 'advanced-carousel-pro'), 'type' => Controls_Manager::TEXT,
+            'description' => __('Leave empty to use the media alternative text or product title.', 'advanced-carousel-pro'),
+        ]);
 
         $repeater->add_control(
             'desc',
@@ -159,6 +215,7 @@ class PCE_Carousel_V5 extends Widget_Base {
             [
                 'label' => __('Items', 'advanced-carousel-pro'),
                 'type' => Controls_Manager::REPEATER,
+                'condition' => ['source' => 'manual'],
                 'fields' => $repeater->get_controls(),
                 'title_field' => '{{{ title }}}',
                 'default' => [
@@ -177,6 +234,30 @@ class PCE_Carousel_V5 extends Widget_Base {
                 ],
             ]
         );
+
+        $this->add_control('carousel_label', [
+            'label' => __('Accessible Carousel Name', 'advanced-carousel-pro'), 'type' => Controls_Manager::TEXT,
+            'default' => __('Product carousel', 'advanced-carousel-pro'),
+        ]);
+        $this->add_control('card_preset', [
+            'label' => __('Card Preset', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT, 'default' => 'default',
+            'options' => ['default' => __('Classic', 'advanced-carousel-pro'), 'minimal' => __('Minimal', 'advanced-carousel-pro'), 'catalog' => __('Catalog', 'advanced-carousel-pro')],
+            'description' => __('Style controls can further customize the selected preset.', 'advanced-carousel-pro'),
+        ]);
+        foreach (['image' => __('Show Image', 'advanced-carousel-pro'), 'title' => __('Show Title', 'advanced-carousel-pro'), 'price' => __('Show Price', 'advanced-carousel-pro'), 'badge' => __('Show Badge', 'advanced-carousel-pro'), 'description' => __('Show Description', 'advanced-carousel-pro'), 'button' => __('Show Button', 'advanced-carousel-pro')] as $part => $label) {
+            $this->add_control('show_' . $part, ['label' => $label, 'type' => Controls_Manager::SWITCHER, 'default' => 'yes']);
+        }
+        $this->add_control('image_size', [
+            'label' => __('Image Resolution', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT, 'default' => 'medium_large',
+            'options' => ['thumbnail' => __('Thumbnail', 'advanced-carousel-pro'), 'medium' => __('Medium', 'advanced-carousel-pro'), 'medium_large' => __('Medium large', 'advanced-carousel-pro'), 'large' => __('Large', 'advanced-carousel-pro'), 'full' => __('Full', 'advanced-carousel-pro')],
+        ]);
+        $this->add_control('image_loading', [
+            'label' => __('Image Loading', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT, 'default' => 'lazy',
+            'options' => ['lazy' => __('Lazy', 'advanced-carousel-pro'), 'eager' => __('Eager (above the fold)', 'advanced-carousel-pro')],
+        ]);
+        $this->add_control('equal_height', [
+            'label' => __('Equal Card Heights', 'advanced-carousel-pro'), 'type' => Controls_Manager::SWITCHER, 'default' => 'yes',
+        ]);
 
         $this->add_control(
             'title_html_tag',
@@ -217,45 +298,28 @@ class PCE_Carousel_V5 extends Widget_Base {
             ]
         );
 
-        $this->add_control(
-            'slides_desktop',
+        $this->add_responsive_control(
+            'slides_per_view',
             [
-                'label' => __('Desktop Slides', 'advanced-carousel-pro'),
+                'frontend_available' => true,
+                'label' => __('Visible Slides', 'advanced-carousel-pro'),
                 'type' => Controls_Manager::NUMBER,
-                'default' => 3,
+                'description' => __('Leave empty to inherit. Existing desktop/tablet/mobile settings are preserved. Defaults: 3 / 2 / 1.15.', 'advanced-carousel-pro'),
                 'min' => 1,
                 'max' => 6,
-                'step' => 0.1,
-            ]
-        );
-
-        $this->add_control(
-            'slides_tablet',
-            [
-                'label' => __('Tablet Slides', 'advanced-carousel-pro'),
-                'type' => Controls_Manager::NUMBER,
-                'default' => 2,
-                'min' => 1,
-                'max' => 4,
-                'step' => 0.1,
-            ]
-        );
-
-        $this->add_control(
-            'slides_mobile',
-            [
-                'label' => __('Mobile Slides', 'advanced-carousel-pro'),
-                'type' => Controls_Manager::NUMBER,
-                'default' => 1.15,
-                'min' => 1,
-                'max' => 2,
                 'step' => 0.05,
             ]
         );
 
+        // Retain saved values from 2.1.x without showing duplicate device controls.
+        foreach (['slides_desktop', 'slides_tablet', 'slides_mobile'] as $legacy_control) {
+            $this->add_control($legacy_control, ['type' => Controls_Manager::HIDDEN]);
+        }
+
         $this->add_responsive_control(
             'space_between',
             [
+                'frontend_available' => true,
                 'label' => __('Gap', 'advanced-carousel-pro'),
                 'type' => Controls_Manager::SLIDER,
                 'range' => [
@@ -270,10 +334,12 @@ class PCE_Carousel_V5 extends Widget_Base {
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'slides_per_group',
             [
+                'frontend_available' => true,
                 'label' => __('Slides Per Group', 'advanced-carousel-pro'),
+                'description' => __('Fractional views and single-card effects move one card at a time. Insufficient cards use rewind instead of loop.', 'advanced-carousel-pro'),
                 'type' => Controls_Manager::NUMBER,
                 'default' => 1,
                 'min' => 1,
@@ -360,7 +426,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'autoplay_pause_on_interaction',
             [
-                'label' => __('Pause Autoplay On Interaction', 'advanced-carousel-pro'),
+                'label' => __('Stop Autoplay After Interaction', 'advanced-carousel-pro'),
                 'type' => Controls_Manager::SWITCHER,
                 'default' => '',
                 'condition' => [
@@ -481,23 +547,31 @@ class PCE_Carousel_V5 extends Widget_Base {
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'show_arrows',
             [
+                'frontend_available' => true,
                 'label' => __('Show Arrows', 'advanced-carousel-pro'),
                 'type' => Controls_Manager::SWITCHER,
                 'default' => 'yes',
             ]
         );
 
-        $this->add_control(
+        $this->add_responsive_control(
             'show_dots',
             [
+                'frontend_available' => true,
                 'label' => __('Show Dots', 'advanced-carousel-pro'),
                 'type' => Controls_Manager::SWITCHER,
                 'default' => 'yes',
             ]
         );
+
+        $this->add_control('navigation_notice', [
+            'type' => Controls_Manager::RAW_HTML,
+            'raw' => esc_html__('Keep arrows enabled when drag is disabled. Fraction and progress pagination do not provide navigation.', 'advanced-carousel-pro'),
+            'condition' => ['allow_touch_move!' => 'yes'],
+        ]);
 
         $this->add_control(
             'pagination_type',
@@ -510,9 +584,6 @@ class PCE_Carousel_V5 extends Widget_Base {
                     'fraction' => __('Fraction', 'advanced-carousel-pro'),
                     'progressbar' => __('Progress Bar', 'advanced-carousel-pro'),
                 ],
-                'condition' => [
-                    'show_dots' => 'yes',
-                ],
             ]
         );
 
@@ -523,7 +594,6 @@ class PCE_Carousel_V5 extends Widget_Base {
                 'type' => Controls_Manager::SWITCHER,
                 'default' => '',
                 'condition' => [
-                    'show_dots' => 'yes',
                     'pagination_type' => 'bullets',
                 ],
             ]
@@ -539,7 +609,6 @@ class PCE_Carousel_V5 extends Widget_Base {
                 'max' => 10,
                 'step' => 1,
                 'condition' => [
-                    'show_dots' => 'yes',
                     'pagination_type' => 'bullets',
                     'dynamic_bullets' => 'yes',
                 ],
@@ -552,9 +621,6 @@ class PCE_Carousel_V5 extends Widget_Base {
                 'label' => __('Rewind (When Loop Is Off)', 'advanced-carousel-pro'),
                 'type' => Controls_Manager::SWITCHER,
                 'default' => 'yes',
-                'condition' => [
-                    'loop!' => 'yes',
-                ],
             ]
         );
 
@@ -1366,7 +1432,7 @@ class PCE_Carousel_V5 extends Widget_Base {
                     ],
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .pce-v5-pagination .swiper-pagination-bullet-active' => 'width: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .pce-v5-pagination:not(.swiper-pagination-bullets-dynamic) .swiper-pagination-bullet-active' => 'width: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -1790,7 +1856,16 @@ class PCE_Carousel_V5 extends Widget_Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
 
-        if (empty($settings['items']) || !is_array($settings['items'])) {
+        $source = ($settings['source'] ?? 'manual') === 'woocommerce' ? 'woocommerce' : 'manual';
+        $items = $source === 'woocommerce' ? PCE_Products::items($settings) : ($settings['items'] ?? []);
+        $items = is_array($items) ? array_values(array_filter($items, 'is_array')) : [];
+        if (!$items) {
+            if (\Elementor\Plugin::$instance->editor->is_edit_mode()) {
+                $message = $source === 'woocommerce' && !function_exists('wc_get_products')
+                    ? __('Activate WooCommerce to display products.', 'advanced-carousel-pro')
+                    : __('No items match the selected source. Add items or adjust product filters.', 'advanced-carousel-pro');
+                echo '<div class="pce-v5-empty" role="status">' . esc_html($message) . '</div>';
+            }
             return;
         }
 
@@ -1815,7 +1890,7 @@ class PCE_Carousel_V5 extends Widget_Base {
             'autoplayDelay' => $autoplay_delay,
             'autoplayReverse' => ($settings['autoplay_reverse'] ?? '') === 'yes',
             'autoplayPauseOnInteraction' => ($settings['autoplay_pause_on_interaction'] ?? '') === 'yes',
-            'flowDirection' => in_array(($settings['flow_direction'] ?? 'auto'), ['auto', 'ltr', 'rtl'], true) ? $settings['flow_direction'] : 'auto',
+            'flowDirection' => $this->sanitize_choice($settings['flow_direction'] ?? 'auto', ['auto', 'ltr', 'rtl'], 'auto'),
             'loop' => ($settings['loop'] ?? '') === 'yes',
             'rewind' => ($settings['rewind'] ?? 'yes') === 'yes',
             'pauseOnHover' => ($settings['pause_on_hover'] ?? '') === 'yes',
@@ -1833,130 +1908,43 @@ class PCE_Carousel_V5 extends Widget_Base {
             'keyboard' => ($settings['keyboard_control'] ?? 'yes') === 'yes',
             'respectReducedMotion' => ($settings['respect_reduced_motion'] ?? 'yes') === 'yes',
         ];
-        $nav_class = $slider_options['showArrows'] ? 'pce-v5-navigation' : 'pce-v5-navigation is-hidden';
-        $dots_class = $slider_options['showDots'] ? 'swiper-pagination pce-v5-pagination pce-v5-pagination-' . $slider_options['paginationType'] : 'swiper-pagination pce-v5-pagination is-hidden';
+        $slider_options['profiles'] = PCE_Settings::profiles($settings, $this->get_data('settings'));
+        $slider_options['messages'] = [
+            'prev' => __('Previous slide', 'advanced-carousel-pro'),
+            'next' => __('Next slide', 'advanced-carousel-pro'),
+            'first' => __('This is the first slide', 'advanced-carousel-pro'),
+            'last' => __('This is the last slide', 'advanced-carousel-pro'),
+            'bullet' => __('Go to slide {{index}}', 'advanced-carousel-pro'),
+            'slide' => __('{{index}} of {{slidesLength}}', 'advanced-carousel-pro'),
+            'pause' => __('Pause slideshow', 'advanced-carousel-pro'),
+            'play' => __('Play slideshow', 'advanced-carousel-pro'),
+            'reduced' => __('Slideshow paused: reduced motion', 'advanced-carousel-pro'),
+        ];
+        require ACP_PLUGIN_PATH . 'includes/templates/carousel.php';
+    }
 
-        ?>
-        <div
-            id="<?php echo esc_attr($widget_id); ?>"
-            class="pce-v5-wrapper"
-            data-widget-id="<?php echo esc_attr($widget_id); ?>"
-            data-settings="<?php echo esc_attr(wp_json_encode($slider_options)); ?>"
-        >
-            <div class="swiper pce-v5-slider" aria-label="<?php echo esc_attr__('Product carousel', 'advanced-carousel-pro'); ?>">
-                <div class="swiper-wrapper">
-                    <?php foreach ($settings['items'] as $index => $item) : ?>
-                        <?php
-                        $title = isset($item['title']) ? trim((string) $item['title']) : '';
-                        $badge = isset($item['category']) ? trim((string) $item['category']) : '';
-                        $price = isset($item['price']) ? trim((string) $item['price']) : '';
-                        $desc = isset($item['desc']) ? trim((string) $item['desc']) : '';
-                        $btn_text = isset($item['btn_text']) && $item['btn_text'] !== '' ? $item['btn_text'] : __('View Product', 'advanced-carousel-pro');
-                        $btn_icon_position = isset($item['btn_icon_position']) && $item['btn_icon_position'] === 'after' ? 'after' : 'before';
-                        $has_btn_icon = !empty($item['btn_icon']['value']);
-                        $img_url = !empty($item['image']['url']) ? $item['image']['url'] : Utils::get_placeholder_image_src();
-                        $alt_text = $this->get_image_alt($item, $title);
-
-                        $link_key = 'item_link_' . $index;
-                        $has_link = !empty($item['link']['url']);
-                        $button_classes = 'pce-v5-btn';
-
-                        if ($has_btn_icon) {
-                            $button_classes .= ' has-icon';
-                            $button_classes .= $btn_icon_position === 'after' ? ' icon-after' : ' icon-before';
-                        }
-
-                        if ($has_link) {
-                            $this->add_link_attributes($link_key, $item['link']);
-                            $this->add_render_attribute($link_key, 'class', $button_classes);
-                        }
-                        ?>
-                        <article class="swiper-slide">
-                            <div class="pce-v5-card">
-                                <?php if ($badge !== '') : ?>
-                                    <span class="pce-v5-badge">
-                                        <?php if (!empty($item['badge_icon']['value'])) : ?>
-                                            <span class="pce-v5-badge-icon" aria-hidden="true">
-                                                <?php Icons_Manager::render_icon($item['badge_icon'], ['aria-hidden' => 'true']); ?>
-                                            </span>
-                                        <?php endif; ?>
-                                        <span class="pce-v5-badge-text"><?php echo esc_html($badge); ?></span>
-                                    </span>
-                                <?php endif; ?>
-
-                                <div class="pce-v5-media">
-                                    <img src="<?php echo esc_url($img_url); ?>" alt="<?php echo esc_attr($alt_text); ?>" loading="lazy" />
-                                </div>
-
-                                <div class="pce-v5-body">
-                                    <?php if ($title !== '') : ?>
-                                        <<?php echo esc_attr($title_tag); ?> class="pce-v5-title"><?php echo esc_html($title); ?></<?php echo esc_attr($title_tag); ?>>
-                                    <?php endif; ?>
-
-                                    <?php if ($price !== '') : ?>
-                                        <p class="pce-v5-price"><?php echo esc_html($price); ?></p>
-                                    <?php endif; ?>
-
-                                    <?php if ($desc !== '') : ?>
-                                        <p class="pce-v5-desc"><?php echo esc_html($desc); ?></p>
-                                    <?php endif; ?>
-                                </div>
-
-                                <div class="pce-v5-btn-wrapper">
-                                    <?php if ($has_link) : ?>
-                                        <a <?php echo $this->get_render_attribute_string($link_key); ?>>
-                                            <?php if ($has_btn_icon) : ?>
-                                                <span class="pce-v5-btn-icon" aria-hidden="true"><?php Icons_Manager::render_icon($item['btn_icon'], ['aria-hidden' => 'true']); ?></span>
-                                            <?php endif; ?>
-                                            <span class="pce-v5-btn-label"><?php echo esc_html($btn_text); ?></span>
-                                        </a>
-                                    <?php else : ?>
-                                        <span class="<?php echo esc_attr($button_classes); ?> is-disabled" aria-disabled="true">
-                                            <?php if ($has_btn_icon) : ?>
-                                                <span class="pce-v5-btn-icon" aria-hidden="true"><?php Icons_Manager::render_icon($item['btn_icon'], ['aria-hidden' => 'true']); ?></span>
-                                            <?php endif; ?>
-                                            <span class="pce-v5-btn-label"><?php echo esc_html($btn_text); ?></span>
-                                        </span>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                        </article>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-
-            <div class="<?php echo esc_attr($nav_class); ?>">
-                <button type="button" class="pce-v5-nav pce-v5-prev" aria-label="<?php echo esc_attr__('Previous slide', 'advanced-carousel-pro'); ?>">
-                    <span>&larr;</span>
-                </button>
-                <button type="button" class="pce-v5-nav pce-v5-next" aria-label="<?php echo esc_attr__('Next slide', 'advanced-carousel-pro'); ?>">
-                    <span>&rarr;</span>
-                </button>
-            </div>
-
-            <div class="<?php echo esc_attr($dots_class); ?>"></div>
-        </div>
-        <?php
+    private function get_image_html($item, $settings, $title) {
+        $size = $this->sanitize_choice($settings['image_size'] ?? 'medium_large', ['thumbnail', 'medium', 'medium_large', 'large', 'full'], 'medium_large');
+        $loading = ($settings['image_loading'] ?? 'lazy') === 'eager' ? 'eager' : 'lazy';
+        $alt = $this->get_image_alt($item, $title);
+        $image_id = (int) PCE_Settings::number($item['image']['id'] ?? '', 0, 1, PHP_INT_MAX);
+        $image = $image_id ? wp_get_attachment_image($image_id, $size, false, ['alt' => $alt, 'loading' => $loading, 'decoding' => 'async']) : '';
+        if ($image) {
+            return $image;
+        }
+        $url = $image_id ? '' : esc_url(PCE_Settings::text($item['image']['url'] ?? ''));
+        if (!$url) {
+            $url = esc_url(Utils::get_placeholder_image_src());
+        }
+        return '<img src="' . $url . '" alt="' . esc_attr($alt) . '" loading="' . $loading . '" decoding="async" />';
     }
 
     private function sanitize_int($value, $min, $max, $fallback) {
-        $value = (int) $value;
-
-        if ($value < $min || $value > $max) {
-            return (int) $fallback;
-        }
-
-        return $value;
+        return (int) PCE_Settings::number($value, $fallback, $min, $max);
     }
 
     private function sanitize_float($value, $min, $max, $fallback) {
-        $value = (float) $value;
-
-        if ($value < $min || $value > $max) {
-            return (float) $fallback;
-        }
-
-        return $value;
+        return (float) PCE_Settings::number($value, $fallback, $min, $max);
     }
 
     private function sanitize_choice($value, $allowed_values, $fallback) {
@@ -1968,7 +1956,10 @@ class PCE_Carousel_V5 extends Widget_Base {
     }
 
     private function get_image_alt($item, $fallback) {
-        if (!empty($item['image']['id'])) {
+        if (!empty($item['image_alt']) && is_string($item['image_alt'])) {
+            return $item['image_alt'];
+        }
+        if (is_numeric($item['image']['id'] ?? '') && (int) $item['image']['id'] > 0) {
             $meta_alt = get_post_meta((int) $item['image']['id'], '_wp_attachment_image_alt', true);
             if (is_string($meta_alt) && trim($meta_alt) !== '') {
                 return $meta_alt;

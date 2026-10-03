@@ -1,0 +1,628 @@
+msgid ""
+msgstr "Project-Id-Version: DbsProductSlider 2.3.0\nLanguage: fa_IR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Accessible Carousel Name"
+msgstr "نام اسلایدر برای دسترس‌پذیری"
+
+msgid "Activate WooCommerce to display products."
+msgstr "برای نمایش محصولات، ووکامرس را فعال کنید."
+
+msgid "Active Dot Color"
+msgstr "رنگ نقطهٔ فعال"
+
+msgid "Active Dot Width"
+msgstr "عرض نقطهٔ فعال"
+
+msgid "After"
+msgstr "بعد"
+
+msgid "After Text"
+msgstr "پس از متن"
+
+msgid "Alignment"
+msgstr "تراز"
+
+msgid "Arrow Button Margin"
+msgstr "فاصلهٔ بیرونی دکمهٔ فلش"
+
+msgid "Arrow Button Padding"
+msgstr "فاصلهٔ داخلی دکمهٔ فلش"
+
+msgid "Arrow Button Size"
+msgstr "اندازهٔ دکمهٔ فلش"
+
+msgid "Arrow Icon Size"
+msgstr "اندازهٔ آیکون فلش"
+
+msgid "Arrows"
+msgstr "فلش‌ها"
+
+msgid "Arrows Wrapper Padding"
+msgstr "فاصلهٔ داخلی قاب فلش‌ها"
+
+msgid "Ascending"
+msgstr "صعودی"
+
+msgid "Aspect Ratio"
+msgstr "نسبت تصویر"
+
+msgid "Auto"
+msgstr "خودکار"
+
+msgid "Auto (Use Site Direction)"
+msgstr "خودکار (جهت سایت)"
+
+msgid "Autoplay"
+msgstr "پخش خودکار"
+
+msgid "Autoplay Delay (ms)"
+msgstr "فاصلهٔ پخش خودکار (میلی‌ثانیه)"
+
+msgid "Background"
+msgstr "پس‌زمینه"
+
+msgid "Background Color"
+msgstr "رنگ پس‌زمینه"
+
+msgid "Badge"
+msgstr "نشان"
+
+msgid "Badge Icon"
+msgstr "آیکون نشان"
+
+msgid "Badge Label"
+msgstr "متن نشان"
+
+msgid "Before"
+msgstr "قبل"
+
+msgid "Before Text"
+msgstr "پیش از متن"
+
+msgid "Best Seller"
+msgstr "پرفروش"
+
+msgid "Border Color"
+msgstr "رنگ حاشیه"
+
+msgid "Border Radius"
+msgstr "گردی گوشه‌ها"
+
+msgid "Bullets"
+msgstr "نقطه‌ها"
+
+msgid "Button"
+msgstr "دکمه"
+
+msgid "Button Icon"
+msgstr "آیکون دکمه"
+
+msgid "Button Icon Position"
+msgstr "جایگاه آیکون دکمه"
+
+msgid "Button Link"
+msgstr "پیوند دکمه"
+
+msgid "Button Text"
+msgstr "متن دکمه"
+
+msgid "Card"
+msgstr "کارت"
+
+msgid "Card Preset"
+msgstr "ظاهر آمادهٔ کارت"
+
+msgid "Cards"
+msgstr "کارت‌ها"
+
+msgid "Catalog"
+msgstr "کاتالوگ"
+
+msgid "Category Slugs"
+msgstr "نامک دسته‌ها"
+
+msgid "Center"
+msgstr "مرکز"
+
+msgid "Centered Slides"
+msgstr "اسلایدها در مرکز"
+
+msgid "Classic"
+msgstr "کلاسیک"
+
+msgid "Comma-separated IDs, in display order. Maximum 40 products."
+msgstr "شناسه‌ها را به ترتیب نمایش با ویرگول جدا کنید. حداکثر ۴۰ محصول."
+
+msgid "Concise product summary goes here."
+msgstr "خلاصهٔ توضیحات محصول را اینجا وارد کنید."
+
+msgid "Contain"
+msgstr "نمایش کامل در قاب"
+
+msgid "Content Source"
+msgstr "منبع محتوا"
+
+msgid "Cover"
+msgstr "پوشاندن قاب"
+
+msgid "Coverflow"
+msgstr "کاورفلو"
+
+msgid "Creative"
+msgstr "خلاقانه"
+
+msgid "Custom"
+msgstr "دلخواه"
+
+msgid "Custom Width"
+msgstr "عرض دلخواه"
+
+msgid "Date"
+msgstr "تاریخ"
+
+msgid "Descending"
+msgstr "نزولی"
+
+msgid "Description"
+msgstr "توضیحات"
+
+msgid "Description Color"
+msgstr "رنگ توضیحات"
+
+msgid "Description Max Lines"
+msgstr "حداکثر خطوط توضیحات"
+
+msgid "Dot Color"
+msgstr "رنگ نقطه"
+
+msgid "Dot Size"
+msgstr "اندازهٔ نقطه"
+
+msgid "Dots"
+msgstr "صفحه‌بندی"
+
+msgid "Dots Spacing"
+msgstr "فاصلهٔ نقطه‌ها"
+
+msgid "Drag Threshold (px)"
+msgstr "حداقل فاصلهٔ شروع کشیدن (پیکسل)"
+
+msgid "Dynamic Bullets"
+msgstr "نقطه‌های پویا"
+
+msgid "Dynamic Main Bullets"
+msgstr "تعداد نقطه‌های اصلی پویا"
+
+msgid "Eager (above the fold)"
+msgstr "فوری (برای بالای صفحه)"
+
+msgid "Enable Drag/Swipe"
+msgstr "فعال‌سازی کشیدن / لمس"
+
+msgid "Enable Keyboard Control"
+msgstr "کنترل با صفحه‌کلید"
+
+msgid "Enable Mousewheel Control"
+msgstr "کنترل با چرخ ماوس"
+
+msgid "Equal Card Heights"
+msgstr "ارتفاع یکسان کارت‌ها"
+
+msgid "Exclude Current Product"
+msgstr "حذف محصول صفحهٔ جاری"
+
+msgid "Exclude Product IDs"
+msgstr "شناسه‌های محصولات مستثنا"
+
+msgid "Fade"
+msgstr "محو شدن"
+
+msgid "Featured"
+msgstr "محصولات ویژه"
+
+msgid "Fill"
+msgstr "پر کردن قاب"
+
+msgid "Fraction"
+msgstr "شمارنده"
+
+msgid "Fractional views and single-card effects move one card at a time. Insufficient cards use rewind instead of loop."
+msgstr "نمایش اعشاری و افکت‌های تک‌کارت هر بار یک کارت حرکت می‌کنند. وقتی کارت‌ها برای حرکت پیوسته کافی نباشند، از بازگشت به ابتدا استفاده می‌شود."
+
+msgid "Full"
+msgstr "اندازهٔ اصلی"
+
+msgid "Full Width"
+msgstr "تمام‌عرض"
+
+msgid "Gap"
+msgstr "فاصلهٔ کارت‌ها"
+
+msgid "Go to slide {{index}}"
+msgstr "رفتن به اسلاید {{index}}"
+
+msgid "Hide Out of Stock"
+msgstr "پنهان کردن محصولات ناموجود"
+
+msgid "Horizontal Offset"
+msgstr "فاصلهٔ افقی"
+
+msgid "Hover"
+msgstr "هنگام قرار گرفتن ماوس"
+
+msgid "Hover Background"
+msgstr "پس‌زمینه هنگام قرار گرفتن ماوس"
+
+msgid "Hover Border Color"
+msgstr "رنگ حاشیه هنگام قرار گرفتن ماوس"
+
+msgid "Hover Effects"
+msgstr "افکت‌های ماوس"
+
+msgid "Hover Lift (Y)"
+msgstr "جابه‌جایی عمودی هنگام قرار گرفتن ماوس"
+
+msgid "Hover Scale"
+msgstr "بزرگ‌نمایی هنگام قرار گرفتن ماوس"
+
+msgid "Hover Transition Duration (ms)"
+msgstr "مدت افکت ماوس (میلی‌ثانیه)"
+
+msgid "Icon Color"
+msgstr "رنگ آیکون"
+
+msgid "Icon Gap"
+msgstr "فاصلهٔ آیکون از متن"
+
+msgid "Icon Position"
+msgstr "جایگاه آیکون"
+
+msgid "Icon Size"
+msgstr "اندازهٔ آیکون"
+
+msgid "Icon Spacing"
+msgstr "فاصلهٔ آیکون"
+
+msgid "If enabled, autoplay and heavy motion are reduced for users who prefer reduced motion."
+msgstr "با فعال بودن این گزینه، برای کاربران دارای ترجیح کاهش حرکت، پخش خودکار و افکت‌های حرکتی کاهش می‌یابند."
+
+msgid "Image"
+msgstr "تصویر"
+
+msgid "Image Alternative Text"
+msgstr "متن جایگزین تصویر"
+
+msgid "Image Loading"
+msgstr "بارگذاری تصویر"
+
+msgid "Image Resolution"
+msgstr "اندازهٔ تصویر"
+
+msgid "Image Zoom On Hover"
+msgstr "بزرگ‌نمایی تصویر هنگام قرار گرفتن ماوس"
+
+msgid "Items"
+msgstr "آیتم‌ها"
+
+msgid "Keep arrows enabled when drag is disabled. Fraction and progress pagination do not provide navigation."
+msgstr "وقتی کشیدن خاموش است، فلش‌ها را روشن نگه دارید. شمارنده و نوار پیشرفت امکان جابه‌جایی ندارند."
+
+msgid "Landscape (16:9)"
+msgstr "افقی (۱۶:۹)"
+
+msgid "Large"
+msgstr "بزرگ"
+
+msgid "Last updated"
+msgstr "آخرین به‌روزرسانی"
+
+msgid "Latest products"
+msgstr "جدیدترین محصولات"
+
+msgid "Lazy"
+msgstr "تنبل"
+
+msgid "Leather Sneaker"
+msgstr "کفش چرمی"
+
+msgid "Leave empty to inherit. Existing desktop/tablet/mobile settings are preserved. Defaults: 3 / 2 / 1.15."
+msgstr "برای ارث‌بری خالی بگذارید. تنظیمات قبلی دسکتاپ، تبلت و موبایل حفظ می‌شوند. مقادیر پیش‌فرض: ۳ / ۲ / ۱٫۱۵."
+
+msgid "Leave empty to use the media alternative text or product title."
+msgstr "برای استفاده از متن جایگزین رسانه یا عنوان محصول، خالی بگذارید."
+
+msgid "Left"
+msgstr "چپ"
+
+msgid "Left To Right"
+msgstr "چپ به راست"
+
+msgid "Lift On Hover (Y)"
+msgstr "جابه‌جایی عمودی هنگام قرار گرفتن ماوس"
+
+msgid "Loop"
+msgstr "حرکت پیوسته"
+
+msgid "Manual items"
+msgstr "آیتم‌های دستی"
+
+msgid "Maximum Products"
+msgstr "حداکثر محصولات"
+
+msgid "Medium"
+msgstr "متوسط"
+
+msgid "Medium large"
+msgstr "متوسط بزرگ"
+
+msgid "Minimal"
+msgstr "مینیمال"
+
+msgid "Minimum Height"
+msgstr "حداقل ارتفاع"
+
+msgid "Mousewheel Sensitivity"
+msgstr "حساسیت چرخ ماوس"
+
+msgid "Name"
+msgstr "نام"
+
+msgid "New"
+msgstr "جدید"
+
+msgid "Next slide"
+msgstr "اسلاید بعدی"
+
+msgid "No items match the selected source. Add items or adjust product filters."
+msgstr "هیچ آیتمی مطابق منبع انتخاب‌شده وجود ندارد. آیتم اضافه کنید یا فیلتر محصولات را تغییر دهید."
+
+msgid "Normal"
+msgstr "عادی"
+
+msgid "Object Fit"
+msgstr "روش جاگذاری تصویر"
+
+msgid "Office Backpack"
+msgstr "کوله‌پشتی اداری"
+
+msgid "On sale"
+msgstr "محصولات حراج"
+
+msgid "Optional comma-separated category slugs. Leave empty for all categories."
+msgstr "نامک دسته‌ها را با ویرگول جدا کنید؛ برای همهٔ دسته‌ها خالی بگذارید."
+
+msgid "Order"
+msgstr "ترتیب"
+
+msgid "Order By"
+msgstr "مرتب‌سازی بر اساس"
+
+msgid "Out of stock"
+msgstr "ناموجود"
+
+msgid "Padding"
+msgstr "فاصلهٔ داخلی"
+
+msgid "Pagination Type"
+msgstr "نوع صفحه‌بندی"
+
+msgid "Pause On Hover"
+msgstr "مکث هنگام قرار گرفتن ماوس"
+
+msgid "Pause slideshow"
+msgstr "توقف پخش اسلایدها"
+
+msgid "Play slideshow"
+msgstr "شروع پخش اسلایدها"
+
+msgid "Popular"
+msgstr "محبوب"
+
+msgid "Portrait (3:4)"
+msgstr "عمودی (۳:۴)"
+
+msgid "Portrait (4:5)"
+msgstr "عمودی (۴:۵)"
+
+msgid "Previous slide"
+msgstr "اسلاید قبلی"
+
+msgid "Price / Label"
+msgstr "قیمت / برچسب"
+
+msgid "Price Color"
+msgstr "رنگ قیمت"
+
+msgid "Product Button Action"
+msgstr "عملکرد دکمهٔ محصول"
+
+msgid "Product Carousel Elementor requires Elementor to be installed and active."
+msgstr "افزونهٔ اسلایدر محصولات به نصب و فعال بودن المنتور نیاز دارد."
+
+#, php-format
+msgid "Product Carousel Elementor requires Elementor version %s or greater."
+msgstr "افزونهٔ اسلایدر محصولات به المنتور نسخهٔ %s یا بالاتر نیاز دارد."
+
+#, php-format
+msgid "Product Carousel Elementor requires PHP version %s or greater."
+msgstr "افزونهٔ اسلایدر محصولات به PHP نسخهٔ %s یا بالاتر نیاز دارد."
+
+msgid "Product Carousel Pro"
+msgstr "اسلایدر محصولات"
+
+msgid "Product ID"
+msgstr "شناسهٔ محصول"
+
+msgid "Product IDs"
+msgstr "شناسه‌های محصول"
+
+msgid "Product Name"
+msgstr "نام محصول"
+
+msgid "Product Selection"
+msgstr "انتخاب محصولات"
+
+msgid "Product carousel"
+msgstr "اسلایدر محصولات"
+
+msgid "Product image"
+msgstr "تصویر محصول"
+
+msgid "Progress Bar"
+msgstr "نوار پیشرفت"
+
+msgid "Purchase / select options"
+msgstr "خرید / انتخاب گزینه‌ها"
+
+msgid "Release Mousewheel On Edges"
+msgstr "آزاد کردن اسکرول در ابتدا و انتها"
+
+msgid "Respect Reduced Motion Preference"
+msgstr "رعایت ترجیح کاهش حرکت"
+
+msgid "Reverse Autoplay Direction"
+msgstr "معکوس کردن جهت پخش خودکار"
+
+msgid "Rewind (When Loop Is Off)"
+msgstr "بازگشت به ابتدا (وقتی حرکت پیوسته خاموش است)"
+
+msgid "Right"
+msgstr "راست"
+
+msgid "Right To Left"
+msgstr "راست به چپ"
+
+msgid "Rotate On Hover (deg)"
+msgstr "چرخش هنگام قرار گرفتن ماوس (درجه)"
+
+msgid "Sale"
+msgstr "حراج"
+
+msgid "Scale On Hover"
+msgstr "بزرگ‌نمایی هنگام قرار گرفتن ماوس"
+
+msgid "Select options"
+msgstr "انتخاب گزینه‌ها"
+
+msgid "Selected product IDs"
+msgstr "شناسه‌های منتخب محصول"
+
+msgid "Show Arrows"
+msgstr "نمایش فلش‌ها"
+
+msgid "Show Badge"
+msgstr "نمایش نشان"
+
+msgid "Show Button"
+msgstr "نمایش دکمه"
+
+msgid "Show Description"
+msgstr "نمایش توضیحات"
+
+msgid "Show Dots"
+msgstr "نمایش صفحه‌بندی"
+
+msgid "Show Image"
+msgstr "نمایش تصویر"
+
+msgid "Show Price"
+msgstr "نمایش قیمت"
+
+msgid "Show Title"
+msgstr "نمایش عنوان"
+
+msgid "Side Offset"
+msgstr "فاصله از کناره"
+
+msgid "Slide"
+msgstr "لغزش"
+
+msgid "Slide Direction"
+msgstr "جهت اسلایدر"
+
+msgid "Slider Settings"
+msgstr "تنظیمات اسلایدر"
+
+msgid "Slides Per Group"
+msgstr "تعداد اسلاید در هر حرکت"
+
+msgid "Slideshow paused: reduced motion"
+msgstr "پخش به دلیل ترجیح کاهش حرکت متوقف است"
+
+msgid "Square (1:1)"
+msgstr "مربع (۱:۱)"
+
+msgid "Stop Autoplay After Interaction"
+msgstr "توقف پخش خودکار پس از تعامل"
+
+msgid "Style controls can further customize the selected preset."
+msgstr "با کنترل‌های ظاهر می‌توانید طرح انتخاب‌شده را بیشتر شخصی‌سازی کنید."
+
+msgid "Text"
+msgstr "متن"
+
+msgid "Text Color"
+msgstr "رنگ متن"
+
+msgid "This is the first slide"
+msgstr "این نخستین اسلاید است"
+
+msgid "This is the last slide"
+msgstr "این آخرین اسلاید است"
+
+msgid "Thumbnail"
+msgstr "بندانگشتی"
+
+msgid "Title"
+msgstr "عنوان"
+
+msgid "Title Color"
+msgstr "رنگ عنوان"
+
+msgid "Title HTML Tag"
+msgstr "تگ HTML عنوان"
+
+msgid "Top Margin"
+msgstr "فاصلهٔ بیرونی از بالا"
+
+msgid "Top Offset"
+msgstr "فاصله از بالا"
+
+msgid "Transition Duration (ms)"
+msgstr "مدت افکت (میلی‌ثانیه)"
+
+msgid "Transition Effect"
+msgstr "افکت جابه‌جایی"
+
+msgid "Transition Speed (ms)"
+msgstr "مدت جابه‌جایی (میلی‌ثانیه)"
+
+msgid "Use negative values to push arrows outside the carousel."
+msgstr "با مقدار منفی می‌توانید فلش‌ها را بیرون از قاب اسلایدر قرار دهید."
+
+msgid "Vertical Position"
+msgstr "جایگاه عمودی"
+
+msgid "View Product"
+msgstr "مشاهدهٔ محصول"
+
+msgid "View product"
+msgstr "مشاهدهٔ محصول"
+
+msgid "Visible Slides"
+msgstr "تعداد اسلایدهای نمایان"
+
+msgid "Width"
+msgstr "عرض"
+
+msgid "WooCommerce products"
+msgstr "محصولات ووکامرس"
+
+msgid "Wrapper"
+msgstr "قاب بیرونی"
+
+msgid "carousel"
+msgstr "اسلایدر"
+
+msgid "{{index}} of {{slidesLength}}"
+msgstr "{{index}} از {{slidesLength}}"

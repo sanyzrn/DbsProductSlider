@@ -31,6 +31,10 @@ wp-config.php
 
 # Log files
 *.log
+node_modules/
+dist/
+test-results/
+tests/.generated/
 
 # htaccess
 /.htaccess

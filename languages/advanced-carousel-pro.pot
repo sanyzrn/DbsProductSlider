@@ -1,0 +1,628 @@
+msgid ""
+msgstr "Project-Id-Version: DbsProductSlider 2.3.0\nLanguage:\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Accessible Carousel Name"
+msgstr ""
+
+msgid "Activate WooCommerce to display products."
+msgstr ""
+
+msgid "Active Dot Color"
+msgstr ""
+
+msgid "Active Dot Width"
+msgstr ""
+
+msgid "After"
+msgstr ""
+
+msgid "After Text"
+msgstr ""
+
+msgid "Alignment"
+msgstr ""
+
+msgid "Arrow Button Margin"
+msgstr ""
+
+msgid "Arrow Button Padding"
+msgstr ""
+
+msgid "Arrow Button Size"
+msgstr ""
+
+msgid "Arrow Icon Size"
+msgstr ""
+
+msgid "Arrows"
+msgstr ""
+
+msgid "Arrows Wrapper Padding"
+msgstr ""
+
+msgid "Ascending"
+msgstr ""
+
+msgid "Aspect Ratio"
+msgstr ""
+
+msgid "Auto"
+msgstr ""
+
+msgid "Auto (Use Site Direction)"
+msgstr ""
+
+msgid "Autoplay"
+msgstr ""
+
+msgid "Autoplay Delay (ms)"
+msgstr ""
+
+msgid "Background"
+msgstr ""
+
+msgid "Background Color"
+msgstr ""
+
+msgid "Badge"
+msgstr ""
+
+msgid "Badge Icon"
+msgstr ""
+
+msgid "Badge Label"
+msgstr ""
+
+msgid "Before"
+msgstr ""
+
+msgid "Before Text"
+msgstr ""
+
+msgid "Best Seller"
+msgstr ""
+
+msgid "Border Color"
+msgstr ""
+
+msgid "Border Radius"
+msgstr ""
+
+msgid "Bullets"
+msgstr ""
+
+msgid "Button"
+msgstr ""
+
+msgid "Button Icon"
+msgstr ""
+
+msgid "Button Icon Position"
+msgstr ""
+
+msgid "Button Link"
+msgstr ""
+
+msgid "Button Text"
+msgstr ""
+
+msgid "Card"
+msgstr ""
+
+msgid "Card Preset"
+msgstr ""
+
+msgid "Cards"
+msgstr ""
+
+msgid "Catalog"
+msgstr ""
+
+msgid "Category Slugs"
+msgstr ""
+
+msgid "Center"
+msgstr ""
+
+msgid "Centered Slides"
+msgstr ""
+
+msgid "Classic"
+msgstr ""
+
+msgid "Comma-separated IDs, in display order. Maximum 40 products."
+msgstr ""
+
+msgid "Concise product summary goes here."
+msgstr ""
+
+msgid "Contain"
+msgstr ""
+
+msgid "Content Source"
+msgstr ""
+
+msgid "Cover"
+msgstr ""
+
+msgid "Coverflow"
+msgstr ""
+
+msgid "Creative"
+msgstr ""
+
+msgid "Custom"
+msgstr ""
+
+msgid "Custom Width"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Descending"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Description Color"
+msgstr ""
+
+msgid "Description Max Lines"
+msgstr ""
+
+msgid "Dot Color"
+msgstr ""
+
+msgid "Dot Size"
+msgstr ""
+
+msgid "Dots"
+msgstr ""
+
+msgid "Dots Spacing"
+msgstr ""
+
+msgid "Drag Threshold (px)"
+msgstr ""
+
+msgid "Dynamic Bullets"
+msgstr ""
+
+msgid "Dynamic Main Bullets"
+msgstr ""
+
+msgid "Eager (above the fold)"
+msgstr ""
+
+msgid "Enable Drag/Swipe"
+msgstr ""
+
+msgid "Enable Keyboard Control"
+msgstr ""
+
+msgid "Enable Mousewheel Control"
+msgstr ""
+
+msgid "Equal Card Heights"
+msgstr ""
+
+msgid "Exclude Current Product"
+msgstr ""
+
+msgid "Exclude Product IDs"
+msgstr ""
+
+msgid "Fade"
+msgstr ""
+
+msgid "Featured"
+msgstr ""
+
+msgid "Fill"
+msgstr ""
+
+msgid "Fraction"
+msgstr ""
+
+msgid "Fractional views and single-card effects move one card at a time. Insufficient cards use rewind instead of loop."
+msgstr ""
+
+msgid "Full"
+msgstr ""
+
+msgid "Full Width"
+msgstr ""
+
+msgid "Gap"
+msgstr ""
+
+msgid "Go to slide {{index}}"
+msgstr ""
+
+msgid "Hide Out of Stock"
+msgstr ""
+
+msgid "Horizontal Offset"
+msgstr ""
+
+msgid "Hover"
+msgstr ""
+
+msgid "Hover Background"
+msgstr ""
+
+msgid "Hover Border Color"
+msgstr ""
+
+msgid "Hover Effects"
+msgstr ""
+
+msgid "Hover Lift (Y)"
+msgstr ""
+
+msgid "Hover Scale"
+msgstr ""
+
+msgid "Hover Transition Duration (ms)"
+msgstr ""
+
+msgid "Icon Color"
+msgstr ""
+
+msgid "Icon Gap"
+msgstr ""
+
+msgid "Icon Position"
+msgstr ""
+
+msgid "Icon Size"
+msgstr ""
+
+msgid "Icon Spacing"
+msgstr ""
+
+msgid "If enabled, autoplay and heavy motion are reduced for users who prefer reduced motion."
+msgstr ""
+
+msgid "Image"
+msgstr ""
+
+msgid "Image Alternative Text"
+msgstr ""
+
+msgid "Image Loading"
+msgstr ""
+
+msgid "Image Resolution"
+msgstr ""
+
+msgid "Image Zoom On Hover"
+msgstr ""
+
+msgid "Items"
+msgstr ""
+
+msgid "Keep arrows enabled when drag is disabled. Fraction and progress pagination do not provide navigation."
+msgstr ""
+
+msgid "Landscape (16:9)"
+msgstr ""
+
+msgid "Large"
+msgstr ""
+
+msgid "Last updated"
+msgstr ""
+
+msgid "Latest products"
+msgstr ""
+
+msgid "Lazy"
+msgstr ""
+
+msgid "Leather Sneaker"
+msgstr ""
+
+msgid "Leave empty to inherit. Existing desktop/tablet/mobile settings are preserved. Defaults: 3 / 2 / 1.15."
+msgstr ""
+
+msgid "Leave empty to use the media alternative text or product title."
+msgstr ""
+
+msgid "Left"
+msgstr ""
+
+msgid "Left To Right"
+msgstr ""
+
+msgid "Lift On Hover (Y)"
+msgstr ""
+
+msgid "Loop"
+msgstr ""
+
+msgid "Manual items"
+msgstr ""
+
+msgid "Maximum Products"
+msgstr ""
+
+msgid "Medium"
+msgstr ""
+
+msgid "Medium large"
+msgstr ""
+
+msgid "Minimal"
+msgstr ""
+
+msgid "Minimum Height"
+msgstr ""
+
+msgid "Mousewheel Sensitivity"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "New"
+msgstr ""
+
+msgid "Next slide"
+msgstr ""
+
+msgid "No items match the selected source. Add items or adjust product filters."
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Object Fit"
+msgstr ""
+
+msgid "Office Backpack"
+msgstr ""
+
+msgid "On sale"
+msgstr ""
+
+msgid "Optional comma-separated category slugs. Leave empty for all categories."
+msgstr ""
+
+msgid "Order"
+msgstr ""
+
+msgid "Order By"
+msgstr ""
+
+msgid "Out of stock"
+msgstr ""
+
+msgid "Padding"
+msgstr ""
+
+msgid "Pagination Type"
+msgstr ""
+
+msgid "Pause On Hover"
+msgstr ""
+
+msgid "Pause slideshow"
+msgstr ""
+
+msgid "Play slideshow"
+msgstr ""
+
+msgid "Popular"
+msgstr ""
+
+msgid "Portrait (3:4)"
+msgstr ""
+
+msgid "Portrait (4:5)"
+msgstr ""
+
+msgid "Previous slide"
+msgstr ""
+
+msgid "Price / Label"
+msgstr ""
+
+msgid "Price Color"
+msgstr ""
+
+msgid "Product Button Action"
+msgstr ""
+
+msgid "Product Carousel Elementor requires Elementor to be installed and active."
+msgstr ""
+
+#, php-format
+msgid "Product Carousel Elementor requires Elementor version %s or greater."
+msgstr ""
+
+#, php-format
+msgid "Product Carousel Elementor requires PHP version %s or greater."
+msgstr ""
+
+msgid "Product Carousel Pro"
+msgstr ""
+
+msgid "Product ID"
+msgstr ""
+
+msgid "Product IDs"
+msgstr ""
+
+msgid "Product Name"
+msgstr ""
+
+msgid "Product Selection"
+msgstr ""
+
+msgid "Product carousel"
+msgstr ""
+
+msgid "Product image"
+msgstr ""
+
+msgid "Progress Bar"
+msgstr ""
+
+msgid "Purchase / select options"
+msgstr ""
+
+msgid "Release Mousewheel On Edges"
+msgstr ""
+
+msgid "Respect Reduced Motion Preference"
+msgstr ""
+
+msgid "Reverse Autoplay Direction"
+msgstr ""
+
+msgid "Rewind (When Loop Is Off)"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+msgid "Right To Left"
+msgstr ""
+
+msgid "Rotate On Hover (deg)"
+msgstr ""
+
+msgid "Sale"
+msgstr ""
+
+msgid "Scale On Hover"
+msgstr ""
+
+msgid "Select options"
+msgstr ""
+
+msgid "Selected product IDs"
+msgstr ""
+
+msgid "Show Arrows"
+msgstr ""
+
+msgid "Show Badge"
+msgstr ""
+
+msgid "Show Button"
+msgstr ""
+
+msgid "Show Description"
+msgstr ""
+
+msgid "Show Dots"
+msgstr ""
+
+msgid "Show Image"
+msgstr ""
+
+msgid "Show Price"
+msgstr ""
+
+msgid "Show Title"
+msgstr ""
+
+msgid "Side Offset"
+msgstr ""
+
+msgid "Slide"
+msgstr ""
+
+msgid "Slide Direction"
+msgstr ""
+
+msgid "Slider Settings"
+msgstr ""
+
+msgid "Slides Per Group"
+msgstr ""
+
+msgid "Slideshow paused: reduced motion"
+msgstr ""
+
+msgid "Square (1:1)"
+msgstr ""
+
+msgid "Stop Autoplay After Interaction"
+msgstr ""
+
+msgid "Style controls can further customize the selected preset."
+msgstr ""
+
+msgid "Text"
+msgstr ""
+
+msgid "Text Color"
+msgstr ""
+
+msgid "This is the first slide"
+msgstr ""
+
+msgid "This is the last slide"
+msgstr ""
+
+msgid "Thumbnail"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Title Color"
+msgstr ""
+
+msgid "Title HTML Tag"
+msgstr ""
+
+msgid "Top Margin"
+msgstr ""
+
+msgid "Top Offset"
+msgstr ""
+
+msgid "Transition Duration (ms)"
+msgstr ""
+
+msgid "Transition Effect"
+msgstr ""
+
+msgid "Transition Speed (ms)"
+msgstr ""
+
+msgid "Use negative values to push arrows outside the carousel."
+msgstr ""
+
+msgid "Vertical Position"
+msgstr ""
+
+msgid "View Product"
+msgstr ""
+
+msgid "View product"
+msgstr ""
+
+msgid "Visible Slides"
+msgstr ""
+
+msgid "Width"
+msgstr ""
+
+msgid "WooCommerce products"
+msgstr ""
+
+msgid "Wrapper"
+msgstr ""
+
+msgid "carousel"
+msgstr ""
+
+msgid "{{index}} of {{slidesLength}}"
+msgstr ""

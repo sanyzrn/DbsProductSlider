@@ -13,8 +13,22 @@
 }
 
 .pce-v5-slider {
-    padding: 4px 2px 42px;
+    padding: 12px 4px 24px;
 }
+
+.pce-equal-height .swiper-wrapper { align-items: stretch; }
+.pce-equal-height .swiper-slide { height: auto; display: flex; }
+.pce-equal-height .pce-v5-card { flex: 1; }
+
+/* Readable, horizontally scrollable cards even if a script is delayed or disabled. */
+.pce-v5-wrapper:not(.pce-is-ready) .pce-v5-slider { overflow-x: auto; }
+.pce-v5-wrapper:not(.pce-is-ready) .swiper-wrapper { gap: 20px; transform: none; }
+.pce-v5-wrapper:not(.pce-is-ready) .swiper-slide { width: min(80%, 320px); flex-shrink: 0; }
+
+.pce-preset-minimal .pce-v5-card { border-color: transparent; box-shadow: none; border-radius: 8px; }
+.pce-preset-catalog .pce-v5-card { padding: 12px; border-radius: 8px; box-shadow: none; }
+.pce-preset-catalog .pce-v5-media { border-radius: 4px; }
+.pce-image-auto .pce-v5-media img { height: auto; display: block; }
 
 /* Only an enabled drag surface opts out of text/native image selection.
    Vertical touch scrolling and pinch zoom remain available. */
@@ -40,6 +54,9 @@
     --pce-card-image-hover-scale: 1.04;
     --pce-card-transition: 250ms;
 
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -204,7 +221,10 @@
 }
 
 .pce-v5-btn:focus-visible,
-.pce-v5-nav:focus-visible {
+.pce-v5-nav:focus-visible,
+.pce-v5-autoplay:focus-visible,
+.pce-v5-slider:focus-visible,
+.pce-v5-pagination button:focus-visible {
     outline: 2px solid #0f4db8;
     outline-offset: 2px;
 }
@@ -259,12 +279,18 @@
     line-height: 1;
 }
 
+.pce-v5-wrapper[dir="rtl"] .pce-v5-nav span { transform: rotate(180deg); }
+.pce-v5-nav.swiper-button-disabled { opacity: 0.4; cursor: default; pointer-events: none; }
+.pce-v5-nav.swiper-button-lock { display: none; }
+
 .pce-v5-pagination.swiper-pagination {
     position: static;
     margin-top: 8px;
 }
 
 .pce-v5-pagination .swiper-pagination-bullet {
+    padding: 0;
+    border: 0;
     width: 9px;
     height: 9px;
     background: #9cb1cf;
@@ -278,10 +304,13 @@
     pointer-events: auto;
 }
 
-.pce-v5-pagination .swiper-pagination-bullet-active {
+.pce-v5-pagination:not(.swiper-pagination-bullets-dynamic) .swiper-pagination-bullet-active {
     background: var(--pce-color-accent);
     width: 20px;
 }
+
+.pce-v5-pagination .swiper-pagination-bullet-active { background: var(--pce-color-accent); }
+.pce-v5-pagination.swiper-pagination-bullets-dynamic { margin-inline: auto; transform: none; }
 
 .pce-v5-pagination-fraction {
     font-size: 13px;
@@ -301,17 +330,37 @@
 }
 
 .pce-v5-navigation.is-hidden,
-.pce-v5-pagination.is-hidden {
+.pce-v5-pagination.is-hidden,
+.pce-v5-autoplay[hidden] {
     display: none;
 }
+
+.pce-v5-autoplay {
+    display: block;
+    margin: 12px auto 0;
+    padding: 8px 14px;
+    border: 1px solid var(--pce-color-border);
+    border-radius: 8px;
+    background: var(--pce-color-bg);
+    color: var(--pce-color-text);
+    font: inherit;
+    cursor: pointer;
+}
+.pce-v5-autoplay:disabled { opacity: 0.65; cursor: default; }
+.pce-v5-price del { color: var(--pce-color-muted); font-size: 0.85em; }
+.pce-v5-price ins { background: transparent; text-decoration: none; }
+.pce-v5-price .screen-reader-text { position: absolute; clip-path: inset(50%); width: 1px; height: 1px; overflow: hidden; }
+.pce-v5-empty { padding: 16px; border: 1px dashed #9cb1cf; }
 
 @media (prefers-reduced-motion: reduce) {
     .pce-v5-card, .pce-v5-media img, .pce-v5-btn, .pce-v5-nav,
     .pce-v5-pagination .swiper-pagination-bullet {
-        transition: none;
+        transition: none !important;
     }
-    .pce-v5-card:hover, .pce-v5-card:hover .pce-v5-media img {
-        transform: none;
+    .pce-v5-card:hover, .pce-v5-card:hover .pce-v5-media img,
+    .pce-v5-btn:hover, .pce-v5-btn:focus, .pce-v5-nav:hover {
+        transform: none !important;
+        transition: none !important;
     }
 }
 
@@ -324,7 +373,4 @@
         padding: 16px;
     }
 
-    .pce-v5-navigation {
-        display: none;
-    }
 }

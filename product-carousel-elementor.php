@@ -2,14 +2,16 @@
 /**
  * Plugin Name: Product Carousel Elementor
  * Plugin URI: https://dbsgraphic.ir/
- * Description: Professional product carousel widget for Elementor with advanced styling and slider controls.
- * Version: 2.1.1
+ * Description: Manual and optional WooCommerce product carousels for Elementor with responsive controls, Persian UI and accessible playback.
+ * Version: 2.3.0
  * Author: Saeed Zarrini
  * Author URI: https://dbsgraphic.ir/
  * Text Domain: advanced-carousel-pro
  * Domain Path: /languages
  * Requires at least: 6.2
  * Requires PHP: 7.4
+ * Requires Plugins: elementor
+ * License: GPL-2.0-or-later
  */
 
 if (!defined('ABSPATH')) {
@@ -19,7 +21,7 @@ if (!defined('ABSPATH')) {
 final class ACP_Plugin {
     private const MINIMUM_ELEMENTOR_VERSION = '3.15.0';
     private const MINIMUM_PHP_VERSION = '7.4';
-    private const VERSION = '2.1.1';
+    private const VERSION = '2.3.0';
 
     public function __construct() {
         $this->define_constants();
@@ -56,35 +58,34 @@ final class ACP_Plugin {
         }
 
         add_action('elementor/widgets/register', [$this, 'register_widgets']);
+        add_action('elementor/frontend/after_register_scripts', [$this, 'register_assets']);
+        add_action('elementor/frontend/after_register_styles', [$this, 'register_assets']);
         add_action('wp_enqueue_scripts', [$this, 'register_assets']);
     }
 
     public function register_widgets($widgets_manager) {
+        require_once ACP_PLUGIN_PATH . 'includes/class-pce-settings.php';
+        require_once ACP_PLUGIN_PATH . 'includes/class-pce-products.php';
         require_once ACP_PLUGIN_PATH . 'widgets/carousel.php';
         $widgets_manager->register(new \PCE_Carousel_V5());
     }
 
     public function register_assets() {
-        // Reuse Elementor Swiper if available, otherwise register a safe fallback.
-        if (!wp_style_is('swiper', 'registered')) {
-            wp_register_style('swiper', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css', [], '10.3.1');
-        }
-
-        if (!wp_script_is('swiper', 'registered')) {
-            wp_register_script('swiper', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js', [], '10.3.1', true);
-        }
+        // A pinned, namespaced engine keeps Elementor's own Swiper untouched.
+        wp_register_style('pce-swiper', ACP_PLUGIN_URL . 'assets/vendor/swiper/swiper-bundle.min.css', [], '11.2.10');
+        wp_register_script('pce-swiper', ACP_PLUGIN_URL . 'assets/vendor/swiper/swiper-bundle.min.js', [], '11.2.10', true);
 
         wp_register_style(
             'pce-v5-style',
             ACP_PLUGIN_URL . 'assets/css/style.css',
-            ['swiper'],
+            ['pce-swiper'],
             ACP_PLUGIN_VERSION
         );
 
         wp_register_script(
             'pce-v5-script',
             ACP_PLUGIN_URL . 'assets/js/script.js',
-            ['jquery', 'swiper'],
+            ['jquery', 'pce-swiper', 'elementor-frontend'],
             ACP_PLUGIN_VERSION,
             true
         );

@@ -2,9 +2,9 @@
 Contributors: saeed
 Tags: elementor, carousel, slider, products
 Requires at least: 6.2
-Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.1.1
+Requires Plugins: elementor
+Stable tag: 2.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Professional product carousel widget for Elementor with advanced effects, deep s
 
 == Description ==
 
-Product Carousel Elementor adds a production-ready product-style carousel widget to Elementor.
+Product Carousel Elementor adds manual and optional WooCommerce product carousels to Elementor (3.15 or later).
 
 Features:
 - Repeater-based item management
@@ -24,15 +24,67 @@ Features:
 - Badge and button icon support with flexible positioning
 - Accessible controls and keyboard navigation
 - Safe rendering with escaping and sanitization
+- Optional WooCommerce latest, featured, sale, category and selected-ID product sources
+- Live WooCommerce price markup, stock badges, and product-aware purchase links
+- Complete Persian interface and accessible control translations
+- Elementor custom breakpoints and independent responsive gaps, groups, arrows and pagination
+- Local, pinned, isolated Swiper 11.2.10 assets; no runtime CDN dependency
+- Pause/play control, focus/hover handling, and live reduced-motion preference support
+- Responsive WordPress attachment images, size/loading controls, and alternative text overrides
+- Classic, minimal and catalog presets, component visibility and equal card heights
 
 == Installation ==
 
 1. Upload the plugin folder to `/wp-content/plugins/`.
 2. Activate the plugin through the WordPress plugins screen.
 3. Make sure Elementor is installed and active.
-4. Edit a page with Elementor and search for `Product Carousel Pro` widget.
+4. Edit a page with Elementor and search for `Product Carousel Pro` (Persian: اسلایدر محصولات).
+5. Select Manual items or WooCommerce products. WooCommerce is optional.
+
+== Frequently Asked Questions ==
+
+= Is WooCommerce required? =
+No. Manual items work with Elementor alone. Product sources require active WooCommerce.
+
+= How are products selected? =
+Choose latest, featured, sale or selected IDs. Optional category slugs and exclusions apply.
+Selected IDs retain their input order; queries return at most 40 cards. Only published,
+catalog-visible, non-password-protected products are shown.
+
+= How do purchase buttons work? =
+The default opens the product page. Purchase mode uses standard WooCommerce URLs for
+available purchasable simple products, option selection for variable products, the
+detail page for grouped/unavailable products, and the product URL for external products.
+This version does not implement AJAX add-to-cart or a product search control.
+
+= Why can loop turn off? =
+Swiper requires enough cards for the active view, effect and group size. If that condition
+is not met, rewind is used when enabled. No duplicate or blank product cards are added.
+
+= Will existing pages retain settings? =
+The widget name, text domain and old slide counts are retained. The new responsive
+Visible Slides control overrides legacy values when set. Regenerate Elementor CSS
+and clear page caches after upgrading. See README_FA.md for the staging checklist.
+
+= Are product prices cached? =
+This widget bypasses Elementor element output caching. External full-page caches must
+still follow your store's existing invalidation policy. No custom price cache is added.
+
+= What was tested? =
+PHP regression harnesses and real Swiper in headless Chromium. The harness substitutes
+WordPress/Elementor/WooCommerce APIs and does not test a live database or Elementor Editor.
+Complete site/editor integration and touch/screen-reader checks are required before broad release.
 
 == Changelog ==
+
+= 2.3.0 =
+- Replaced mixed Swiper/CDN dependencies with a pinned, scoped local engine.
+- Fixed responsive gaps, groups, custom breakpoints, mobile arrows and safe loop/rewind decisions.
+- Preserved card position and autoplay stops across resizes, settings changes and editor markup replacement.
+- Added pause/play, focus handling, live reduced motion, focus-scoped keyboard and RTL arrow direction.
+- Added optional WooCommerce product selection, official price markup and purchase routes.
+- Added Persian translations, responsive attachment images, presets and component visibility.
+- Split product data, responsive resolution and rendering; added regression checks and CI.
 
 = 2.1.1 =
 - Fixed desktop drag competing with browser text selection and native image/link dragging.
@@ -81,6 +133,10 @@ Features:
 - Updated visual styling and responsive behavior
 
 == Upgrade Notice ==
+
+= 2.3.0 =
+Existing manual data is preserved. Test the upgrade in staging, regenerate Elementor CSS
+and clear page caches. WooCommerce remains optional. See README_FA.md.
 
 = 2.1.0 =
 Critical slider interaction bug-fixes plus advanced control refinements and accessibility upgrades.
