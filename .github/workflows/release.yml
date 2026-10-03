@@ -1,0 +1,50 @@
+name: Publish release
+
+on:
+  workflow_run:
+    workflows: [Plugin regression checks]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: >-
+      github.repository == 'sanyzrn/DbsProductSlider' &&
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' ||
+      github.event_name == 'workflow_run' && github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_repository.full_name == github.repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      actions: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RELEASE_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ env.RELEASE_SHA }}
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '22'
+      - name: Validate version and successful checks
+        id: candidate
+        run: node tools/publish-release.cjs --check
+      - name: Build installation packages
+        if: steps.candidate.outputs.needed == 'true'
+        shell: pwsh
+        run: ./tools/package.ps1
+      - name: Publish verified assets
+        if: steps.candidate.outputs.needed == 'true'
+        run: node tools/publish-release.cjs

@@ -1,0 +1,25 @@
+const assert = require('node:assert/strict');
+const { parseReleaseInfo, readReleaseInfo, compareVersions, releasePlan } = require('../tools/release-info.cjs');
+let checks = 0;
+function check(fn) { fn(); checks++; }
+const source = " * Version: 2.3.2\nprivate const VERSION = '2.3.2';";
+const readme = 'Stable tag: 2.3.2\n== Changelog ==\n= 2.3.2 =\n- Fix controls.\n\n= 2.3.1 =\n- Older change.\n== Upgrade Notice ==\n= 2.3.2 =\nUpgrade.';
+check(() => assert.equal(readReleaseInfo().tag, 'v' + readReleaseInfo().version));
+check(() => assert.equal(parseReleaseInfo(source, readme).changes, '- Fix controls.'));
+check(() => assert.throws(() => parseReleaseInfo(source, readme.replace('Stable tag: 2.3.2', 'Stable tag: 2.3.1'))));
+check(() => assert.throws(() => parseReleaseInfo(source.replace("VERSION = '2.3.2'", "VERSION = '2.3.1'"), readme)));
+check(() => assert.throws(() => parseReleaseInfo(source.replace('Version: 2.3.2', 'Version: 02.3.2'), readme)));
+check(() => assert.throws(() => parseReleaseInfo(source, readme.replace('- Fix controls.', ''))));
+check(() => assert.throws(() => parseReleaseInfo(source, readme.replace('= 2.3.2 =', '= 2.3.3 ='))));
+check(() => assert.equal(compareVersions('2.10.0', '2.9.9'), 1));
+check(() => assert.equal(compareVersions('2.3.2', '2.3.2'), 0));
+check(() => assert.equal(compareVersions('2.3.2', '3.0.0'), -1));
+const base = { version: '2.3.2', sourceSha: 'a', mainSha: 'a' };
+check(() => assert.deepEqual(releasePlan(base), { needed: true, latest: true }));
+check(() => assert.equal(releasePlan({ ...base, mainSha: 'b' }).needed, false));
+check(() => assert.equal(releasePlan({ ...base, existingRelease: { draft: false } }).needed, false));
+check(() => assert.throws(() => releasePlan({ ...base, tagSha: 'b' })));
+check(() => assert.deepEqual(releasePlan({ ...base, existingRelease: { draft: true }, tagSha: 'a' }), { needed: true, latest: true }));
+check(() => assert.equal(releasePlan({ ...base, latestVersion: '2.4.0' }).latest, false));
+check(() => assert.equal(releasePlan({ ...base, latestVersion: '2.3.1' }).latest, true));
+console.log('Release safety checks passed: ' + checks);

@@ -1,0 +1,22 @@
+name: Feature request / پیشنهاد قابلیت
+description: Describe a practical use case or improvement.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What are you trying to achieve?
+      description: Explain the use case and current limitation. English and Persian are welcome.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Suggested behavior
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives or examples
+      description: Optional. Include a small example if helpful.

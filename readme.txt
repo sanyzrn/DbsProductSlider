@@ -8,7 +8,7 @@ Stable tag: 2.3.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Professional product carousel widget for Elementor with advanced effects, deep style controls, and powerful interaction options.
+Responsive product carousels for Elementor with optional WooCommerce sources, Persian UI and RTL support.
 
 == Description ==
 

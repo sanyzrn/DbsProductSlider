@@ -1,0 +1,50 @@
+name: Bug report / گزارش خطا
+description: Report a reproducible problem with the plugin.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "English and Persian reports are welcome. For vulnerabilities, use the private security reporting link instead. Remove private information from logs and screenshots."
+  - type: input
+    id: version
+    attributes:
+      label: Plugin version
+      placeholder: "e.g. 2.3.2"
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: WordPress, Elementor, PHP, theme, browser and WooCommerce versions (if used).
+    validations:
+      required: true
+  - type: dropdown
+    id: location
+    attributes:
+      label: Where does it happen?
+      options:
+        - Public page
+        - Elementor editor
+        - Both
+        - Installation or update
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps and relevant settings
+      description: Include source, card count, effect, device width and interaction options when relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshots or relevant logs
+      description: Optional. Remove private URLs, personal data and credentials.

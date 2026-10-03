@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Private security report
+    url: https://github.com/sanyzrn/DbsProductSlider/security/advisories/new
+    about: Report suspected vulnerabilities privately.
+  - name: راهنمای فارسی
+    url: https://github.com/sanyzrn/DbsProductSlider/blob/main/README_FA.md
+    about: Installation, controls, WooCommerce sources and upgrade notes.
