@@ -47,12 +47,17 @@
             var $wrapper = $(wrapper);
             var sliderEl = wrapper.querySelector('.pce-v5-slider');
             var settings = parseSettings($wrapper.attr('data-settings'));
+            var settingsKey = $wrapper.attr('data-settings') || '';
 
             if (!sliderEl) {
                 return;
             }
 
             if (sliderEl.swiper) {
+                // Elementor and document-ready can both initialize the same widget.
+                if (!sliderEl.swiper.destroyed && sliderEl.pceSettingsKey === settingsKey) {
+                    return;
+                }
                 sliderEl.swiper.destroy(true, true);
             }
 
@@ -103,15 +108,18 @@
             var reduceMotion = respectReducedMotion && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             wrapper.setAttribute('dir', rtl ? 'rtl' : 'ltr');
             sliderEl.setAttribute('dir', rtl ? 'rtl' : 'ltr');
+            sliderEl.classList.toggle('pce-is-draggable', allowTouchMove);
 
             var params = {
                 direction: 'horizontal',
                 speed: speed,
-                grabCursor: true,
+                grabCursor: allowTouchMove,
                 simulateTouch: allowTouchMove,
                 allowTouchMove: allowTouchMove,
                 threshold: Math.max(0, dragThreshold),
-                touchStartPreventDefault: false,
+                // Let Swiper own mouse dragging instead of the browser's text selection.
+                // Swiper still exempts form controls and distinguishes clicks from drags.
+                touchStartPreventDefault: true,
                 preventClicks: true,
                 preventClicksPropagation: true,
                 watchOverflow: true,
@@ -220,10 +228,25 @@
             }
 
             var instance = new Swiper(sliderEl, params);
+            sliderEl.pceSettingsKey = settingsKey;
+
+            function preventNativeDrag(event) {
+                if (allowTouchMove && event.target.closest('img, a')) {
+                    event.preventDefault();
+                }
+            }
+            sliderEl.addEventListener('dragstart', preventNativeDrag);
+            instance.on('destroy', function () {
+                sliderEl.removeEventListener('dragstart', preventNativeDrag);
+                sliderEl.classList.remove('pce-is-draggable');
+                delete sliderEl.pceSettingsKey;
+                $wrapper.off('.pceHover');
+            });
 
             $wrapper.off('.pceHover');
 
-            if (autoplay && pauseOnHover && instance.autoplay) {
+            // Reduced-motion may have removed autoplay from the effective settings.
+            if (params.autoplay && pauseOnHover && instance.autoplay) {
                 $wrapper.on('mouseenter.pceHover', function () {
                     instance.autoplay.stop();
                 });

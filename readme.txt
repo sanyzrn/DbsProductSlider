@@ -1,10 +1,10 @@
 === Product Carousel Elementor ===
-Contributors: Saeed Zarrini
+Contributors: saeed
 Tags: elementor, carousel, slider, products
 Requires at least: 6.2
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 2.1.0
+Stable tag: 2.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -34,6 +34,14 @@ Features:
 
 == Changelog ==
 
+= 2.1.1 =
+- Fixed desktop drag competing with browser text selection and native image/link dragging.
+- Kept vertical touch scrolling, pinch zoom, normal links and Swiper's drag click suppression.
+- Avoided duplicate initialization when Elementor and document-ready target the same widget.
+- Cleaned up drag/hover handlers when the widget is rebuilt in Elementor.
+- Prevented hover from restarting autoplay when reduced-motion disabled it.
+- Added reduced-motion handling to decorative card/image transitions.
+
 = 2.1.0 =
 - Fixed arrow icon centering inside navigation buttons with improved button/icon alignment CSS
 - Added arrow spacing controls (wrapper padding, button margin, button padding)
@@ -52,19 +60,19 @@ Features:
 - Added flexible pagination modes (bullets/fraction/progressbar) with expanded visual controls
 - Added dynamic title tag and description clamp controls for better content structure
 
-= 0.2.1 =
+= 5.2.1 =
 - Added per-item badge icon picker and rendering beside badge label
 - Added badge icon styling controls (position, spacing, size, color)
 - Fixed button label centering issue by improving button label markup and alignment CSS
 
-= 0.2.0 =
+= 5.2.0 =
 - Added advanced slide direction controls (site auto, LTR, RTL, reverse autoplay)
 - Added full button customization suite (alignment, width modes, borders, shadows, normal/hover states, motion)
 - Added comprehensive badge styling controls (color, typography, size, position)
 - Added extended card hover effects (lift, scale, rotate, image zoom, transition speed, hover shadow/colors)
 - Added extensive arrow and pagination customization controls for professional layout precision
 
-= 0.1.0 =
+= 5.1.0 =
 - Full professional refactor of plugin bootstrap, widget controls, and rendering
 - Added Elementor/PHP dependency checks with admin notices
 - Hardened sanitization and escaping

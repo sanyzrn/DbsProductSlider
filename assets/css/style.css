@@ -16,6 +16,23 @@
     padding: 4px 2px 42px;
 }
 
+/* Only an enabled drag surface opts out of text/native image selection.
+   Vertical touch scrolling and pinch zoom remain available. */
+.pce-v5-slider.pce-is-draggable {
+    touch-action: pan-y pinch-zoom;
+}
+.pce-is-draggable .pce-v5-card {
+    -webkit-user-select: none;
+    user-select: none;
+}
+.pce-is-draggable .pce-v5-card img {
+    -webkit-user-drag: none;
+}
+.pce-is-draggable :is(input, textarea, [contenteditable="true"]) {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
 .pce-v5-card {
     --pce-card-hover-translate: -4px;
     --pce-card-hover-scale: 1;
@@ -286,6 +303,16 @@
 .pce-v5-navigation.is-hidden,
 .pce-v5-pagination.is-hidden {
     display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pce-v5-card, .pce-v5-media img, .pce-v5-btn, .pce-v5-nav,
+    .pce-v5-pagination .swiper-pagination-bullet {
+        transition: none;
+    }
+    .pce-v5-card:hover, .pce-v5-card:hover .pce-v5-media img {
+        transform: none;
+    }
 }
 
 @media (max-width: 767px) {
