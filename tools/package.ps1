@@ -7,7 +7,7 @@ if (-not $versionMatch.Success) { throw 'Plugin version is missing.' }
 $version = $versionMatch.Groups[1].Value
 $readme = Get-Content -LiteralPath (Join-Path $workspaceDirectory 'readme.txt') -Raw
 if ($readme -notmatch "Stable tag: $([regex]::Escape($version))") { throw 'Readme stable tag does not match the plugin version.' }
-$requiredFiles = @('product-carousel-elementor.php', 'widgets/carousel.php', 'includes/class-pce-settings.php', 'includes/class-pce-products.php', 'includes/templates/carousel.php', 'assets/js/script.js', 'assets/css/style.css', 'assets/vendor/swiper/swiper-bundle.min.js', 'assets/vendor/swiper/swiper-bundle.min.css', 'assets/vendor/swiper/LICENSE', 'languages/advanced-carousel-pro-fa_IR.mo', 'languages/advanced-carousel-pro-fa_IR.po', 'languages/advanced-carousel-pro.pot', 'docs/UPGRADE_REPORT_FA_2026-10-03.md', 'readme.txt', 'README_FA.md', 'LICENSE')
+$requiredFiles = @('product-carousel-elementor.php', 'widgets/carousel.php', 'includes/class-pce-settings.php', 'includes/class-pce-products.php', 'includes/templates/carousel.php', 'includes/controls/content.php', 'assets/js/script.js', 'assets/css/style.css', 'assets/vendor/swiper/swiper-bundle.min.js', 'assets/vendor/swiper/swiper-bundle.min.css', 'assets/vendor/swiper/LICENSE', 'languages/advanced-carousel-pro-fa_IR.mo', 'languages/advanced-carousel-pro-fa_IR.po', 'languages/advanced-carousel-pro.pot', 'docs/UPGRADE_REPORT_FA_2026-10-03.md', 'readme.txt', 'README_FA.md', 'LICENSE')
 foreach ($relativePath in $requiredFiles) {
     if (-not (Test-Path -LiteralPath (Join-Path $workspaceDirectory $relativePath))) { throw "Missing release file: $relativePath" }
 }

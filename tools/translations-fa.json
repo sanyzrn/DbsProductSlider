@@ -206,5 +206,15 @@
   "No items match the selected source. Add items or adjust product filters.": "هیچ آیتمی مطابق منبع انتخاب‌شده وجود ندارد. آیتم اضافه کنید یا فیلتر محصولات را تغییر دهید.",
   "Product Carousel Elementor requires Elementor to be installed and active.": "افزونهٔ اسلایدر محصولات به نصب و فعال بودن المنتور نیاز دارد.",
   "Product Carousel Elementor requires Elementor version %s or greater.": "افزونهٔ اسلایدر محصولات به المنتور نسخهٔ %s یا بالاتر نیاز دارد.",
-  "Product Carousel Elementor requires PHP version %s or greater.": "افزونهٔ اسلایدر محصولات به PHP نسخهٔ %s یا بالاتر نیاز دارد."
+  "Product Carousel Elementor requires PHP version %s or greater.": "افزونهٔ اسلایدر محصولات به PHP نسخهٔ %s یا بالاتر نیاز دارد.",
+  "Content & Products": "منبع و محصولات",
+  "Card Content": "اجزای کارت",
+  "Layout": "چیدمان",
+  "Motion": "حرکت اسلایدر",
+  "Navigation": "ناوبری",
+  "Fine Tuning": "تنظیمات تکمیلی",
+  "Input": "تعامل",
+  "Content": "محتوا",
+  "Products": "محصولات",
+  "Leave empty to use saved values or inherit from a larger screen.": "برای استفاده از مقدار ذخیره‌شده یا ارث‌بری از نمایشگر بزرگ‌تر، خالی بگذارید."
 }

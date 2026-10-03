@@ -4,7 +4,7 @@ Tags: elementor, carousel, slider, products
 Requires at least: 6.2
 Requires PHP: 7.4
 Requires Plugins: elementor
-Stable tag: 2.3.0
+Stable tag: 2.3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,6 +77,12 @@ Complete site/editor integration and touch/screen-reader checks are required bef
 
 == Changelog ==
 
+= 2.3.1 =
+- Reorganized Content into source, card content, layout, motion, autoplay and navigation sections.
+- Grouped technical options in Fine Tuning tabs; retained all existing control IDs and saved values.
+- Moved presets, image resolution and description line styling to the Style tab.
+- Separated WooCommerce product selection from manual items and shortened responsive help text.
+
 = 2.3.0 =
 - Replaced mixed Swiper/CDN dependencies with a pinned, scoped local engine.
 - Fixed responsive gaps, groups, custom breakpoints, mobile arrows and safe loop/rewind decisions.
@@ -133,6 +139,10 @@ Complete site/editor integration and touch/screen-reader checks are required bef
 - Updated visual styling and responsive behavior
 
 == Upgrade Notice ==
+
+= 2.3.1 =
+Editor controls are reorganized. Saved settings retain their IDs, defaults and behavior.
+See README_FA.md for the new section map.
 
 = 2.3.0 =
 Existing manual data is preserved. Test the upgrade in staging, regenerate Elementor CSS

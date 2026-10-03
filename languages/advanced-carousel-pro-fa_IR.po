@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: DbsProductSlider 2.3.0\nLanguage: fa_IR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+msgstr "Project-Id-Version: DbsProductSlider 2.3.1\nLanguage: fa_IR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "Accessible Carousel Name"
 msgstr "نام اسلایدر برای دسترس‌پذیری"
@@ -109,6 +109,9 @@ msgstr "متن دکمه"
 msgid "Card"
 msgstr "کارت"
 
+msgid "Card Content"
+msgstr "اجزای کارت"
+
 msgid "Card Preset"
 msgstr "ظاهر آمادهٔ کارت"
 
@@ -138,6 +141,12 @@ msgstr "خلاصهٔ توضیحات محصول را اینجا وارد کنید
 
 msgid "Contain"
 msgstr "نمایش کامل در قاب"
+
+msgid "Content"
+msgstr "محتوا"
+
+msgid "Content & Products"
+msgstr "منبع و محصولات"
 
 msgid "Content Source"
 msgstr "منبع محتوا"
@@ -223,6 +232,9 @@ msgstr "محصولات ویژه"
 msgid "Fill"
 msgstr "پر کردن قاب"
 
+msgid "Fine Tuning"
+msgstr "تنظیمات تکمیلی"
+
 msgid "Fraction"
 msgstr "شمارنده"
 
@@ -301,6 +313,9 @@ msgstr "اندازهٔ تصویر"
 msgid "Image Zoom On Hover"
 msgstr "بزرگ‌نمایی تصویر هنگام قرار گرفتن ماوس"
 
+msgid "Input"
+msgstr "تعامل"
+
 msgid "Items"
 msgstr "آیتم‌ها"
 
@@ -319,14 +334,17 @@ msgstr "آخرین به‌روزرسانی"
 msgid "Latest products"
 msgstr "جدیدترین محصولات"
 
+msgid "Layout"
+msgstr "چیدمان"
+
 msgid "Lazy"
 msgstr "تنبل"
 
 msgid "Leather Sneaker"
 msgstr "کفش چرمی"
 
-msgid "Leave empty to inherit. Existing desktop/tablet/mobile settings are preserved. Defaults: 3 / 2 / 1.15."
-msgstr "برای ارث‌بری خالی بگذارید. تنظیمات قبلی دسکتاپ، تبلت و موبایل حفظ می‌شوند. مقادیر پیش‌فرض: ۳ / ۲ / ۱٫۱۵."
+msgid "Leave empty to use saved values or inherit from a larger screen."
+msgstr "برای استفاده از مقدار ذخیره‌شده یا ارث‌بری از نمایشگر بزرگ‌تر، خالی بگذارید."
 
 msgid "Leave empty to use the media alternative text or product title."
 msgstr "برای استفاده از متن جایگزین رسانه یا عنوان محصول، خالی بگذارید."
@@ -361,11 +379,17 @@ msgstr "مینیمال"
 msgid "Minimum Height"
 msgstr "حداقل ارتفاع"
 
+msgid "Motion"
+msgstr "حرکت اسلایدر"
+
 msgid "Mousewheel Sensitivity"
 msgstr "حساسیت چرخ ماوس"
 
 msgid "Name"
 msgstr "نام"
+
+msgid "Navigation"
+msgstr "ناوبری"
 
 msgid "New"
 msgstr "جدید"
@@ -468,6 +492,9 @@ msgstr "اسلایدر محصولات"
 msgid "Product image"
 msgstr "تصویر محصول"
 
+msgid "Products"
+msgstr "محصولات"
+
 msgid "Progress Bar"
 msgstr "نوار پیشرفت"
 
@@ -539,9 +566,6 @@ msgstr "لغزش"
 
 msgid "Slide Direction"
 msgstr "جهت اسلایدر"
-
-msgid "Slider Settings"
-msgstr "تنظیمات اسلایدر"
 
 msgid "Slides Per Group"
 msgstr "تعداد اسلاید در هر حرکت"

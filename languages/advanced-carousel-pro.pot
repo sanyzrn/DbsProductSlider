@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: DbsProductSlider 2.3.0\nLanguage:\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+msgstr "Project-Id-Version: DbsProductSlider 2.3.1\nLanguage:\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "Accessible Carousel Name"
 msgstr ""
@@ -109,6 +109,9 @@ msgstr ""
 msgid "Card"
 msgstr ""
 
+msgid "Card Content"
+msgstr ""
+
 msgid "Card Preset"
 msgstr ""
 
@@ -137,6 +140,12 @@ msgid "Concise product summary goes here."
 msgstr ""
 
 msgid "Contain"
+msgstr ""
+
+msgid "Content"
+msgstr ""
+
+msgid "Content & Products"
 msgstr ""
 
 msgid "Content Source"
@@ -223,6 +232,9 @@ msgstr ""
 msgid "Fill"
 msgstr ""
 
+msgid "Fine Tuning"
+msgstr ""
+
 msgid "Fraction"
 msgstr ""
 
@@ -301,6 +313,9 @@ msgstr ""
 msgid "Image Zoom On Hover"
 msgstr ""
 
+msgid "Input"
+msgstr ""
+
 msgid "Items"
 msgstr ""
 
@@ -319,13 +334,16 @@ msgstr ""
 msgid "Latest products"
 msgstr ""
 
+msgid "Layout"
+msgstr ""
+
 msgid "Lazy"
 msgstr ""
 
 msgid "Leather Sneaker"
 msgstr ""
 
-msgid "Leave empty to inherit. Existing desktop/tablet/mobile settings are preserved. Defaults: 3 / 2 / 1.15."
+msgid "Leave empty to use saved values or inherit from a larger screen."
 msgstr ""
 
 msgid "Leave empty to use the media alternative text or product title."
@@ -361,10 +379,16 @@ msgstr ""
 msgid "Minimum Height"
 msgstr ""
 
+msgid "Motion"
+msgstr ""
+
 msgid "Mousewheel Sensitivity"
 msgstr ""
 
 msgid "Name"
+msgstr ""
+
+msgid "Navigation"
 msgstr ""
 
 msgid "New"
@@ -468,6 +492,9 @@ msgstr ""
 msgid "Product image"
 msgstr ""
 
+msgid "Products"
+msgstr ""
+
 msgid "Progress Bar"
 msgstr ""
 
@@ -538,9 +565,6 @@ msgid "Slide"
 msgstr ""
 
 msgid "Slide Direction"
-msgstr ""
-
-msgid "Slider Settings"
 msgstr ""
 
 msgid "Slides Per Group"
