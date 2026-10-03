@@ -4,6 +4,8 @@ const path = require('node:path');
 const { chromium } = require('playwright');
 const root = path.join(__dirname, '..');
 const fixture = fs.readFileSync(path.join(__dirname, '.generated/carousel.html'), 'utf8');
+const variants = JSON.parse(fs.readFileSync(path.join(__dirname, '.generated/variants.json'), 'utf8'));
+const controls = JSON.parse(fs.readFileSync(path.join(__dirname, '.generated/controls.json'), 'utf8'));
 const scripts = {
     jquery: require.resolve('jquery/dist/jquery.js'),
     vendor: path.join(root, 'assets/vendor/swiper/swiper-bundle.min.js'),
@@ -21,12 +23,12 @@ function check(value, message) { assert.ok(value, message); checks++; }
     page.on('pageerror', error => errors.push(error.message));
     page.on('console', message => { if (message.type() === 'warning') warnings.push(message.text()); });
     await page.route('https://example.test/**', route => route.fulfill({ contentType: 'image/svg+xml', body: '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><rect width="400" height="400" fill="#e8f1ff"/><circle cx="200" cy="200" r="100" fill="#9cb1cf"/></svg>' }));
-    async function setup(overrides = {}, count = 10, multiple = false, delayed = false) {
+    async function setup(overrides = {}, count = 10, multiple = false, delayed = false, markup = fixture) {
         await page.goto('about:blank');
-        await page.setContent('<!doctype html><html><body style="margin:40px"><main style="max-width:1100px;margin:auto">' + fixture + (multiple ? fixture.replaceAll('pce-v5-fixture', 'pce-v5-second') : '') + '</main><button id="outside">Outside</button></body></html>');
+        await page.setContent('<!doctype html><html><body style="margin:40px"><main style="max-width:1100px;margin:auto">' + markup + (multiple ? markup.replaceAll('pce-v5-fixture', 'pce-v5-second') : '') + '</main><button id="outside">Outside</button></body></html>');
         await page.evaluate(({ overrides, count }) => {
             window.Swiper = { sentinel: true };
-            window.elementorFrontend = { hooks: { addAction: (name, callback) => { window.reinitialize = callback; } }, isEditMode: () => false };
+            window.elementorFrontend = { hooks: { addAction: (name, callback) => { window.reinitialize = callback; } }, isEditMode: () => !!overrides.testEditor };
             if (overrides.testHidden) document.querySelector('main').style.display = 'none';
             document.querySelectorAll('.pce-v5-wrapper').forEach(wrapper => {
                 const settings = JSON.parse(wrapper.dataset.settings);
@@ -44,6 +46,10 @@ function check(value, message) { assert.ok(value, message); checks++; }
             await page.addScriptTag({ path: scripts.vendor });
         }
         await page.waitForFunction(() => document.querySelector('.pce-is-ready'));
+        await page.waitForFunction(() => Array.from(document.querySelectorAll('.swiper-slide-active img')).every(img => !img.getBoundingClientRect().width || img.complete));
+        // Let image/layout observers and Swiper's deferred loop positioning settle.
+        await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+        fs.mkdirSync(path.join(root, 'test-results'), { recursive: true });
     }
     async function params() {
         return page.locator('.pce-v5-slider').first().evaluate(slider => ({
@@ -193,6 +199,10 @@ function check(value, message) { assert.ok(value, message); checks++; }
     await page.setViewportSize({ width: 390, height: 1000 });
     await page.waitForFunction(() => document.querySelector('.pce-v5-slider').swiper.params.spaceBetween === 4);
     check(await page.locator('.pce-v5-next').isVisible() && !(await page.locator('.pce-v5-pagination').isVisible()), 'Mobile arrow/dot settings override desktop');
+    await require('./control-checks.cjs')({ page, setup, params, check, variants, controls, root });
+    await setup({ autoplay: false });
+    await page.setViewportSize({ width: 390, height: 1000 });
+    await page.waitForFunction(() => document.querySelector('.pce-v5-slider').swiper.params.slidesPerView === 1.15);
     const touch = await page.context().newCDPSession(page);
     await touch.send('Emulation.setTouchEmulationEnabled', { enabled: true, maxTouchPoints: 1 });
     await touch.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: 270, y: 150 }] });

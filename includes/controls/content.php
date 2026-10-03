@@ -314,6 +314,13 @@ if (!defined('ABSPATH')) {
             ]
         );
 
+        $this->add_control('show_autoplay_button', [
+            'label' => __('Show Play/Pause Button', 'advanced-carousel-pro'),
+            'type' => Controls_Manager::SWITCHER,
+            'default' => 'yes',
+            'condition' => ['autoplay' => 'yes'],
+        ]);
+
         $this->add_control(
             'pause_on_hover',
             [
@@ -478,6 +485,7 @@ if (!defined('ABSPATH')) {
             'mousewheel_control',
             [
                 'label' => __('Enable Mousewheel Control', 'advanced-carousel-pro'),
+                'description' => __('Scroll over the carousel to change slides. Page scrolling resumes at the edges when loop is off.', 'advanced-carousel-pro'),
                 'type' => Controls_Manager::SWITCHER,
                 'default' => '',
             ]
@@ -487,6 +495,7 @@ if (!defined('ABSPATH')) {
             'mousewheel_sensitivity',
             [
                 'label' => __('Mousewheel Sensitivity', 'advanced-carousel-pro'),
+                'description' => __('Higher values respond to smaller wheel movements.', 'advanced-carousel-pro'),
                 'type' => Controls_Manager::NUMBER,
                 'default' => 1,
                 'min' => 0.1,

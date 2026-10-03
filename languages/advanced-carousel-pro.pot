@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: DbsProductSlider 2.3.1\nLanguage:\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+msgstr "Project-Id-Version: DbsProductSlider 2.3.2\nLanguage:\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "Accessible Carousel Name"
 msgstr ""
@@ -254,6 +254,9 @@ msgid "Go to slide {{index}}"
 msgstr ""
 
 msgid "Hide Out of Stock"
+msgstr ""
+
+msgid "Higher values respond to smaller wheel movements."
 msgstr ""
 
 msgid "Horizontal Offset"
@@ -528,6 +531,9 @@ msgstr ""
 msgid "Scale On Hover"
 msgstr ""
 
+msgid "Scroll over the carousel to change slides. Page scrolling resumes at the edges when loop is off."
+msgstr ""
+
 msgid "Select options"
 msgstr ""
 
@@ -550,6 +556,9 @@ msgid "Show Dots"
 msgstr ""
 
 msgid "Show Image"
+msgstr ""
+
+msgid "Show Play/Pause Button"
 msgstr ""
 
 msgid "Show Price"

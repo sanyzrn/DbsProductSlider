@@ -4,6 +4,9 @@ if (!defined('ABSPATH')) {
 }
 $preset = $this->sanitize_choice($settings['card_preset'] ?? 'default', ['default', 'minimal', 'catalog'], 'default');
 $wrapper_class = 'pce-v5-wrapper pce-preset-' . $preset;
+if ($slider_options['respectReducedMotion']) {
+    $wrapper_class .= ' pce-respect-motion';
+}
 if (($settings['equal_height'] ?? 'yes') === 'yes') {
     $wrapper_class .= ' pce-equal-height';
 }
@@ -98,7 +101,9 @@ $show = static function ($part) use ($settings) { return ($settings['show_' . $p
         <button type="button" class="pce-v5-nav pce-v5-next" aria-controls="<?php echo esc_attr($slider_id); ?>" aria-label="<?php echo esc_attr($slider_options['messages']['next']); ?>"><span aria-hidden="true">&rarr;</span></button>
     </div>
     <div class="swiper-pagination pce-v5-pagination pce-v5-pagination-<?php echo esc_attr($slider_options['paginationType']); ?> is-hidden"></div>
-    <?php if ($slider_options['autoplay']) : ?>
-        <button type="button" class="pce-v5-autoplay" aria-controls="<?php echo esc_attr($slider_id); ?>" hidden><?php echo esc_html($slider_options['messages']['pause']); ?></button>
+    <?php if ($slider_options['autoplay'] && $slider_options['showAutoplayButton']) : ?>
+        <button type="button" class="pce-v5-autoplay" aria-controls="<?php echo esc_attr($slider_id); ?>" aria-label="<?php echo esc_attr($slider_options['messages']['pause']); ?>" title="<?php echo esc_attr($slider_options['messages']['pause']); ?>" hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="pce-autoplay-pause" d="M7 5h4v14H7zM13 5h4v14h-4z"/><path class="pce-autoplay-play" d="m8 5 11 7-11 7z"/></svg>
+        </button>
     <?php endif; ?>
 </div>

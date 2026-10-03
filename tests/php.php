@@ -184,12 +184,58 @@ namespace {
     $dynamic = new \ReflectionMethod($widget, 'is_dynamic_content');
     if (PHP_VERSION_ID < 80100) { $dynamic->setAccessible(true); }
     check($dynamic->invoke($widget), 'Product output bypasses Elementor element cache');
+    check($widget->controls['show_autoplay_button']['default'] === 'yes', 'Playback control remains enabled by default');
+    $playback = render(['items' => [$item, $item], 'autoplay' => 'yes']);
+    check(strpos($playback, 'class="pce-v5-autoplay"') !== false && strpos($playback, 'aria-label="Pause slideshow"') !== false, 'Playback button has an accessible name');
+    check(strpos(render(['items' => [$item], 'autoplay' => 'yes', 'show_autoplay_button' => '']), 'class="pce-v5-autoplay"') === false, 'Playback button can be removed from markup');
+    check(strpos(render(['items' => [$item]]), 'class="pce-v5-autoplay"') === false, 'No playback button with autoplay off');
+    check(strpos($playback, 'pce-respect-motion') !== false && strpos(render(['items' => [$item], 'respect_reduced_motion' => '']), 'pce-respect-motion') === false, 'Reduced-motion CSS follows the switch');
+    $runtime_cases = [
+        'autoplay' => ['autoplay', 'yes', true], 'showAutoplayButton' => ['show_autoplay_button', '', false],
+        'autoplayDelay' => ['autoplay_delay', 1200, 1200], 'autoplayReverse' => ['autoplay_reverse', 'yes', true],
+        'autoplayPauseOnInteraction' => ['autoplay_pause_on_interaction', 'yes', true], 'pauseOnHover' => ['pause_on_hover', '', false],
+        'centeredSlides' => ['centered_slides', 'yes', true], 'effect' => ['slider_effect', 'coverflow', 'coverflow'],
+        'flowDirection' => ['flow_direction', 'rtl', 'rtl'], 'loop' => ['loop', '', false], 'rewind' => ['rewind', '', false],
+        'paginationType' => ['pagination_type', 'fraction', 'fraction'], 'dynamicBullets' => ['dynamic_bullets', 'yes', true],
+        'dynamicMainBullets' => ['dynamic_main_bullets', 4, 4], 'speed' => ['transition_speed', 700, 700],
+        'allowTouchMove' => ['allow_touch_move', '', false], 'dragThreshold' => ['drag_threshold', 30, 30],
+        'mousewheel' => ['mousewheel_control', 'yes', true], 'mousewheelSensitivity' => ['mousewheel_sensitivity', 2, 2],
+        'mousewheelReleaseOnEdges' => ['mousewheel_release_on_edges', '', false], 'keyboard' => ['keyboard_control', '', false],
+        'respectReducedMotion' => ['respect_reduced_motion', '', false],
+    ];
+    foreach ($runtime_cases as $output => [$control, $value, $expected]) {
+        check(options(render(['items' => [$item], $control => $value]))[$output] === $expected, 'Editor control reaches runtime: ' . $control);
+    }
+    $full_item = ['title' => 'Visible title', 'price' => '100', 'desc' => 'Description', 'category' => 'Badge', 'image' => ['id' => 42], 'link' => ['url' => '/product']];
+    foreach (['image' => 'pce-v5-media', 'title' => 'pce-v5-title', 'price' => 'pce-v5-price', 'description' => 'pce-v5-desc', 'badge' => 'pce-v5-badge', 'button' => 'pce-v5-btn-wrapper'] as $part => $class) {
+        check(strpos(render(['items' => [$full_item], 'show_' . $part => '']), $class) === false, 'Card component switch: ' . $part);
+    }
+    check(strpos(render(['items' => [$full_item], 'title_html_tag' => 'h2']), '<h2 class="pce-v5-title"') !== false, 'Title tag setting');
+    check(strpos(render(['items' => [$full_item], 'image_size' => 'large', 'image_loading' => 'eager']), 'large.png') !== false && strpos(render(['items' => [$full_item], 'image_loading' => 'eager']), 'loading="eager"') !== false, 'Image resolution and loading controls');
+    $GLOBALS['products'] = [new Product(1), new Product(6)];
+    $cards = PCE_Products::items(['product_query' => 'featured', 'product_categories' => 'shoes,bags', 'product_orderby' => 'name', 'product_order' => 'ASC', 'hide_out_of_stock' => '', 'exclude_current_product' => '']);
+    check($GLOBALS['query_args']['featured'] && $GLOBALS['query_args']['category'] === ['shoes', 'bags'], 'Featured and category filters reach WooCommerce');
+    check($GLOBALS['query_args']['orderby'] === 'name' && $GLOBALS['query_args']['order'] === 'ASC', 'Product sort controls');
+    check(count($cards) === 2 && $cards[1]['category'] === 'Out of stock', 'Out-of-stock switch and automatic badge');
+    $GLOBALS['sale_ids'] = [1];
+    PCE_Products::items(['product_query' => 'sale']);
+    check($GLOBALS['query_args']['include'] === [1], 'Sale selection reaches WooCommerce');
+    check(PCE_Products::items(['exclude_product_ids' => '1,6', 'exclude_current_product' => '', 'hide_out_of_stock' => '']) === [], 'Excluded product IDs are enforced');
     $fixture_items = [];
     for ($i = 0; $i < 10; $i++) {
-        $fixture_items[] = ['_id' => 'card-' . $i, 'title' => 'محصول ' . ($i + 1), 'desc' => $i % 2 ? str_repeat('توضیحات محصول ', 20) : 'کوتاه', 'price' => '۱۰۰ تومان', 'link' => ['url' => '#product-' . $i]];
+        $fixture_items[] = ['_id' => 'card-' . $i, 'title' => 'محصول ' . ($i + 1), 'category' => 'محصول', 'badge_icon' => ['value' => 'test'], 'btn_icon' => ['value' => 'test'], 'desc' => $i % 2 ? str_repeat('توضیحات محصول ', 20) : 'کوتاه', 'price' => '۱۰۰ تومان', 'link' => ['url' => '#product-' . $i]];
     }
     $fixture = ['items' => $fixture_items, 'test_id' => 'fixture', 'slides_per_group' => 3, 'space_between' => ['size' => 20], 'space_between_tablet' => ['size' => 10], 'space_between_mobile' => ['size' => 4], 'show_arrows' => 'yes', 'show_dots' => 'yes', 'loop' => 'yes', 'autoplay' => 'yes', 'autoplay_pause_on_interaction' => 'yes', 'pause_on_hover' => 'yes'];
     if (!is_dir(__DIR__ . '/.generated')) { mkdir(__DIR__ . '/.generated', 0777, true); }
     file_put_contents(__DIR__ . '/.generated/carousel.html', render($fixture));
+    $variants = [];
+    foreach (['noButton' => ['show_autoplay_button' => ''], 'noAutoplay' => ['autoplay' => ''], 'unequal' => ['equal_height' => ''],
+        'motionOptOut' => ['respect_reduced_motion' => ''], 'autoImage' => ['image_ratio' => 'auto'],
+        'minimal' => ['card_preset' => 'minimal'], 'catalog' => ['card_preset' => 'catalog']] as $name => $overrides) {
+        $variants[$name] = render(array_merge($fixture, $overrides));
+    }
+    file_put_contents(__DIR__ . '/.generated/variants.json', json_encode($variants));
+    // These are the actual selector templates used by Elementor, not duplicate declarations.
+    file_put_contents(__DIR__ . '/.generated/controls.json', json_encode($widget->controls));
     echo "PHP regression checks passed: $checks\n";
 }

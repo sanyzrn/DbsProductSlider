@@ -66,7 +66,11 @@
             return { index: index, card: cards[index] ? cards[index].getAttribute('data-pce-card') : null, manual: manual, interacted: interacted };
         }
         function syncAutoplay() {
-            if (!instance || instance.destroyed || !autoplay || !instance.autoplay) { return; }
+            if (!instance || instance.destroyed) { return; }
+            if (!autoplay || !instance.autoplay) {
+                if (toggle) { toggle.hidden = true; }
+                return;
+            }
             var stopped = manual || interacted || reduced() || isEditor || instance.isLocked;
             var paused = focused || (pauseOnHover && hovered) || document.hidden;
             if (stopped) {
@@ -81,10 +85,15 @@
             }
             instance.wrapperEl.setAttribute('aria-live', stopped || paused ? 'polite' : 'off');
             if (toggle) {
-                toggle.hidden = isEditor || cards.length < 2;
-                toggle.disabled = !!reduced() || !!instance.isLocked;
-                toggle.textContent = reduced() ? (messages.reduced || 'Slideshow paused: reduced motion')
-                    : stopped ? (messages.play || 'Play slideshow') : (messages.pause || 'Pause slideshow');
+                toggle.hidden = !flag(settings.showAutoplayButton, true) || cards.length < 2 || !!instance.isLocked;
+                toggle.disabled = !!reduced() || !!isEditor;
+                // Preview the configured control in the editor without starting autoplay.
+                var showPlay = !isEditor && (manual || interacted || reduced());
+                var label = reduced() ? (messages.reduced || 'Slideshow paused: reduced motion')
+                    : showPlay ? (messages.play || 'Play slideshow') : (messages.pause || 'Pause slideshow');
+                toggle.classList.toggle('is-paused', !!showPlay);
+                toggle.setAttribute('aria-label', label);
+                toggle.setAttribute('title', label);
             }
         }
         function stopAfterInteraction() {
@@ -157,7 +166,13 @@
             if (effect === 'cards') { params.cardsEffect = { slideShadows: false }; }
             if (effect === 'creative') { params.creativeEffect = { prev: { translate: [0, 0, -180] }, next: { translate: ['100%', 0, 0] } }; }
             if (flag(settings.mousewheel, false)) {
-                params.mousewheel = { forceToAxis: true, releaseOnEdges: flag(settings.mousewheelReleaseOnEdges, true), sensitivity: number(settings.mousewheelSensitivity, 1, 0.1, 5) };
+                var sensitivity = number(settings.mousewheelSensitivity, 1, 0.1, 5);
+                params.mousewheel = {
+                    enabled: true, forceToAxis: false,
+                    releaseOnEdges: flag(settings.mousewheelReleaseOnEdges, true), sensitivity: sensitivity,
+                    // In snap mode Swiper's sensitivity alone does not affect advancement.
+                    thresholdDelta: 6 / sensitivity
+                };
             }
             if (autoplay) {
                 params.autoplay = {

@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: DbsProductSlider 2.3.1\nLanguage: fa_IR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+msgstr "Project-Id-Version: DbsProductSlider 2.3.2\nLanguage: fa_IR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "Accessible Carousel Name"
 msgstr "نام اسلایدر برای دسترس‌پذیری"
@@ -255,6 +255,9 @@ msgstr "رفتن به اسلاید {{index}}"
 
 msgid "Hide Out of Stock"
 msgstr "پنهان کردن محصولات ناموجود"
+
+msgid "Higher values respond to smaller wheel movements."
+msgstr "مقدار بیشتر، حرکت‌های کوچک‌تر چرخ ماوس را هم تشخیص می‌دهد."
 
 msgid "Horizontal Offset"
 msgstr "فاصلهٔ افقی"
@@ -528,6 +531,9 @@ msgstr "حراج"
 msgid "Scale On Hover"
 msgstr "بزرگ‌نمایی هنگام قرار گرفتن ماوس"
 
+msgid "Scroll over the carousel to change slides. Page scrolling resumes at the edges when loop is off."
+msgstr "با چرخ ماوس روی اسلایدر، کارت‌ها را جابه‌جا کنید. وقتی حرکت پیوسته خاموش باشد، اسکرول صفحه در ابتدا و انتها آزاد می‌شود."
+
 msgid "Select options"
 msgstr "انتخاب گزینه‌ها"
 
@@ -551,6 +557,9 @@ msgstr "نمایش صفحه‌بندی"
 
 msgid "Show Image"
 msgstr "نمایش تصویر"
+
+msgid "Show Play/Pause Button"
+msgstr "نمایش دکمهٔ پخش/توقف"
 
 msgid "Show Price"
 msgstr "نمایش قیمت"

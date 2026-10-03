@@ -4,7 +4,7 @@ Tags: elementor, carousel, slider, products
 Requires at least: 6.2
 Requires PHP: 7.4
 Requires Plugins: elementor
-Stable tag: 2.3.1
+Stable tag: 2.3.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,6 +77,13 @@ Complete site/editor integration and touch/screen-reader checks are required bef
 
 == Changelog ==
 
+= 2.3.2 =
+- Added a Show Play/Pause Button switch and a compact, accessible playback icon.
+- Previewed the playback control in Elementor while keeping editor autoplay stopped.
+- Fixed ordinary vertical mousewheel input and made sensitivity affect snap navigation.
+- Applied the reduced-motion switch consistently to JavaScript and decorative CSS.
+- Expanded real-browser input and style control checks and refreshed the outstanding audit.
+
 = 2.3.1 =
 - Reorganized Content into source, card content, layout, motion, autoplay and navigation sections.
 - Grouped technical options in Fine Tuning tabs; retained all existing control IDs and saved values.
@@ -139,6 +146,10 @@ Complete site/editor integration and touch/screen-reader checks are required bef
 - Updated visual styling and responsive behavior
 
 == Upgrade Notice ==
+
+= 2.3.2 =
+Playback button visibility is in Content > Autoplay. Mousewheel accepts vertical and
+horizontal input. Regenerate Elementor CSS and clear caches after upgrading.
 
 = 2.3.1 =
 Editor controls are reorganized. Saved settings retain their IDs, defaults and behavior.

@@ -216,5 +216,8 @@
   "Input": "تعامل",
   "Content": "محتوا",
   "Products": "محصولات",
-  "Leave empty to use saved values or inherit from a larger screen.": "برای استفاده از مقدار ذخیره‌شده یا ارث‌بری از نمایشگر بزرگ‌تر، خالی بگذارید."
+  "Leave empty to use saved values or inherit from a larger screen.": "برای استفاده از مقدار ذخیره‌شده یا ارث‌بری از نمایشگر بزرگ‌تر، خالی بگذارید.",
+  "Show Play/Pause Button": "نمایش دکمهٔ پخش/توقف",
+  "Scroll over the carousel to change slides. Page scrolling resumes at the edges when loop is off.": "با چرخ ماوس روی اسلایدر، کارت‌ها را جابه‌جا کنید. وقتی حرکت پیوسته خاموش باشد، اسکرول صفحه در ابتدا و انتها آزاد می‌شود.",
+  "Higher values respond to smaller wheel movements.": "مقدار بیشتر، حرکت‌های کوچک‌تر چرخ ماوس را هم تشخیص می‌دهد."
 }
