@@ -10,6 +10,6 @@
     "jquery": "3.7.1",
     "playwright": "1.63.0",
     "postcss": "8.5.28",
-    "swiper": "11.2.10"
+    "swiper": "14.3.0"
   }
 }
