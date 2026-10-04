@@ -97,6 +97,9 @@ msgstr "رنگ حاشیه"
 msgid "Border Radius"
 msgstr "گردی گوشه‌ها"
 
+msgid "Bottom"
+msgstr "پایین"
+
 msgid "Bullets"
 msgstr "نقطه‌ها"
 
@@ -175,6 +178,9 @@ msgstr "منبع محتوا"
 msgid "Content Type"
 msgstr "نوع محتوا"
 
+msgid "Counter Color"
+msgstr "رنگ شمارنده"
+
 msgid "Cover"
 msgstr "پوشاندن قاب"
 
@@ -192,6 +198,9 @@ msgstr "عرض دلخواه"
 
 msgid "Custom field holding a URL or a media file ID, such as a PDF. The button appears only on items that have a value."
 msgstr "فیلد سفارشی حاوی URL یا شناسه فایل رسانه، مثل PDF. دکمه فقط روی آیتم‌هایی که مقدار دارند نمایش داده می‌شود."
+
+msgid "Custom field holding an image URL or media ID."
+msgstr "فیلد سفارشی حاوی URL تصویر یا شناسه رسانه."
 
 msgid "Date"
 msgstr "تاریخ"
@@ -316,6 +325,12 @@ msgstr "رنگ حاشیه هنگام قرار گرفتن ماوس"
 msgid "Hover Effects"
 msgstr "افکت‌های ماوس"
 
+msgid "Hover Image"
+msgstr "تصویر هنگام هاور"
+
+msgid "Hover Image Custom Field"
+msgstr "فیلد سفارشی تصویر هاور"
+
 msgid "Hover Lift (Y)"
 msgstr "جابه‌جایی عمودی هنگام قرار گرفتن ماوس"
 
@@ -351,6 +366,9 @@ msgstr "تصویر"
 
 msgid "Image Alternative Text"
 msgstr "متن جایگزین تصویر"
+
+msgid "Image Height"
+msgstr "ارتفاع تصویر"
 
 msgid "Image Loading"
 msgstr "بارگذاری تصویر"
@@ -393,6 +411,9 @@ msgstr "تنبل"
 
 msgid "Leather Sneaker"
 msgstr "کفش چرمی"
+
+msgid "Leave empty to show the whole title."
+msgstr "برای نمایش کامل عنوان خالی بگذارید."
 
 msgid "Leave empty to use saved values or inherit from a larger screen."
 msgstr "برای استفاده از مقدار ذخیره‌شده یا ارث‌بری از نمایشگر بزرگ‌تر، خالی بگذارید."
@@ -466,6 +487,9 @@ msgstr "عادی"
 msgid "Object Fit"
 msgstr "روش جاگذاری تصویر"
 
+msgid "Object Position"
+msgstr "موقعیت تصویر"
+
 msgid "Office Backpack"
 msgstr "کوله‌پشتی اداری"
 
@@ -480,6 +504,9 @@ msgstr "شناسه ترم‌ها با کاما (اختیاری). برای همه
 
 msgid "Optional custom field name (works with ACF field names). Private fields starting with an underscore are ignored."
 msgstr "نام فیلد سفارشی (اختیاری؛ با نام فیلدهای ACF هم کار می‌کند). فیلدهای خصوصی که با آندرلاین شروع می‌شوند نادیده گرفته می‌شوند."
+
+msgid "Optional second image shown when the card is hovered or focused."
+msgstr "تصویر دوم اختیاری که هنگام هاور یا فوکوس کارت نمایش داده می‌شود."
 
 msgid "Optional, for example a PDF or brochure. Shown only when a link is set."
 msgstr "اختیاری، مثلاً PDF یا بروشور. فقط وقتی لینک تنظیم شده باشد نمایش داده می‌شود."
@@ -498,6 +525,9 @@ msgstr "مرتب‌سازی بر اساس"
 
 msgid "Out of stock"
 msgstr "ناموجود"
+
+msgid "Overrides the aspect ratio when set."
+msgstr "در صورت تنظیم، نسبت تصویر را نادیده می‌گیرد."
 
 msgid "Padding"
 msgstr "فاصلهٔ داخلی"
@@ -578,6 +608,15 @@ msgstr "محصولات"
 
 msgid "Progress Bar"
 msgstr "نوار پیشرفت"
+
+msgid "Progress Bar Height"
+msgstr "ارتفاع نوار پیشرفت"
+
+msgid "Progress Fill Color"
+msgstr "رنگ پرشدگی نوار پیشرفت"
+
+msgid "Progress Track Color"
+msgstr "رنگ مسیر نوار پیشرفت"
 
 msgid "Purchase / select options"
 msgstr "خرید / انتخاب گزینه‌ها"
@@ -666,6 +705,9 @@ msgstr "نمایش توضیحات"
 msgid "Show Dots"
 msgstr "نمایش صفحه‌بندی"
 
+msgid "Show Full Description"
+msgstr "نمایش کامل توضیحات"
+
 msgid "Show Image"
 msgstr "نمایش تصویر"
 
@@ -702,6 +744,9 @@ msgstr "توقف پخش خودکار پس از تعامل"
 msgid "Style controls can further customize the selected preset."
 msgstr "با کنترل‌های ظاهر می‌توانید طرح انتخاب‌شده را بیشتر شخصی‌سازی کنید."
 
+msgid "Summary Length (words)"
+msgstr "طول خلاصه (کلمه)"
+
 msgid "Text"
 msgstr "متن"
 
@@ -725,6 +770,12 @@ msgstr "رنگ عنوان"
 
 msgid "Title HTML Tag"
 msgstr "تگ HTML عنوان"
+
+msgid "Title Max Lines"
+msgstr "حداکثر خطوط عنوان"
+
+msgid "Top"
+msgstr "بالا"
 
 msgid "Top Margin"
 msgstr "فاصلهٔ بیرونی از بالا"

@@ -261,5 +261,22 @@
   "Search by title or SKU…": "جست‌وجو بر اساس عنوان یا SKU…",
   "Search failed. Try again.": "جست‌وجو ناموفق بود. دوباره تلاش کنید.",
   "Second Group (Term) IDs": "شناسه گروه‌های دوم (ترم)",
-  "Second Group Taxonomy": "طبقه‌بندی گروه دوم"
+  "Second Group Taxonomy": "طبقه‌بندی گروه دوم",
+  "Object Position": "موقعیت تصویر",
+  "Top": "بالا",
+  "Bottom": "پایین",
+  "Image Height": "ارتفاع تصویر",
+  "Overrides the aspect ratio when set.": "در صورت تنظیم، نسبت تصویر را نادیده می‌گیرد.",
+  "Show Full Description": "نمایش کامل توضیحات",
+  "Title Max Lines": "حداکثر خطوط عنوان",
+  "Leave empty to show the whole title.": "برای نمایش کامل عنوان خالی بگذارید.",
+  "Counter Color": "رنگ شمارنده",
+  "Progress Bar Height": "ارتفاع نوار پیشرفت",
+  "Progress Track Color": "رنگ مسیر نوار پیشرفت",
+  "Progress Fill Color": "رنگ پرشدگی نوار پیشرفت",
+  "Hover Image": "تصویر هنگام هاور",
+  "Optional second image shown when the card is hovered or focused.": "تصویر دوم اختیاری که هنگام هاور یا فوکوس کارت نمایش داده می‌شود.",
+  "Hover Image Custom Field": "فیلد سفارشی تصویر هاور",
+  "Custom field holding an image URL or media ID.": "فیلد سفارشی حاوی URL تصویر یا شناسه رسانه.",
+  "Summary Length (words)": "طول خلاصه (کلمه)"
 }

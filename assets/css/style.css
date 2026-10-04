@@ -121,6 +121,19 @@
     transition: transform var(--pce-card-image-transition) ease;
 }
 
+.pce-v5-media { position: relative; }
+
+.pce-v5-media img.pce-v5-hover-image {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity var(--pce-card-transition) ease;
+    pointer-events: none;
+}
+
+.pce-v5-card:hover .pce-v5-hover-image,
+.pce-v5-card:focus-within .pce-v5-hover-image { opacity: 1; }
+
 .pce-v5-card:hover .pce-v5-media img {
     transform: scale(var(--pce-card-image-hover-scale));
 }

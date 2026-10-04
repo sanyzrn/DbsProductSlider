@@ -67,6 +67,11 @@ if (!defined('ABSPATH')) {
             ]
         );
 
+        $repeater->add_control('image_hover', [
+            'label' => __('Hover Image', 'advanced-carousel-pro'), 'type' => Controls_Manager::MEDIA,
+            'description' => __('Optional second image shown when the card is hovered or focused.', 'advanced-carousel-pro'),
+        ]);
+
         $repeater->add_control('image_alt', [
             'label' => __('Image Alternative Text', 'advanced-carousel-pro'), 'type' => Controls_Manager::TEXT,
             'description' => __('Leave empty to use the media alternative text or product title.', 'advanced-carousel-pro'),
@@ -220,6 +225,14 @@ if (!defined('ABSPATH')) {
         $this->add_control('wp_badge', [
             'label' => __('Badge', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT, 'default' => 'term', 'condition' => $wp_condition,
             'options' => ['term' => __('First group name', 'advanced-carousel-pro'), 'none' => __('None', 'advanced-carousel-pro')],
+        ]);
+        $this->add_control('wp_hover_meta', [
+            'label' => __('Hover Image Custom Field', 'advanced-carousel-pro'), 'type' => Controls_Manager::TEXT, 'condition' => $wp_condition,
+            'description' => __('Custom field holding an image URL or media ID.', 'advanced-carousel-pro'),
+        ]);
+        $this->add_control('desc_words', [
+            'label' => __('Summary Length (words)', 'advanced-carousel-pro'), 'type' => Controls_Manager::NUMBER, 'default' => 30, 'min' => 5, 'max' => 100,
+            'condition' => ['source!' => 'manual'],
         ]);
         $this->add_control('wp_price_meta', [
             'label' => __('Price / Label Custom Field', 'advanced-carousel-pro'), 'type' => Controls_Manager::TEXT, 'condition' => $wp_condition,

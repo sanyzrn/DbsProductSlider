@@ -97,6 +97,9 @@ msgstr ""
 msgid "Border Radius"
 msgstr ""
 
+msgid "Bottom"
+msgstr ""
+
 msgid "Bullets"
 msgstr ""
 
@@ -175,6 +178,9 @@ msgstr ""
 msgid "Content Type"
 msgstr ""
 
+msgid "Counter Color"
+msgstr ""
+
 msgid "Cover"
 msgstr ""
 
@@ -191,6 +197,9 @@ msgid "Custom Width"
 msgstr ""
 
 msgid "Custom field holding a URL or a media file ID, such as a PDF. The button appears only on items that have a value."
+msgstr ""
+
+msgid "Custom field holding an image URL or media ID."
 msgstr ""
 
 msgid "Date"
@@ -316,6 +325,12 @@ msgstr ""
 msgid "Hover Effects"
 msgstr ""
 
+msgid "Hover Image"
+msgstr ""
+
+msgid "Hover Image Custom Field"
+msgstr ""
+
 msgid "Hover Lift (Y)"
 msgstr ""
 
@@ -350,6 +365,9 @@ msgid "Image"
 msgstr ""
 
 msgid "Image Alternative Text"
+msgstr ""
+
+msgid "Image Height"
 msgstr ""
 
 msgid "Image Loading"
@@ -392,6 +410,9 @@ msgid "Lazy"
 msgstr ""
 
 msgid "Leather Sneaker"
+msgstr ""
+
+msgid "Leave empty to show the whole title."
 msgstr ""
 
 msgid "Leave empty to use saved values or inherit from a larger screen."
@@ -466,6 +487,9 @@ msgstr ""
 msgid "Object Fit"
 msgstr ""
 
+msgid "Object Position"
+msgstr ""
+
 msgid "Office Backpack"
 msgstr ""
 
@@ -479,6 +503,9 @@ msgid "Optional comma-separated term IDs. Leave empty for all groups."
 msgstr ""
 
 msgid "Optional custom field name (works with ACF field names). Private fields starting with an underscore are ignored."
+msgstr ""
+
+msgid "Optional second image shown when the card is hovered or focused."
 msgstr ""
 
 msgid "Optional, for example a PDF or brochure. Shown only when a link is set."
@@ -497,6 +524,9 @@ msgid "Order By"
 msgstr ""
 
 msgid "Out of stock"
+msgstr ""
+
+msgid "Overrides the aspect ratio when set."
 msgstr ""
 
 msgid "Padding"
@@ -577,6 +607,15 @@ msgid "Products"
 msgstr ""
 
 msgid "Progress Bar"
+msgstr ""
+
+msgid "Progress Bar Height"
+msgstr ""
+
+msgid "Progress Fill Color"
+msgstr ""
+
+msgid "Progress Track Color"
 msgstr ""
 
 msgid "Purchase / select options"
@@ -666,6 +705,9 @@ msgstr ""
 msgid "Show Dots"
 msgstr ""
 
+msgid "Show Full Description"
+msgstr ""
+
 msgid "Show Image"
 msgstr ""
 
@@ -702,6 +744,9 @@ msgstr ""
 msgid "Style controls can further customize the selected preset."
 msgstr ""
 
+msgid "Summary Length (words)"
+msgstr ""
+
 msgid "Text"
 msgstr ""
 
@@ -724,6 +769,12 @@ msgid "Title Color"
 msgstr ""
 
 msgid "Title HTML Tag"
+msgstr ""
+
+msgid "Title Max Lines"
+msgstr ""
+
+msgid "Top"
 msgstr ""
 
 msgid "Top Margin"
