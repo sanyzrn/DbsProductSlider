@@ -124,6 +124,16 @@ if (!defined('ABSPATH')) {
             ]
         );
 
+        $repeater->add_control('btn2_text', [
+            'label' => __('Second Button Text', 'advanced-carousel-pro'), 'type' => Controls_Manager::TEXT,
+            'description' => __('Optional, for example a PDF or brochure. Shown only when a link is set.', 'advanced-carousel-pro'),
+        ]);
+
+        $repeater->add_control('btn2_link', [
+            'label' => __('Second Button Link', 'advanced-carousel-pro'), 'type' => Controls_Manager::URL,
+            'placeholder' => 'https://example.com/brochure.pdf',
+        ]);
+
         $this->add_control(
             'items',
             [
@@ -198,6 +208,17 @@ if (!defined('ABSPATH')) {
             'label' => __('Badge', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT, 'default' => 'term', 'condition' => $wp_condition,
             'options' => ['term' => __('First group name', 'advanced-carousel-pro'), 'none' => __('None', 'advanced-carousel-pro')],
         ]);
+        $this->add_control('wp_price_meta', [
+            'label' => __('Price / Label Custom Field', 'advanced-carousel-pro'), 'type' => Controls_Manager::TEXT, 'condition' => $wp_condition,
+            'description' => __('Optional custom field name (works with ACF field names). Private fields starting with an underscore are ignored.', 'advanced-carousel-pro'),
+        ]);
+        $this->add_control('wp_btn2_text', [
+            'label' => __('Second Button Text', 'advanced-carousel-pro'), 'type' => Controls_Manager::TEXT, 'condition' => $wp_condition,
+        ]);
+        $this->add_control('wp_btn2_meta', [
+            'label' => __('Second Button Link Field', 'advanced-carousel-pro'), 'type' => Controls_Manager::TEXT, 'condition' => $wp_condition,
+            'description' => __('Custom field holding a URL or a media file ID, such as a PDF. The button appears only on items that have a value.', 'advanced-carousel-pro'),
+        ]);
         $this->add_control('wp_button_text', [
             'label' => __('Button Text', 'advanced-carousel-pro'), 'type' => Controls_Manager::TEXT, 'default' => __('View', 'advanced-carousel-pro'), 'condition' => $wp_condition,
         ]);
@@ -240,6 +261,11 @@ if (!defined('ABSPATH')) {
         foreach (['image' => __('Show Image', 'advanced-carousel-pro'), 'title' => __('Show Title', 'advanced-carousel-pro'), 'price' => __('Show Price', 'advanced-carousel-pro'), 'badge' => __('Show Badge', 'advanced-carousel-pro'), 'description' => __('Show Description', 'advanced-carousel-pro'), 'button' => __('Show Button', 'advanced-carousel-pro')] as $part => $label) {
             $this->add_control('show_' . $part, ['label' => $label, 'type' => Controls_Manager::SWITCHER, 'default' => 'yes']);
         }
+        $this->add_control('card_link', [
+            'label' => __('Card Link', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT, 'default' => 'button',
+            'options' => ['button' => __('Button only', 'advanced-carousel-pro'), 'title' => __('Button and title', 'advanced-carousel-pro'), 'card' => __('Whole card', 'advanced-carousel-pro')],
+            'description' => __('Uses the item link. The title link covers the card in whole-card mode; other links stay separately clickable.', 'advanced-carousel-pro'),
+        ]);
         $this->end_controls_section();
 
         $this->start_controls_section('slider_settings', ['label' => __('Layout', 'advanced-carousel-pro')]);

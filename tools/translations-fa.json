@@ -239,5 +239,17 @@
   "Exclude Current Item": "استثنا کردن آیتم جاری",
   "First group name": "نام اولین گروه",
   "None": "هیچ‌کدام",
-  "View": "مشاهده"
+  "View": "مشاهده",
+  "Card Link": "لینک کارت",
+  "Button only": "فقط دکمه",
+  "Button and title": "دکمه و عنوان",
+  "Whole card": "کل کارت",
+  "Uses the item link. The title link covers the card in whole-card mode; other links stay separately clickable.": "از لینک خود آیتم استفاده می‌کند. در حالت کل کارت، لینک عنوان کل کارت را می‌پوشاند و بقیه لینک‌ها جداگانه قابل کلیک می‌مانند.",
+  "Second Button Text": "متن دکمه دوم",
+  "Second Button Link": "لینک دکمه دوم",
+  "Second Button Link Field": "فیلد لینک دکمه دوم",
+  "Optional, for example a PDF or brochure. Shown only when a link is set.": "اختیاری، مثلاً PDF یا بروشور. فقط وقتی لینک تنظیم شده باشد نمایش داده می‌شود.",
+  "Price / Label Custom Field": "فیلد سفارشی قیمت / برچسب",
+  "Optional custom field name (works with ACF field names). Private fields starting with an underscore are ignored.": "نام فیلد سفارشی (اختیاری؛ با نام فیلدهای ACF هم کار می‌کند). فیلدهای خصوصی که با آندرلاین شروع می‌شوند نادیده گرفته می‌شوند.",
+  "Custom field holding a URL or a media file ID, such as a PDF. The button appears only on items that have a value.": "فیلد سفارشی حاوی URL یا شناسه فایل رسانه، مثل PDF. دکمه فقط روی آیتم‌هایی که مقدار دارند نمایش داده می‌شود."
 }

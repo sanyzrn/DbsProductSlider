@@ -47,7 +47,12 @@ namespace {
     function esc_url($text) { return esc_attr(esc_url_raw($text)); }
     function wp_json_encode($value) { return json_encode($value); }
     function is_rtl() { return false; }
-    function get_post_meta($id, $key, $single) { return 'Media alt'; }
+    function get_post_meta($id, $key, $single) {
+        $meta = ['price_field' => '<b>$20</b>', 'brochure' => '77', 'link_field' => 'https://example.test/file.pdf', 'bad_link' => 'javascript:alert(1)', '_hidden' => 'secret'];
+        return $key === '_wp_attachment_image_alt' ? 'Media alt' : ($meta[$key] ?? '');
+    }
+    function is_protected_meta($key, $type) { return $key[0] === '_'; }
+    function wp_get_attachment_url($id) { return $id === 77 ? 'https://example.test/uploads/brochure.pdf' : false; }
     function wp_get_attachment_image($id, $size, $icon, $attributes) {
         if ($id === 999) { return ''; }
         return '<img src="https://example.test/' . $size . '.png" width="768" height="768" srcset="https://example.test/small.png 300w, https://example.test/large.png 768w" sizes="(max-width: 768px) 100vw, 768px" alt="' . esc_attr($attributes['alt']) . '" loading="' . $attributes['loading'] . '" decoding="async" />';
@@ -263,6 +268,19 @@ namespace {
     $html = render(['source' => 'wordpress', 'wp_post_type' => 'gift', 'wp_button_text' => 'Details']);
     check(strpos($html, 'Gift 1') !== false && strpos($html, 'Details') !== false && strpos($html, 'Gift 3') === false, 'WordPress source renders through widget');
     check(strpos(render(['source' => 'bogus', 'items' => [$full_item]]), 'Visible title') !== false, 'Unknown source falls back to manual');
+    // Phase 1: custom fields, second button, card link modes.
+    $cards = PCE_Content::items(['wp_post_type' => 'gift', 'wp_price_meta' => 'price_field', 'wp_btn2_text' => 'PDF', 'wp_btn2_meta' => 'brochure']);
+    check($cards[0]['price'] === '$20' && $cards[0]['btn2_link']['url'] === 'https://example.test/uploads/brochure.pdf', 'Meta price and media-ID second button');
+    check(PCE_Content::items(['wp_post_type' => 'gift', 'wp_price_meta' => '_hidden'])[0]['price'] === '' && PCE_Content::items(['wp_post_type' => 'gift', 'wp_price_meta' => 'a b;c'])[0]['price'] === '', 'Protected or malformed meta keys ignored');
+    check(PCE_Content::items(['wp_post_type' => 'gift', 'wp_btn2_text' => 'PDF', 'wp_btn2_meta' => 'link_field'])[0]['btn2_link']['url'] === 'https://example.test/file.pdf' && PCE_Content::items(['wp_post_type' => 'gift', 'wp_btn2_text' => 'PDF', 'wp_btn2_meta' => 'bad_link'])[0]['btn2_link']['url'] === '' && PCE_Content::items(['wp_post_type' => 'gift', 'wp_btn2_meta' => 'link_field'])[0]['btn2_link']['url'] === '', 'Second button URL validated and needs text');
+    $html = render(['source' => 'wordpress', 'wp_post_type' => 'gift', 'wp_btn2_text' => 'PDF', 'wp_btn2_meta' => 'link_field']);
+    check(substr_count($html, 'pce-v5-btn-secondary') === 3 && strpos($html, 'href="https://example.test/file.pdf"') !== false, 'Second button rendered');
+    check(strpos(render(['source' => 'wordpress', 'wp_post_type' => 'gift']), 'pce-v5-btn-secondary') === false, 'No second button without value');
+    $linked = ['title' => 'Linked', 'link' => ['url' => 'https://example.test/a'], 'btn2_text' => 'Brochure', 'btn2_link' => ['url' => 'javascript:alert(1)']];
+    check(strpos(render(['items' => [$linked]]), 'pce-v5-title-link') === false && strpos(render(['items' => [$linked]]), 'javascript:') === false, 'Default card link and unsafe second URL');
+    $html = render(['items' => [$linked], 'card_link' => 'card']);
+    check(strpos($html, 'pce-card-linked') !== false && strpos($html, '<a class="pce-v5-title-link" href="https://example.test/a"') !== false, 'Whole-card link mode');
+    check(strpos(render(['items' => [['title' => 'No link']], 'card_link' => 'card']), 'pce-v5-title-link') === false && strpos(render(['items' => [$linked], 'card_link' => 'bogus']), 'pce-v5-title-link') === false, 'Card link needs URL and valid mode');
     $fixture_items = [];
     for ($i = 0; $i < 10; $i++) {
         $fixture_items[] = ['_id' => 'card-' . $i, 'title' => 'محصول ' . ($i + 1), 'category' => 'محصول', 'badge_icon' => ['value' => 'test'], 'btn_icon' => ['value' => 'test'], 'desc' => $i % 2 ? str_repeat('توضیحات محصول ', 20) : 'کوتاه', 'price' => '۱۰۰ تومان', 'link' => ['url' => '#product-' . $i]];
