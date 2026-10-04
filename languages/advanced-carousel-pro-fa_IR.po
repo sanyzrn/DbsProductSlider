@@ -139,6 +139,9 @@ msgstr "ظاهر آمادهٔ کارت"
 msgid "Cards"
 msgstr "کارت‌ها"
 
+msgid "Carousel"
+msgstr "اسلایدر"
+
 msgid "Catalog"
 msgstr "کاتالوگ"
 
@@ -297,6 +300,18 @@ msgstr "فاصلهٔ کارت‌ها"
 
 msgid "Go to slide {{index}}"
 msgstr "رفتن به اسلاید {{index}}"
+
+msgid "Grid (no sliding)"
+msgstr "شبکه‌ای (بدون اسلاید)"
+
+msgid "Grid Columns"
+msgstr "تعداد ستون‌های شبکه"
+
+msgid "Grid Gap"
+msgstr "فاصله شبکه"
+
+msgid "Grid shows every card at once. Motion, autoplay and navigation settings apply to the carousel only."
+msgstr "در حالت شبکه‌ای همه کارت‌ها هم‌زمان نمایش داده می‌شوند. تنظیمات حرکت، پخش خودکار و ناوبری فقط برای اسلایدر اعمال می‌شوند."
 
 msgid "Group (Term) IDs"
 msgstr "شناسه گروه‌ها (ترم)"

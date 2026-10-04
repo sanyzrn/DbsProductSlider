@@ -3,7 +3,8 @@ if (!defined('ABSPATH')) {
     exit;
 }
 $preset = $this->sanitize_choice($settings['card_preset'] ?? 'default', ['default', 'minimal', 'catalog'], 'default');
-$wrapper_class = 'pce-v5-wrapper pce-preset-' . $preset;
+$is_grid = ($settings['layout'] ?? 'carousel') === 'grid';
+$wrapper_class = 'pce-v5-wrapper pce-preset-' . $preset . ($is_grid ? ' pce-layout-grid' : '');
 if ($slider_options['respectReducedMotion']) {
     $wrapper_class .= ' pce-respect-motion';
 }
@@ -19,7 +20,7 @@ $slider_id = $widget_id . '-slider';
 $show = static function ($part) use ($settings) { return ($settings['show_' . $part] ?? 'yes') === 'yes'; };
 ?>
 <div id="<?php echo esc_attr($widget_id); ?>" class="<?php echo esc_attr($wrapper_class); ?>" dir="<?php echo esc_attr($direction); ?>"
-    role="region" aria-roledescription="<?php echo esc_attr__('carousel', 'advanced-carousel-pro'); ?>" aria-label="<?php echo esc_attr($label); ?>"
+    role="region"<?php echo $is_grid ? '' : ' aria-roledescription="' . esc_attr__('carousel', 'advanced-carousel-pro') . '"'; ?> aria-label="<?php echo esc_attr($label); ?>"
     data-widget-id="<?php echo esc_attr($widget_id); ?>" data-settings="<?php echo esc_attr(wp_json_encode($slider_options)); ?>">
     <div id="<?php echo esc_attr($slider_id); ?>" class="swiper pce-v5-slider" tabindex="0">
         <div class="swiper-wrapper">
@@ -120,6 +121,7 @@ $show = static function ($part) use ($settings) { return ($settings['show_' . $p
             <?php endforeach; ?>
         </div>
     </div>
+    <?php if (!$is_grid) : ?>
     <div class="pce-v5-navigation is-hidden">
         <button type="button" class="pce-v5-nav pce-v5-prev" aria-controls="<?php echo esc_attr($slider_id); ?>" aria-label="<?php echo esc_attr($slider_options['messages']['prev']); ?>"><span aria-hidden="true">&larr;</span></button>
         <button type="button" class="pce-v5-nav pce-v5-next" aria-controls="<?php echo esc_attr($slider_id); ?>" aria-label="<?php echo esc_attr($slider_options['messages']['next']); ?>"><span aria-hidden="true">&rarr;</span></button>
@@ -129,5 +131,6 @@ $show = static function ($part) use ($settings) { return ($settings['show_' . $p
         <button type="button" class="pce-v5-autoplay" aria-controls="<?php echo esc_attr($slider_id); ?>" aria-label="<?php echo esc_attr($slider_options['messages']['pause']); ?>" title="<?php echo esc_attr($slider_options['messages']['pause']); ?>" hidden>
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="pce-autoplay-pause" d="M7 5h4v14H7zM13 5h4v14h-4z"/><path class="pce-autoplay-play" d="m8 5 11 7-11 7z"/></svg>
         </button>
+    <?php endif; ?>
     <?php endif; ?>
 </div>

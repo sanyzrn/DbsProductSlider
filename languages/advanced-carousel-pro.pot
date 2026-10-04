@@ -139,6 +139,9 @@ msgstr ""
 msgid "Cards"
 msgstr ""
 
+msgid "Carousel"
+msgstr ""
+
 msgid "Catalog"
 msgstr ""
 
@@ -296,6 +299,18 @@ msgid "Gap"
 msgstr ""
 
 msgid "Go to slide {{index}}"
+msgstr ""
+
+msgid "Grid (no sliding)"
+msgstr ""
+
+msgid "Grid Columns"
+msgstr ""
+
+msgid "Grid Gap"
+msgstr ""
+
+msgid "Grid shows every card at once. Motion, autoplay and navigation settings apply to the carousel only."
 msgstr ""
 
 msgid "Group (Term) IDs"

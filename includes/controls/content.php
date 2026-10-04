@@ -300,6 +300,24 @@ if (!defined('ABSPATH')) {
 
         $this->start_controls_section('slider_settings', ['label' => __('Layout', 'advanced-carousel-pro')]);
 
+        $this->add_control('layout', [
+            'label' => __('Layout', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT, 'default' => 'carousel',
+            'options' => ['carousel' => __('Carousel', 'advanced-carousel-pro'), 'grid' => __('Grid (no sliding)', 'advanced-carousel-pro')],
+            'description' => __('Grid shows every card at once. Motion, autoplay and navigation settings apply to the carousel only.', 'advanced-carousel-pro'),
+        ]);
+
+        $this->add_responsive_control('grid_columns', [
+            'label' => __('Grid Columns', 'advanced-carousel-pro'), 'type' => Controls_Manager::NUMBER, 'min' => 1, 'max' => 6, 'step' => 1,
+            'default' => 3, 'tablet_default' => 2, 'mobile_default' => 1, 'condition' => ['layout' => 'grid'],
+            'selectors' => ['{{WRAPPER}} .pce-v5-slider .swiper-wrapper' => 'grid-template-columns: repeat({{VALUE}}, minmax(0, 1fr));'],
+        ]);
+
+        $this->add_responsive_control('grid_gap', [
+            'label' => __('Grid Gap', 'advanced-carousel-pro'), 'type' => Controls_Manager::SLIDER, 'range' => ['px' => ['min' => 0, 'max' => 60]],
+            'default' => ['size' => 20], 'condition' => ['layout' => 'grid'],
+            'selectors' => ['{{WRAPPER}} .pce-v5-slider .swiper-wrapper' => 'gap: {{SIZE}}{{UNIT}};'],
+        ]);
+
         $this->add_responsive_control(
             'slides_per_view',
             [
@@ -342,7 +360,7 @@ if (!defined('ABSPATH')) {
         ]);
         $this->end_controls_section();
 
-        $this->start_controls_section('motion_settings', ['label' => __('Motion', 'advanced-carousel-pro')]);
+        $this->start_controls_section('motion_settings', ['label' => __('Motion', 'advanced-carousel-pro'), 'condition' => ['layout!' => 'grid']]);
 
         $this->add_control(
             'slider_effect',
@@ -396,7 +414,7 @@ if (!defined('ABSPATH')) {
         ]);
         $this->end_controls_section();
 
-        $this->start_controls_section('autoplay_settings', ['label' => __('Autoplay', 'advanced-carousel-pro')]);
+        $this->start_controls_section('autoplay_settings', ['label' => __('Autoplay', 'advanced-carousel-pro'), 'condition' => ['layout!' => 'grid']]);
 
         $this->add_control(
             'autoplay',
@@ -454,7 +472,7 @@ if (!defined('ABSPATH')) {
         );
         $this->end_controls_section();
 
-        $this->start_controls_section('navigation_settings', ['label' => __('Navigation', 'advanced-carousel-pro')]);
+        $this->start_controls_section('navigation_settings', ['label' => __('Navigation', 'advanced-carousel-pro'), 'condition' => ['layout!' => 'grid']]);
 
         $this->add_responsive_control(
             'show_arrows',

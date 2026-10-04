@@ -283,6 +283,11 @@
             if (!slider || !slider.querySelector('.swiper-slide')) { return; }
             var key = wrapper.getAttribute('data-settings') || '';
             var existing = controllers.get(wrapper);
+            if (wrapper.classList.contains('pce-layout-grid')) {
+                // Grid layout is plain CSS: no engine, no ready state, nothing to destroy later.
+                if (existing) { existing.destroy(); controllers.delete(wrapper); }
+                return;
+            }
             if (existing && existing.key === key) { return; }
             var previousState = existing ? existing.state() : savedStates.get(wrapper.id);
             if (existing) { existing.destroy(); }
