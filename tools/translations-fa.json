@@ -251,5 +251,15 @@
   "Optional, for example a PDF or brochure. Shown only when a link is set.": "اختیاری، مثلاً PDF یا بروشور. فقط وقتی لینک تنظیم شده باشد نمایش داده می‌شود.",
   "Price / Label Custom Field": "فیلد سفارشی قیمت / برچسب",
   "Optional custom field name (works with ACF field names). Private fields starting with an underscore are ignored.": "نام فیلد سفارشی (اختیاری؛ با نام فیلدهای ACF هم کار می‌کند). فیلدهای خصوصی که با آندرلاین شروع می‌شوند نادیده گرفته می‌شوند.",
-  "Custom field holding a URL or a media file ID, such as a PDF. The button appears only on items that have a value.": "فیلد سفارشی حاوی URL یا شناسه فایل رسانه، مثل PDF. دکمه فقط روی آیتم‌هایی که مقدار دارند نمایش داده می‌شود."
+  "Custom field holding a URL or a media file ID, such as a PDF. The button appears only on items that have a value.": "فیلد سفارشی حاوی URL یا شناسه فایل رسانه، مثل PDF. دکمه فقط روی آیتم‌هایی که مقدار دارند نمایش داده می‌شود.",
+  "Added": "اضافه شد",
+  "No published items found.": "آیتم منتشرشده‌ای پیدا نشد.",
+  "Optional. Items must match both group filters.": "اختیاری. آیتم‌ها باید با هر دو فیلتر گروه مطابقت داشته باشند.",
+  "Price": "قیمت",
+  "Rating": "امتیاز",
+  "Sales": "فروش",
+  "Search by title or SKU…": "جست‌وجو بر اساس عنوان یا SKU…",
+  "Search failed. Try again.": "جست‌وجو ناموفق بود. دوباره تلاش کنید.",
+  "Second Group (Term) IDs": "شناسه گروه‌های دوم (ترم)",
+  "Second Group Taxonomy": "طبقه‌بندی گروه دوم"
 }

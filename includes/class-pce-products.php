@@ -5,6 +5,18 @@ if (!defined('ABSPATH')) {
 
 /** Optional product source. Manual cards never require WooCommerce. */
 final class PCE_Products {
+    /** Ordering handled through the documented WooCommerce query filter: sort key => numeric meta key. */
+    const SORT_META = ['price' => '_price', 'popularity' => 'total_sales', 'rating' => '_wc_average_rating'];
+
+    public static function sort_query($query, $vars) {
+        $meta = $vars['pce_sort'] ?? '';
+        if (is_string($meta) && in_array($meta, self::SORT_META, true)) {
+            $query['meta_key'] = $meta;
+            $query['orderby'] = 'meta_value_num';
+        }
+        return $query;
+    }
+
     public static function ids($value, $limit = 200) {
         $tokens = is_array($value) ? $value : preg_split('/[\s,]+/', is_scalar($value) ? (string) $value : '');
         $ids = [];
@@ -28,6 +40,7 @@ final class PCE_Products {
             'visibility' => 'catalog',
             'limit' => $limit,
             'orderby' => in_array($settings['product_orderby'] ?? '', ['date', 'name', 'ID', 'modified'], true) ? $settings['product_orderby'] : 'date',
+            'pce_sort' => self::SORT_META[$settings['product_orderby'] ?? ''] ?? '',
             'order' => ($settings['product_order'] ?? '') === 'ASC' ? 'ASC' : 'DESC',
             'return' => 'objects',
             'exclude' => self::ids($settings['exclude_product_ids'] ?? ''),
@@ -58,7 +71,13 @@ final class PCE_Products {
         } elseif ($mode === 'featured') {
             $args['featured'] = true;
         }
+        if ($args['pce_sort'] === '' || $mode === 'selected') {
+            unset($args['pce_sort']);
+        } else {
+            add_filter('woocommerce_product_data_store_cpt_get_products_query', [__CLASS__, 'sort_query'], 10, 2);
+        }
         $products = wc_get_products($args);
+        remove_filter('woocommerce_product_data_store_cpt_get_products_query', [__CLASS__, 'sort_query'], 10);
         if ($selected) {
             $positions = array_flip($selected);
             usort($products, static function ($a, $b) use ($positions) {

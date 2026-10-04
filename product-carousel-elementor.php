@@ -57,6 +57,12 @@ final class ACP_Plugin {
             return;
         }
 
+        require_once ACP_PLUGIN_PATH . 'includes/class-pce-settings.php';
+        require_once ACP_PLUGIN_PATH . 'includes/class-pce-products.php';
+        require_once ACP_PLUGIN_PATH . 'includes/class-pce-content.php';
+        require_once ACP_PLUGIN_PATH . 'includes/class-pce-search.php';
+        PCE_Search::register();
+
         add_action('elementor/widgets/register', [$this, 'register_widgets']);
         add_action('elementor/frontend/after_register_scripts', [$this, 'register_assets']);
         add_action('elementor/frontend/after_register_styles', [$this, 'register_assets']);

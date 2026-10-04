@@ -13,6 +13,9 @@ msgstr ""
 msgid "Active Dot Width"
 msgstr ""
 
+msgid "Added"
+msgstr ""
+
 msgid "After"
 msgstr ""
 
@@ -451,6 +454,9 @@ msgstr ""
 msgid "No items match the selected source. Add items or adjust product filters."
 msgstr ""
 
+msgid "No published items found."
+msgstr ""
+
 msgid "None"
 msgstr ""
 
@@ -476,6 +482,9 @@ msgid "Optional custom field name (works with ACF field names). Private fields s
 msgstr ""
 
 msgid "Optional, for example a PDF or brochure. Shown only when a link is set."
+msgstr ""
+
+msgid "Optional. Items must match both group filters."
 msgstr ""
 
 msgid "Optional. Must be registered for the selected content type."
@@ -515,6 +524,9 @@ msgid "Portrait (4:5)"
 msgstr ""
 
 msgid "Previous slide"
+msgstr ""
+
+msgid "Price"
 msgstr ""
 
 msgid "Price / Label"
@@ -570,6 +582,9 @@ msgstr ""
 msgid "Purchase / select options"
 msgstr ""
 
+msgid "Rating"
+msgstr ""
+
 msgid "Release Mousewheel On Edges"
 msgstr ""
 
@@ -594,10 +609,19 @@ msgstr ""
 msgid "Sale"
 msgstr ""
 
+msgid "Sales"
+msgstr ""
+
 msgid "Scale On Hover"
 msgstr ""
 
 msgid "Scroll over the carousel to change slides. Page scrolling resumes at the edges when loop is off."
+msgstr ""
+
+msgid "Search by title or SKU…"
+msgstr ""
+
+msgid "Search failed. Try again."
 msgstr ""
 
 msgid "Second Button Link"
@@ -607,6 +631,12 @@ msgid "Second Button Link Field"
 msgstr ""
 
 msgid "Second Button Text"
+msgstr ""
+
+msgid "Second Group (Term) IDs"
+msgstr ""
+
+msgid "Second Group Taxonomy"
 msgstr ""
 
 msgid "Select options"

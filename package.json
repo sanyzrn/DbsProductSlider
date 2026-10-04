@@ -2,7 +2,7 @@
   "name": "dbs-product-slider-checks",
   "private": true,
   "scripts": {
-    "test": "php tests/bootstrap.php && php tests/bootstrap.php missing && php tests/bootstrap.php old && php tests/php.php && php tests/no-woocommerce.php && node tests/release.cjs && node tests/browser.cjs",
+    "test": "php tests/bootstrap.php && php tests/bootstrap.php missing && php tests/bootstrap.php old && php tests/php.php && php tests/no-woocommerce.php && node tests/release.cjs && node tests/browser.cjs && node tests/picker.cjs",
     "build:vendor": "node tools/build-vendor.cjs",
     "build:translations": "node tools/build-translations.cjs"
   },

@@ -81,12 +81,20 @@ final class PCE_Content {
             'suppress_filters' => false,
         ];
         $taxonomy = is_string($settings['wp_taxonomy'] ?? null) ? $settings['wp_taxonomy'] : '';
-        $terms = PCE_Products::ids($settings['wp_term_ids'] ?? '');
-        if ($taxonomy !== '' && $terms) {
-            if (!taxonomy_exists($taxonomy) || !is_object_in_taxonomy($post_type, $taxonomy)) {
+        $tax_query = [];
+        foreach ([['wp_taxonomy', 'wp_term_ids'], ['wp_taxonomy_2', 'wp_term_ids_2']] as [$tax_key, $terms_key]) {
+            $slug = is_string($settings[$tax_key] ?? null) ? $settings[$tax_key] : '';
+            $terms = PCE_Products::ids($settings[$terms_key] ?? '');
+            if ($slug === '' || !$terms) {
+                continue;
+            }
+            if (!taxonomy_exists($slug) || !is_object_in_taxonomy($post_type, $slug)) {
                 return [];
             }
-            $args['tax_query'] = [['taxonomy' => $taxonomy, 'field' => 'term_id', 'terms' => $terms]];
+            $tax_query[] = ['taxonomy' => $slug, 'field' => 'term_id', 'terms' => $terms];
+        }
+        if ($tax_query) {
+            $args['tax_query'] = count($tax_query) > 1 ? array_merge(['relation' => 'AND'], $tax_query) : $tax_query;
         }
         $selected = [];
         if (($settings['wp_query'] ?? 'latest') === 'selected') {

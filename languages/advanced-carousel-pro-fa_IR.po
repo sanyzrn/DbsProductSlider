@@ -13,6 +13,9 @@ msgstr "رنگ نقطهٔ فعال"
 msgid "Active Dot Width"
 msgstr "عرض نقطهٔ فعال"
 
+msgid "Added"
+msgstr "اضافه شد"
+
 msgid "After"
 msgstr "بعد"
 
@@ -451,6 +454,9 @@ msgstr "اسلاید بعدی"
 msgid "No items match the selected source. Add items or adjust product filters."
 msgstr "هیچ آیتمی مطابق منبع انتخاب‌شده وجود ندارد. آیتم اضافه کنید یا فیلتر محصولات را تغییر دهید."
 
+msgid "No published items found."
+msgstr "آیتم منتشرشده‌ای پیدا نشد."
+
 msgid "None"
 msgstr "هیچ‌کدام"
 
@@ -477,6 +483,9 @@ msgstr "نام فیلد سفارشی (اختیاری؛ با نام فیلدها�
 
 msgid "Optional, for example a PDF or brochure. Shown only when a link is set."
 msgstr "اختیاری، مثلاً PDF یا بروشور. فقط وقتی لینک تنظیم شده باشد نمایش داده می‌شود."
+
+msgid "Optional. Items must match both group filters."
+msgstr "اختیاری. آیتم‌ها باید با هر دو فیلتر گروه مطابقت داشته باشند."
 
 msgid "Optional. Must be registered for the selected content type."
 msgstr "اختیاری. باید برای نوع محتوای انتخاب‌شده ثبت شده باشد."
@@ -516,6 +525,9 @@ msgstr "عمودی (۴:۵)"
 
 msgid "Previous slide"
 msgstr "اسلاید قبلی"
+
+msgid "Price"
+msgstr "قیمت"
 
 msgid "Price / Label"
 msgstr "قیمت / برچسب"
@@ -570,6 +582,9 @@ msgstr "نوار پیشرفت"
 msgid "Purchase / select options"
 msgstr "خرید / انتخاب گزینه‌ها"
 
+msgid "Rating"
+msgstr "امتیاز"
+
 msgid "Release Mousewheel On Edges"
 msgstr "آزاد کردن اسکرول در ابتدا و انتها"
 
@@ -594,11 +609,20 @@ msgstr "چرخش هنگام قرار گرفتن ماوس (درجه)"
 msgid "Sale"
 msgstr "حراج"
 
+msgid "Sales"
+msgstr "فروش"
+
 msgid "Scale On Hover"
 msgstr "بزرگ‌نمایی هنگام قرار گرفتن ماوس"
 
 msgid "Scroll over the carousel to change slides. Page scrolling resumes at the edges when loop is off."
 msgstr "با چرخ ماوس روی اسلایدر، کارت‌ها را جابه‌جا کنید. وقتی حرکت پیوسته خاموش باشد، اسکرول صفحه در ابتدا و انتها آزاد می‌شود."
+
+msgid "Search by title or SKU…"
+msgstr "جست‌وجو بر اساس عنوان یا SKU…"
+
+msgid "Search failed. Try again."
+msgstr "جست‌وجو ناموفق بود. دوباره تلاش کنید."
 
 msgid "Second Button Link"
 msgstr "لینک دکمه دوم"
@@ -608,6 +632,12 @@ msgstr "فیلد لینک دکمه دوم"
 
 msgid "Second Button Text"
 msgstr "متن دکمه دوم"
+
+msgid "Second Group (Term) IDs"
+msgstr "شناسه گروه‌های دوم (ترم)"
+
+msgid "Second Group Taxonomy"
+msgstr "طبقه‌بندی گروه دوم"
 
 msgid "Select options"
 msgstr "انتخاب گزینه‌ها"

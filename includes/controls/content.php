@@ -178,6 +178,10 @@ if (!defined('ABSPATH')) {
             'description' => __('Comma-separated IDs, in display order. Maximum 40 items.', 'advanced-carousel-pro'),
             'condition' => ['source' => 'wordpress', 'wp_query' => 'selected'],
         ]);
+        $this->add_control('wp_selected_ids_picker', [
+            'type' => Controls_Manager::RAW_HTML, 'raw' => '<div class="pce-picker" data-target="wp_selected_ids" data-type-control="wp_post_type"></div>',
+            'condition' => ['source' => 'wordpress', 'wp_query' => 'selected'], 'content_classes' => 'pce-picker-wrap',
+        ]);
         $this->add_control('wp_taxonomy', [
             'label' => __('Group Taxonomy', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT, 'default' => '',
             'options' => PCE_Content::taxonomy_options(), 'condition' => $wp_condition,
@@ -187,6 +191,15 @@ if (!defined('ABSPATH')) {
             'label' => __('Group (Term) IDs', 'advanced-carousel-pro'), 'type' => Controls_Manager::TEXT,
             'description' => __('Optional comma-separated term IDs. Leave empty for all groups.', 'advanced-carousel-pro'),
             'condition' => ['source' => 'wordpress', 'wp_taxonomy!' => ''],
+        ]);
+        $this->add_control('wp_taxonomy_2', [
+            'label' => __('Second Group Taxonomy', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT, 'default' => '',
+            'options' => PCE_Content::taxonomy_options(), 'condition' => $wp_condition,
+            'description' => __('Optional. Items must match both group filters.', 'advanced-carousel-pro'),
+        ]);
+        $this->add_control('wp_term_ids_2', [
+            'label' => __('Second Group (Term) IDs', 'advanced-carousel-pro'), 'type' => Controls_Manager::TEXT,
+            'condition' => ['source' => 'wordpress', 'wp_taxonomy_2!' => ''],
         ]);
         $this->add_control('wp_limit', [
             'label' => __('Maximum Items', 'advanced-carousel-pro'), 'type' => Controls_Manager::NUMBER,
@@ -239,6 +252,10 @@ if (!defined('ABSPATH')) {
             'condition' => ['source' => 'woocommerce', 'product_query' => 'selected'],
         ]);
 
+        $this->add_control('selected_product_ids_picker', [
+            'type' => Controls_Manager::RAW_HTML, 'raw' => '<div class="pce-picker" data-target="selected_product_ids" data-post-type="product"></div>',
+            'condition' => ['source' => 'woocommerce', 'product_query' => 'selected'], 'content_classes' => 'pce-picker-wrap',
+        ]);
         $this->add_control('product_categories', [
             'label' => __('Category Slugs', 'advanced-carousel-pro'), 'type' => Controls_Manager::TEXT,
             'description' => __('Optional comma-separated category slugs. Leave empty for all categories.', 'advanced-carousel-pro'), 'condition' => $woo_condition,
@@ -661,7 +678,7 @@ if (!defined('ABSPATH')) {
 
         $this->add_control('product_orderby', [
             'label' => __('Order By', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT,
-            'default' => 'date', 'options' => ['date' => __('Date', 'advanced-carousel-pro'), 'name' => __('Name', 'advanced-carousel-pro'), 'modified' => __('Last updated', 'advanced-carousel-pro'), 'ID' => __('Product ID', 'advanced-carousel-pro')],
+            'default' => 'date', 'options' => ['date' => __('Date', 'advanced-carousel-pro'), 'name' => __('Name', 'advanced-carousel-pro'), 'modified' => __('Last updated', 'advanced-carousel-pro'), 'ID' => __('Product ID', 'advanced-carousel-pro'), 'price' => __('Price', 'advanced-carousel-pro'), 'popularity' => __('Sales', 'advanced-carousel-pro'), 'rating' => __('Rating', 'advanced-carousel-pro')],
             'condition' => ['source' => 'woocommerce', 'product_query!' => 'selected'],
         ]);
 

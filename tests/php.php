@@ -67,7 +67,18 @@ namespace {
     function get_queried_object_id() { return $GLOBALS['current_product']; }
     function get_post_field($field, $id) { if ($field === 'post_excerpt') { return 'Excerpt ' . $id; } return $id === 9 || (($GLOBALS['wp_posts'][$id][2] ?? '') !== '') ? ($GLOBALS['wp_posts'][$id][2] ?? 'secret') : ''; }
     function wc_get_product_ids_on_sale() { return $GLOBALS['sale_ids']; }
-    function wc_get_products($args) { $GLOBALS['query_args'] = $args; return $GLOBALS['products']; }
+    $GLOBALS['ajax'] = ['nonce_ok' => true, 'can' => true, 'out' => null];
+    function check_ajax_referer($action, $field) { if (!$GLOBALS['ajax']['nonce_ok']) { throw new \RuntimeException('bad nonce'); } return 1; }
+    function current_user_can($cap) { return $GLOBALS['ajax']['can'] && $cap === 'edit_posts'; }
+    function sanitize_key($v) { return strtolower(preg_replace('/[^a-z0-9_\-]/i', '', $v)); }
+    function sanitize_text_field($v) { return trim(strip_tags($v)); }
+    function wp_unslash($v) { return $v; }
+    function wp_send_json_success($data) { $GLOBALS['ajax']['out'] = ['success' => true, 'data' => $data]; }
+    function wp_send_json_error($data, $status) { $GLOBALS['ajax']['out'] = ['success' => false, 'status' => $status]; }
+    $GLOBALS['filters'] = [];
+    function add_filter($hook, $callback, $priority = 10, $args = 1) { $GLOBALS['filters'][$hook] = $callback; }
+    function remove_filter($hook, $callback, $priority = 10) { unset($GLOBALS['filters'][$hook]); }
+    function wc_get_products($args) { $GLOBALS['query_args'] = $args; $GLOBALS['filter_active'] = isset($GLOBALS['filters']['woocommerce_product_data_store_cpt_get_products_query']); return $GLOBALS['products']; }
     class Product {
         private $id;
         private $type;
@@ -108,13 +119,14 @@ namespace {
             $GLOBALS['wp_query_args'] = $args;
             $ids = $args['post__in'] ?? array_keys($GLOBALS['wp_posts']);
             // A hostile filter may ignore status/password constraints; PCE_Content must still filter.
-            foreach ($ids as $id) { if (isset($GLOBALS['wp_posts'][$id]) && $GLOBALS['wp_posts'][$id][0] === $args['post_type'] && !in_array($id, $args['post__not_in'], true)) { $this->posts[] = $id; } }
+            foreach ($ids as $id) { if (isset($GLOBALS['wp_posts'][$id]) && $GLOBALS['wp_posts'][$id][0] === $args['post_type'] && !in_array($id, $args['post__not_in'] ?? [], true)) { $this->posts[] = $id; } }
         }
     }
     \Elementor\Plugin::$instance = (object) ['editor' => new class { public function is_edit_mode() { return false; } }];
     require ACP_PLUGIN_PATH . 'includes/class-pce-settings.php';
     require ACP_PLUGIN_PATH . 'includes/class-pce-products.php';
     require ACP_PLUGIN_PATH . 'includes/class-pce-content.php';
+    require ACP_PLUGIN_PATH . 'includes/class-pce-search.php';
     require ACP_PLUGIN_PATH . 'widgets/carousel.php';
     $checks = 0;
     function check($condition, $label) {
@@ -281,6 +293,37 @@ namespace {
     $html = render(['items' => [$linked], 'card_link' => 'card']);
     check(strpos($html, 'pce-card-linked') !== false && strpos($html, '<a class="pce-v5-title-link" href="https://example.test/a"') !== false, 'Whole-card link mode');
     check(strpos(render(['items' => [['title' => 'No link']], 'card_link' => 'card']), 'pce-v5-title-link') === false && strpos(render(['items' => [$linked], 'card_link' => 'bogus']), 'pce-v5-title-link') === false, 'Card link needs URL and valid mode');
+    // Phase 2: sorting, second taxonomy and editor search.
+    $GLOBALS['products'] = [new Product(1)];
+    foreach (['price' => '_price', 'popularity' => 'total_sales', 'rating' => '_wc_average_rating'] as $orderby => $meta) {
+        PCE_Products::items(['product_orderby' => $orderby, 'exclude_current_product' => '']);
+        $mapped = PCE_Products::sort_query(['orderby' => 'date'], $GLOBALS['query_args']);
+        check($GLOBALS['filter_active'] && $GLOBALS['query_args']['pce_sort'] === $meta && $mapped['meta_key'] === $meta && $mapped['orderby'] === 'meta_value_num', 'WooCommerce sort: ' . $orderby);
+        check(!isset($GLOBALS['filters']['woocommerce_product_data_store_cpt_get_products_query']), 'Sort filter removed after query: ' . $orderby);
+    }
+    PCE_Products::items(['product_orderby' => 'date', 'exclude_current_product' => '']);
+    check(!$GLOBALS['filter_active'] && !isset($GLOBALS['query_args']['pce_sort']), 'No sort filter for plain orderings');
+    check(PCE_Products::sort_query(['orderby' => 'date'], ['pce_sort' => 'evil_key']) === ['orderby' => 'date'], 'Unlisted sort meta key ignored');
+    PCE_Content::items(['wp_post_type' => 'gift', 'wp_taxonomy' => 'gift_group', 'wp_term_ids' => '7', 'wp_taxonomy_2' => 'gift_group', 'wp_term_ids_2' => '9']);
+    check($GLOBALS['wp_query_args']['tax_query'][0] === 'AND' || ($GLOBALS['wp_query_args']['tax_query']['relation'] ?? '') === 'AND', 'Two taxonomy filters combine with AND');
+    check(count($GLOBALS['wp_query_args']['tax_query']) === 3, 'Both taxonomy clauses present');
+    check(PCE_Content::items(['wp_post_type' => 'gift', 'wp_taxonomy_2' => 'nope', 'wp_term_ids_2' => '9']) === [], 'Second taxonomy validated');
+    check(PCE_Content::items(['wp_post_type' => 'gift', 'wp_taxonomy_2' => 'gift_group'])[0]['title'] === 'Gift 1', 'Second taxonomy without terms is ignored');
+    check(array_column(PCE_Search::search('gift', ''), 'id') === [1, 2, 6], 'Editor search returns only published, unprotected items');
+    check(PCE_Search::search('attachment', '') === [] && PCE_Search::search('nope', 'x') === [] && PCE_Search::search([], 'x') === [], 'Editor search rejects unlisted types');
+    PCE_Search::search('gift', 'Gift');
+    check($GLOBALS['wp_query_args']['s'] === 'Gift' && $GLOBALS['wp_query_args']['posts_per_page'] === PCE_Search::LIMIT && $GLOBALS['wp_query_args']['has_password'] === false, 'Editor search query is bounded and public');
+    $_GET = ['post_type' => 'gift', 'term' => 'Gift'];
+    PCE_Search::handle();
+    check($GLOBALS['ajax']['out']['success'] && count($GLOBALS['ajax']['out']['data']) === 3, 'Search endpoint returns results');
+    $GLOBALS['ajax']['can'] = false;
+    PCE_Search::handle();
+    check($GLOBALS['ajax']['out'] === ['success' => false, 'status' => 403], 'Search endpoint requires editing capability');
+    $GLOBALS['ajax']['can'] = true; $GLOBALS['ajax']['nonce_ok'] = false;
+    $blocked = false;
+    try { PCE_Search::handle(); } catch (\RuntimeException $e) { $blocked = true; }
+    check($blocked, 'Search endpoint requires a valid nonce');
+    $GLOBALS['ajax']['nonce_ok'] = true;
     $fixture_items = [];
     for ($i = 0; $i < 10; $i++) {
         $fixture_items[] = ['_id' => 'card-' . $i, 'title' => 'محصول ' . ($i + 1), 'category' => 'محصول', 'badge_icon' => ['value' => 'test'], 'btn_icon' => ['value' => 'test'], 'desc' => $i % 2 ? str_repeat('توضیحات محصول ', 20) : 'کوتاه', 'price' => '۱۰۰ تومان', 'link' => ['url' => '#product-' . $i]];
