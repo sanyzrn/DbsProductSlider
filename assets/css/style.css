@@ -25,6 +25,16 @@
 .pce-v5-wrapper:not(.pce-is-ready) .swiper-wrapper { gap: 20px; transform: none; }
 .pce-v5-wrapper:not(.pce-is-ready) .swiper-slide { width: min(80%, 320px); flex-shrink: 0; }
 
+/* Grid layout: every card visible, no sliding engine. Columns and gap come from Elementor controls. */
+.pce-v5-wrapper.pce-layout-grid .pce-v5-slider { overflow: visible; }
+.pce-v5-wrapper.pce-layout-grid .pce-v5-slider .swiper-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    transform: none;
+}
+.pce-v5-wrapper.pce-layout-grid .pce-v5-slider .swiper-slide { width: auto; margin: 0; flex-shrink: 1; }
+
 .pce-preset-minimal .pce-v5-card { border-color: transparent; box-shadow: none; border-radius: 8px; }
 .pce-preset-catalog .pce-v5-card { padding: 12px; border-radius: 8px; box-shadow: none; }
 .pce-preset-catalog .pce-v5-media { border-radius: 4px; }

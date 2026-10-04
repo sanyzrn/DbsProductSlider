@@ -278,5 +278,10 @@
   "Optional second image shown when the card is hovered or focused.": "تصویر دوم اختیاری که هنگام هاور یا فوکوس کارت نمایش داده می‌شود.",
   "Hover Image Custom Field": "فیلد سفارشی تصویر هاور",
   "Custom field holding an image URL or media ID.": "فیلد سفارشی حاوی URL تصویر یا شناسه رسانه.",
-  "Summary Length (words)": "طول خلاصه (کلمه)"
+  "Summary Length (words)": "طول خلاصه (کلمه)",
+  "Carousel": "اسلایدر",
+  "Grid (no sliding)": "شبکه‌ای (بدون اسلاید)",
+  "Grid Columns": "تعداد ستون‌های شبکه",
+  "Grid Gap": "فاصله شبکه",
+  "Grid shows every card at once. Motion, autoplay and navigation settings apply to the carousel only.": "در حالت شبکه‌ای همه کارت‌ها هم‌زمان نمایش داده می‌شوند. تنظیمات حرکت، پخش خودکار و ناوبری فقط برای اسلایدر اعمال می‌شوند."
 }

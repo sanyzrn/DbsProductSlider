@@ -338,6 +338,15 @@ namespace {
     check(strpos(render(['items' => [['title' => 'Bad', 'image_hover' => 'oops']]]), 'pce-v5-hover-image') === false, 'Malformed hover image ignored');
     check(PCE_Content::items(['wp_post_type' => 'gift', 'wp_hover_meta' => 'link_field'])[0]['image_hover']['url'] === 'https://example.test/file.pdf' && PCE_Content::items(['wp_post_type' => 'gift'])[0]['image_hover']['url'] === '', 'WordPress hover image from custom field');
     check(PCE_Content::items(['wp_post_type' => 'gift', 'desc_words' => 5])[2]['desc'] === 'one two three four five' && PCE_Content::items(['wp_post_type' => 'gift', 'desc_words' => 1000])[2]['desc'] === 'one two three four five six seven', 'Summary length applied and bounded');
+    // Phase 4: grid layout.
+    foreach (['layout', 'grid_columns', 'grid_gap'] as $control) { check(isset($widget->controls[$control]), 'Grid control registered: ' . $control); }
+    check($widget->controls['layout']['default'] === 'carousel' && array_keys($widget->controls['layout']['options']) === ['carousel', 'grid'], 'Carousel stays the default layout');
+    check($widget->controls['grid_columns']['tablet_default'] === 2 && $widget->controls['grid_columns']['mobile_default'] === 1 && $widget->controls['grid_columns']['condition'] === ['layout' => 'grid'], 'Responsive grid column defaults');
+    $grid_html = render(['items' => [$full_item, $full_item], 'layout' => 'grid']);
+    check(strpos($grid_html, 'pce-layout-grid') !== false && strpos($grid_html, 'pce-v5-navigation') === false && strpos($grid_html, 'swiper-pagination') === false && strpos($grid_html, 'aria-roledescription') === false, 'Grid markup has no carousel chrome');
+    $carousel_html = render(['items' => [$full_item, $full_item]]);
+    check(strpos($carousel_html, 'pce-layout-grid') === false && strpos($carousel_html, 'pce-v5-navigation') !== false && strpos($carousel_html, 'aria-roledescription="carousel"') !== false, 'Carousel markup unchanged by default');
+    check(strpos(render(['items' => [$full_item], 'layout' => 'bogus']), 'pce-layout-grid') === false, 'Unknown layout falls back to carousel');
     $fixture_items = [];
     for ($i = 0; $i < 10; $i++) {
         $fixture_items[] = ['_id' => 'card-' . $i, 'title' => 'محصول ' . ($i + 1), 'category' => 'محصول', 'badge_icon' => ['value' => 'test'], 'btn_icon' => ['value' => 'test'], 'desc' => $i % 2 ? str_repeat('توضیحات محصول ', 20) : 'کوتاه', 'price' => '۱۰۰ تومان', 'link' => ['url' => '#product-' . $i]];
@@ -348,7 +357,7 @@ namespace {
     $variants = [];
     foreach (['noButton' => ['show_autoplay_button' => ''], 'noAutoplay' => ['autoplay' => ''], 'unequal' => ['equal_height' => ''],
         'motionOptOut' => ['respect_reduced_motion' => ''], 'autoImage' => ['image_ratio' => 'auto'],
-        'minimal' => ['card_preset' => 'minimal'], 'catalog' => ['card_preset' => 'catalog']] as $name => $overrides) {
+        'minimal' => ['card_preset' => 'minimal'], 'catalog' => ['card_preset' => 'catalog'], 'grid' => ['layout' => 'grid']] as $name => $overrides) {
         $variants[$name] = render(array_merge($fixture, $overrides));
     }
     file_put_contents(__DIR__ . '/.generated/variants.json', json_encode($variants));
