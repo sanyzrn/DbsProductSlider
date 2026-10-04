@@ -2,7 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const root = path.join(__dirname, '..');
 const translations = require('./translations-fa.json');
-const files = ['product-carousel-elementor.php', 'widgets/carousel.php', 'includes/controls/content.php', 'includes/class-pce-products.php', 'includes/templates/carousel.php'];
+const files = ['product-carousel-elementor.php', 'widgets/carousel.php', 'includes/controls/content.php', 'includes/class-pce-products.php', 'includes/class-pce-content.php', 'includes/templates/carousel.php'];
 const messages = new Set();
 for (const file of files) {
     const source = fs.readFileSync(path.join(root, file), 'utf8');

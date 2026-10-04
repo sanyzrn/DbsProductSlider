@@ -1308,8 +1308,8 @@ class PCE_Carousel_V5 extends Widget_Base {
     protected function render() {
         $settings = $this->get_settings_for_display();
 
-        $source = ($settings['source'] ?? 'manual') === 'woocommerce' ? 'woocommerce' : 'manual';
-        $items = $source === 'woocommerce' ? PCE_Products::items($settings) : ($settings['items'] ?? []);
+        $source = $this->sanitize_choice($settings['source'] ?? 'manual', ['manual', 'woocommerce', 'wordpress'], 'manual');
+        $items = $source === 'woocommerce' ? PCE_Products::items($settings) : ($source === 'wordpress' ? PCE_Content::items($settings) : ($settings['items'] ?? []));
         $items = is_array($items) ? array_values(array_filter($items, 'is_array')) : [];
         if (!$items) {
             if (\Elementor\Plugin::$instance->editor->is_edit_mode()) {

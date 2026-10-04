@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
             'label' => __('Content Source', 'advanced-carousel-pro'),
             'type' => Controls_Manager::SELECT,
             'default' => 'manual',
-            'options' => ['manual' => __('Manual items', 'advanced-carousel-pro'), 'woocommerce' => __('WooCommerce products', 'advanced-carousel-pro')],
+            'options' => ['manual' => __('Manual items', 'advanced-carousel-pro'), 'woocommerce' => __('WooCommerce products', 'advanced-carousel-pro'), 'wordpress' => __('WordPress content', 'advanced-carousel-pro')],
         ]);
 
         $repeater = new Repeater();
@@ -149,6 +149,58 @@ if (!defined('ABSPATH')) {
             ]
         );
 
+        $this->end_controls_section();
+
+        $wp_condition = ['source' => 'wordpress'];
+        $this->start_controls_section('wordpress_source_settings', ['label' => __('WordPress Content', 'advanced-carousel-pro'), 'condition' => $wp_condition]);
+
+        $post_types = PCE_Content::post_type_options();
+        $this->add_control('wp_post_type', [
+            'label' => __('Content Type', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT,
+            'default' => isset($post_types['post']) ? 'post' : (string) key($post_types), 'options' => $post_types, 'condition' => $wp_condition,
+        ]);
+        $this->add_control('wp_query', [
+            'label' => __('Selection', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT, 'default' => 'latest', 'condition' => $wp_condition,
+            'options' => ['latest' => __('All / latest', 'advanced-carousel-pro'), 'selected' => __('Selected IDs', 'advanced-carousel-pro')],
+        ]);
+        $this->add_control('wp_selected_ids', [
+            'label' => __('Item IDs', 'advanced-carousel-pro'), 'type' => Controls_Manager::TEXT,
+            'description' => __('Comma-separated IDs, in display order. Maximum 40 items.', 'advanced-carousel-pro'),
+            'condition' => ['source' => 'wordpress', 'wp_query' => 'selected'],
+        ]);
+        $this->add_control('wp_taxonomy', [
+            'label' => __('Group Taxonomy', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT, 'default' => '',
+            'options' => PCE_Content::taxonomy_options(), 'condition' => $wp_condition,
+            'description' => __('Optional. Must be registered for the selected content type.', 'advanced-carousel-pro'),
+        ]);
+        $this->add_control('wp_term_ids', [
+            'label' => __('Group (Term) IDs', 'advanced-carousel-pro'), 'type' => Controls_Manager::TEXT,
+            'description' => __('Optional comma-separated term IDs. Leave empty for all groups.', 'advanced-carousel-pro'),
+            'condition' => ['source' => 'wordpress', 'wp_taxonomy!' => ''],
+        ]);
+        $this->add_control('wp_limit', [
+            'label' => __('Maximum Items', 'advanced-carousel-pro'), 'type' => Controls_Manager::NUMBER,
+            'default' => 8, 'min' => 1, 'max' => 40, 'condition' => $wp_condition,
+        ]);
+        $this->add_control('wp_orderby', [
+            'label' => __('Order By', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT, 'default' => 'date',
+            'options' => ['date' => __('Date', 'advanced-carousel-pro'), 'title' => __('Title', 'advanced-carousel-pro'), 'modified' => __('Last updated', 'advanced-carousel-pro'), 'ID' => __('ID', 'advanced-carousel-pro')],
+            'condition' => ['source' => 'wordpress', 'wp_query!' => 'selected'],
+        ]);
+        $this->add_control('wp_order', [
+            'label' => __('Order', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT, 'default' => 'DESC',
+            'options' => ['DESC' => __('Descending', 'advanced-carousel-pro'), 'ASC' => __('Ascending', 'advanced-carousel-pro')],
+            'condition' => ['source' => 'wordpress', 'wp_query!' => 'selected'],
+        ]);
+        $this->add_control('wp_exclude_ids', ['label' => __('Exclude IDs', 'advanced-carousel-pro'), 'type' => Controls_Manager::TEXT, 'condition' => $wp_condition]);
+        $this->add_control('wp_exclude_current', ['label' => __('Exclude Current Item', 'advanced-carousel-pro'), 'type' => Controls_Manager::SWITCHER, 'default' => 'yes', 'condition' => $wp_condition]);
+        $this->add_control('wp_badge', [
+            'label' => __('Badge', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT, 'default' => 'term', 'condition' => $wp_condition,
+            'options' => ['term' => __('First group name', 'advanced-carousel-pro'), 'none' => __('None', 'advanced-carousel-pro')],
+        ]);
+        $this->add_control('wp_button_text', [
+            'label' => __('Button Text', 'advanced-carousel-pro'), 'type' => Controls_Manager::TEXT, 'default' => __('View', 'advanced-carousel-pro'), 'condition' => $wp_condition,
+        ]);
         $this->end_controls_section();
 
         $this->start_controls_section('product_source_settings', ['label' => __('Product Selection', 'advanced-carousel-pro'), 'condition' => ['source' => 'woocommerce']]);

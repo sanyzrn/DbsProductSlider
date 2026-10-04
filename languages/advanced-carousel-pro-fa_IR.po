@@ -22,6 +22,12 @@ msgstr "پس از متن"
 msgid "Alignment"
 msgstr "تراز"
 
+msgid "All / latest"
+msgstr "همه / آخرین"
+
+msgid "Any group"
+msgstr "هر گروه"
+
 msgid "Arrow Button Margin"
 msgstr "فاصلهٔ بیرونی دکمهٔ فلش"
 
@@ -133,6 +139,9 @@ msgstr "اسلایدها در مرکز"
 msgid "Classic"
 msgstr "کلاسیک"
 
+msgid "Comma-separated IDs, in display order. Maximum 40 items."
+msgstr "شناسه‌ها با کاما و به ترتیب نمایش. حداکثر ۴۰ آیتم."
+
 msgid "Comma-separated IDs, in display order. Maximum 40 products."
 msgstr "شناسه‌ها را به ترتیب نمایش با ویرگول جدا کنید. حداکثر ۴۰ محصول."
 
@@ -150,6 +159,9 @@ msgstr "منبع و محصولات"
 
 msgid "Content Source"
 msgstr "منبع محتوا"
+
+msgid "Content Type"
+msgstr "نوع محتوا"
 
 msgid "Cover"
 msgstr "پوشاندن قاب"
@@ -217,8 +229,14 @@ msgstr "کنترل با چرخ ماوس"
 msgid "Equal Card Heights"
 msgstr "ارتفاع یکسان کارت‌ها"
 
+msgid "Exclude Current Item"
+msgstr "استثنا کردن آیتم جاری"
+
 msgid "Exclude Current Product"
 msgstr "حذف محصول صفحهٔ جاری"
+
+msgid "Exclude IDs"
+msgstr "استثنا کردن شناسه‌ها"
 
 msgid "Exclude Product IDs"
 msgstr "شناسه‌های محصولات مستثنا"
@@ -234,6 +252,9 @@ msgstr "پر کردن قاب"
 
 msgid "Fine Tuning"
 msgstr "تنظیمات تکمیلی"
+
+msgid "First group name"
+msgstr "نام اولین گروه"
 
 msgid "Fraction"
 msgstr "شمارنده"
@@ -252,6 +273,12 @@ msgstr "فاصلهٔ کارت‌ها"
 
 msgid "Go to slide {{index}}"
 msgstr "رفتن به اسلاید {{index}}"
+
+msgid "Group (Term) IDs"
+msgstr "شناسه گروه‌ها (ترم)"
+
+msgid "Group Taxonomy"
+msgstr "طبقه‌بندی گروه"
 
 msgid "Hide Out of Stock"
 msgstr "پنهان کردن محصولات ناموجود"
@@ -282,6 +309,9 @@ msgstr "بزرگ‌نمایی هنگام قرار گرفتن ماوس"
 
 msgid "Hover Transition Duration (ms)"
 msgstr "مدت افکت ماوس (میلی‌ثانیه)"
+
+msgid "ID"
+msgstr "شناسه"
 
 msgid "Icon Color"
 msgstr "رنگ آیکون"
@@ -318,6 +348,9 @@ msgstr "بزرگ‌نمایی تصویر هنگام قرار گرفتن ماوس
 
 msgid "Input"
 msgstr "تعامل"
+
+msgid "Item IDs"
+msgstr "شناسه آیتم‌ها"
 
 msgid "Items"
 msgstr "آیتم‌ها"
@@ -367,6 +400,9 @@ msgstr "حرکت پیوسته"
 msgid "Manual items"
 msgstr "آیتم‌های دستی"
 
+msgid "Maximum Items"
+msgstr "حداکثر آیتم‌ها"
+
 msgid "Maximum Products"
 msgstr "حداکثر محصولات"
 
@@ -403,6 +439,9 @@ msgstr "اسلاید بعدی"
 msgid "No items match the selected source. Add items or adjust product filters."
 msgstr "هیچ آیتمی مطابق منبع انتخاب‌شده وجود ندارد. آیتم اضافه کنید یا فیلتر محصولات را تغییر دهید."
 
+msgid "None"
+msgstr "هیچ‌کدام"
+
 msgid "Normal"
 msgstr "عادی"
 
@@ -417,6 +456,12 @@ msgstr "محصولات حراج"
 
 msgid "Optional comma-separated category slugs. Leave empty for all categories."
 msgstr "نامک دسته‌ها را با ویرگول جدا کنید؛ برای همهٔ دسته‌ها خالی بگذارید."
+
+msgid "Optional comma-separated term IDs. Leave empty for all groups."
+msgstr "شناسه ترم‌ها با کاما (اختیاری). برای همه گروه‌ها خالی بگذارید."
+
+msgid "Optional. Must be registered for the selected content type."
+msgstr "اختیاری. باید برای نوع محتوای انتخاب‌شده ثبت شده باشد."
 
 msgid "Order"
 msgstr "ترتیب"
@@ -537,8 +582,14 @@ msgstr "با چرخ ماوس روی اسلایدر، کارت‌ها را جاب
 msgid "Select options"
 msgstr "انتخاب گزینه‌ها"
 
+msgid "Selected IDs"
+msgstr "شناسه‌های منتخب"
+
 msgid "Selected product IDs"
 msgstr "شناسه‌های منتخب محصول"
+
+msgid "Selection"
+msgstr "انتخاب"
 
 msgid "Show Arrows"
 msgstr "نمایش فلش‌ها"
@@ -636,6 +687,9 @@ msgstr "با مقدار منفی می‌توانید فلش‌ها را بیرو
 msgid "Vertical Position"
 msgstr "جایگاه عمودی"
 
+msgid "View"
+msgstr "مشاهده"
+
 msgid "View Product"
 msgstr "مشاهدهٔ محصول"
 
@@ -650,6 +704,12 @@ msgstr "عرض"
 
 msgid "WooCommerce products"
 msgstr "محصولات ووکامرس"
+
+msgid "WordPress Content"
+msgstr "محتوای وردپرس"
+
+msgid "WordPress content"
+msgstr "محتوای وردپرس"
 
 msgid "Wrapper"
 msgstr "قاب بیرونی"

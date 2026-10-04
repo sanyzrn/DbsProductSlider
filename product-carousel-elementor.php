@@ -66,6 +66,7 @@ final class ACP_Plugin {
     public function register_widgets($widgets_manager) {
         require_once ACP_PLUGIN_PATH . 'includes/class-pce-settings.php';
         require_once ACP_PLUGIN_PATH . 'includes/class-pce-products.php';
+        require_once ACP_PLUGIN_PATH . 'includes/class-pce-content.php';
         require_once ACP_PLUGIN_PATH . 'widgets/carousel.php';
         $widgets_manager->register(new \PCE_Carousel_V5());
     }
