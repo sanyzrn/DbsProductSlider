@@ -7,12 +7,19 @@ $scripts = ['swiper' => ['original-elementor.js']];
 $styles = ['swiper' => ['original-elementor.css']];
 function add_action($hook, $callback) { $GLOBALS['actions'][$hook][] = $callback; }
 function plugin_dir_path($file) { return dirname($file) . '/'; }
-function plugin_dir_url($file) { return 'https://example.test/plugins/DbsProductSlider/'; }
+function plugin_dir_url($file) { return 'https://example.test/plugins/nexa-slider/'; }
 function did_action($hook) { return $GLOBALS['mode'] === 'missing' ? 0 : 1; }
 function current_user_can($capability) { return false; }
 function wp_register_script($handle, $url, $deps = [], $version = '', $footer = false) { $GLOBALS['scripts'][$handle] = [$url, $deps, $version, $footer]; }
 function wp_register_style($handle, $url, $deps = [], $version = '') { $GLOBALS['styles'][$handle] = [$url, $deps, $version]; }
-require dirname(__DIR__) . '/product-carousel-elementor.php';
+if ($mode === 'duplicate') { define('ACP_PLUGIN_FILE', '/old/product-carousel-elementor.php'); }
+function esc_html__($text, $domain = '') { return $text; }
+require dirname(__DIR__) . '/nexa-slider.php';
+if ($mode === 'duplicate') {
+    if (isset($actions['plugins_loaded']) || !isset($actions['admin_notices'])) { throw new RuntimeException('Duplicate guard must stop loading and warn'); }
+    echo "Bootstrap check passed: duplicate\n";
+    return;
+}
 $plugin = null;
 foreach ($actions['plugins_loaded'] as $callback) {
     if ($callback[1] === 'init') { $plugin = $callback[0]; $plugin->init(); }

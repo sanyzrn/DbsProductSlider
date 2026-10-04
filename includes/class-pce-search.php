@@ -20,10 +20,12 @@ final class PCE_Search {
             'action' => self::ACTION,
             'nonce' => wp_create_nonce(self::ACTION),
             'i18n' => [
-                'placeholder' => __('Search by title or SKU…', 'advanced-carousel-pro'),
-                'empty' => __('No published items found.', 'advanced-carousel-pro'),
-                'error' => __('Search failed. Try again.', 'advanced-carousel-pro'),
-                'added' => __('Added', 'advanced-carousel-pro'),
+                'placeholder' => __('Search by title or SKU…', 'nexa-slider'),
+                'empty' => __('No published items found.', 'nexa-slider'),
+                'error' => __('Search failed. Try again.', 'nexa-slider'),
+                'added' => __('Added', 'nexa-slider'),
+                'remove' => __('Remove', 'nexa-slider'),
+                'unavailable' => __('unavailable', 'nexa-slider'),
             ],
         ]);
     }
@@ -64,6 +66,28 @@ final class PCE_Search {
         return $rows;
     }
 
+    /** Titles for already selected IDs, in the given order; unavailable IDs are reported so they can be removed. */
+    public static function titles($post_type, $ids) {
+        if (!is_string($post_type) || !isset(PCE_Content::post_type_options()[$post_type])) {
+            return [];
+        }
+        $ids = PCE_Products::ids($ids, 40);
+        if (!$ids) {
+            return [];
+        }
+        $query = new WP_Query([
+            'post_type' => $post_type, 'post_status' => 'publish', 'has_password' => false, 'post__in' => $ids, 'orderby' => 'post__in',
+            'posts_per_page' => count($ids), 'no_found_rows' => true, 'fields' => 'ids', 'ignore_sticky_posts' => true,
+        ]);
+        $found = array_map('intval', (array) $query->posts);
+        $rows = [];
+        foreach ($ids as $id) {
+            $available = in_array($id, $found, true) && get_post_status($id) === 'publish' && get_post_field('post_password', $id) === '';
+            $rows[] = ['id' => $id, 'title' => $available ? wp_strip_all_tags(get_the_title($id)) : '', 'available' => $available];
+        }
+        return $rows;
+    }
+
     public static function handle() {
         check_ajax_referer(self::ACTION, 'nonce');
         if (!current_user_can('edit_posts')) {
@@ -72,6 +96,10 @@ final class PCE_Search {
         }
         $post_type = isset($_GET['post_type']) ? sanitize_key(wp_unslash($_GET['post_type'])) : '';
         $term = isset($_GET['term']) ? sanitize_text_field(wp_unslash($_GET['term'])) : '';
+        if (isset($_GET['ids'])) {
+            wp_send_json_success(self::titles($post_type, sanitize_text_field(wp_unslash($_GET['ids']))));
+            return;
+        }
         wp_send_json_success(self::search($post_type, $term));
     }
 }

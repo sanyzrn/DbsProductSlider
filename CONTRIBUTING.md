@@ -6,6 +6,8 @@ Bug reports, focused fixes and documentation improvements are welcome. You can w
 
 Use the [issue forms](https://github.com/sanyzrn/DbsProductSlider/issues/new/choose). Include plugin, WordPress, Elementor, PHP and optional WooCommerce versions, the relevant settings, and steps to reproduce. Distinguish editor behavior from the public page. Remove private data from logs and screenshots.
 
+Product page and support: [dbsstudio.ir/nexa-slider](https://dbsstudio.ir/nexa-slider).
+
 Report security issues privately using [the security policy](SECURITY.md).
 
 ## Local development

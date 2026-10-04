@@ -2,11 +2,11 @@ const fs = require('node:fs');
 const path = require('node:path');
 const root = path.join(__dirname, '..');
 const translations = require('./translations-fa.json');
-const files = ['product-carousel-elementor.php', 'widgets/carousel.php', 'includes/controls/content.php', 'includes/class-pce-products.php', 'includes/class-pce-content.php', 'includes/class-pce-search.php', 'includes/templates/carousel.php'];
+const files = ['nexa-slider.php', 'widgets/carousel.php', 'includes/controls/content.php', 'includes/class-pce-products.php', 'includes/class-pce-content.php', 'includes/class-pce-search.php', 'includes/templates/carousel.php'];
 const messages = new Set();
 for (const file of files) {
     const source = fs.readFileSync(path.join(root, file), 'utf8');
-    const pattern = /(?:__|esc_html__|esc_attr__)\(\s*'((?:\\.|[^'])*)'\s*,\s*'advanced-carousel-pro'/g;
+    const pattern = /(?:__|esc_html__|esc_attr__)\(\s*'((?:\\.|[^'])*)'\s*,\s*'nexa-slider'/g;
     for (const match of source.matchAll(pattern)) messages.add(match[1].replace(/\\'/g, "'").replace(/\\\\/g, '\\'));
 }
 const ids = [...messages].sort();
@@ -14,11 +14,11 @@ const missing = ids.filter(id => !translations[id]);
 if (missing.length) throw new Error('Missing Persian translations: ' + missing.join('; '));
 const target = path.join(root, 'languages');
 fs.mkdirSync(target, { recursive: true });
-const version = fs.readFileSync(path.join(root, 'product-carousel-elementor.php'), 'utf8').match(/Version:\s*([\d.]+)/)[1];
-const header = 'Project-Id-Version: DbsProductSlider ' + version + '\nLanguage: fa_IR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n > 1);\n';
+const version = fs.readFileSync(path.join(root, 'nexa-slider.php'), 'utf8').match(/Version:\s*([\d.]+)/)[1];
+const header = 'Project-Id-Version: Nexa Slider ' + version + '\nLanguage: fa_IR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n > 1);\n';
 const entry = (id, value) => (id.includes('%s') ? '#, php-format\n' : '') + 'msgid ' + JSON.stringify(id) + '\nmsgstr ' + JSON.stringify(value) + '\n';
-fs.writeFileSync(path.join(target, 'advanced-carousel-pro-fa_IR.po'), entry('', header) + '\n' + ids.map(id => entry(id, translations[id])).join('\n'));
-fs.writeFileSync(path.join(target, 'advanced-carousel-pro.pot'), entry('', header.replace('Language: fa_IR', 'Language:')) + '\n' + ids.map(id => entry(id, '')).join('\n'));
+fs.writeFileSync(path.join(target, 'nexa-slider-fa_IR.po'), entry('', header) + '\n' + ids.map(id => entry(id, translations[id])).join('\n'));
+fs.writeFileSync(path.join(target, 'nexa-slider.pot'), entry('', header.replace('Language: fa_IR', 'Language:')) + '\n' + ids.map(id => entry(id, '')).join('\n'));
 const pairs = [['', header], ...ids.map(id => [id, translations[id]])];
 const count = pairs.length;
 const tables = Buffer.alloc(28 + count * 16);
@@ -38,5 +38,5 @@ for (let col = 0; col < 2; col++) {
         offset += value.length + 1;
     });
 }
-fs.writeFileSync(path.join(target, 'advanced-carousel-pro-fa_IR.mo'), Buffer.concat([tables, ...strings]));
+fs.writeFileSync(path.join(target, 'nexa-slider-fa_IR.mo'), Buffer.concat([tables, ...strings]));
 console.log('Built complete Persian translations: ' + ids.length + ' messages.');

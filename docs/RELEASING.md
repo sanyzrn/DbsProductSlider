@@ -6,7 +6,7 @@ Pushing a new version to `main` starts **Plugin regression checks**. After that 
 
 For the next version:
 
-1. Update the plugin header and `ACP_Plugin::VERSION` in `product-carousel-elementor.php` and `Stable tag` in `readme.txt` to the same `MAJOR.MINOR.PATCH` version.
+1. Update the plugin header and `ACP_Plugin::VERSION` in `nexa-slider.php` and `Stable tag` in `readme.txt` to the same `MAJOR.MINOR.PATCH` version.
 2. Add a matching changelog section to `readme.txt` and update the Persian guide when needed.
 3. Run `npm run build:translations` to refresh the catalog version, then run `npm test`.
 4. Commit and push to `main`. GitHub creates the `vMAJOR.MINOR.PATCH` tag, builds the installable ZIP and publishes the release.
@@ -17,14 +17,14 @@ For a retry, run **Publish release → Run workflow** on `main`. It requires suc
 
 ## Release assets
 
-- `DbsProductSlider-MAJOR.MINOR.PATCH.zip`: versioned WordPress installation package.
-- `DbsProductSlider.zip`: the same package under a stable filename.
+- `nexa-slider-MAJOR.MINOR.PATCH.zip`: versioned WordPress installation package.
+- `nexa-slider.zip`: the same package under a stable filename.
 - `SHA256SUMS`: checksums for both ZIP files.
 
 The permanent download URL is:
 
 ```text
-https://github.com/sanyzrn/DbsProductSlider/releases/latest/download/DbsProductSlider.zip
+https://github.com/sanyzrn/DbsProductSlider/releases/latest/download/nexa-slider.zip
 ```
 
 Use the plugin ZIP for installation. GitHub's automatically generated source ZIP includes development files and is not the release package. Publishing a GitHub release does not add an automatic WordPress updater or publish to WordPress.org.

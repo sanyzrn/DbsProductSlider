@@ -1,5 +1,5 @@
 {
-  "Product Carousel Pro": "اسلایدر محصولات",
+  "Nexa Slider": "نکسا اسلایدر",
   "Items": "آیتم‌ها",
   "Title": "عنوان",
   "Product Name": "نام محصول",
@@ -204,9 +204,9 @@
   "Keep arrows enabled when drag is disabled. Fraction and progress pagination do not provide navigation.": "وقتی کشیدن خاموش است، فلش‌ها را روشن نگه دارید. شمارنده و نوار پیشرفت امکان جابه‌جایی ندارند.",
   "Activate WooCommerce to display products.": "برای نمایش محصولات، ووکامرس را فعال کنید.",
   "No items match the selected source. Add items or adjust product filters.": "هیچ آیتمی مطابق منبع انتخاب‌شده وجود ندارد. آیتم اضافه کنید یا فیلتر محصولات را تغییر دهید.",
-  "Product Carousel Elementor requires Elementor to be installed and active.": "افزونهٔ اسلایدر محصولات به نصب و فعال بودن المنتور نیاز دارد.",
-  "Product Carousel Elementor requires Elementor version %s or greater.": "افزونهٔ اسلایدر محصولات به المنتور نسخهٔ %s یا بالاتر نیاز دارد.",
-  "Product Carousel Elementor requires PHP version %s or greater.": "افزونهٔ اسلایدر محصولات به PHP نسخهٔ %s یا بالاتر نیاز دارد.",
+  "Nexa Slider requires Elementor to be installed and active.": "افزونهٔ نکسا اسلایدر به نصب و فعال بودن المنتور نیاز دارد.",
+  "Nexa Slider requires Elementor version %s or greater.": "افزونهٔ نکسا اسلایدر به المنتور نسخهٔ %s یا بالاتر نیاز دارد.",
+  "Nexa Slider requires PHP version %s or greater.": "افزونهٔ نکسا اسلایدر به PHP نسخهٔ %s یا بالاتر نیاز دارد.",
   "Content & Products": "منبع و محصولات",
   "Card Content": "اجزای کارت",
   "Layout": "چیدمان",
@@ -283,5 +283,12 @@
   "Grid (no sliding)": "شبکه‌ای (بدون اسلاید)",
   "Grid Columns": "تعداد ستون‌های شبکه",
   "Grid Gap": "فاصله شبکه",
-  "Grid shows every card at once. Motion, autoplay and navigation settings apply to the carousel only.": "در حالت شبکه‌ای همه کارت‌ها هم‌زمان نمایش داده می‌شوند. تنظیمات حرکت، پخش خودکار و ناوبری فقط برای اسلایدر اعمال می‌شوند."
+  "Grid shows every card at once. Motion, autoplay and navigation settings apply to the carousel only.": "در حالت شبکه‌ای همه کارت‌ها هم‌زمان نمایش داده می‌شوند. تنظیمات حرکت، پخش خودکار و ناوبری فقط برای اسلایدر اعمال می‌شوند.",
+  "Background (Hover)": "پس‌زمینه (هاور)",
+  "Border Color (Hover)": "رنگ حاشیه (هاور)",
+  "Text Color (Hover)": "رنگ متن (هاور)",
+  "Second Button": "دکمه دوم",
+  "Remove": "حذف",
+  "unavailable": "در دسترس نیست",
+  "Nexa Slider replaces the earlier Product Carousel Elementor plugin. Deactivate the older copy, then reactivate Nexa Slider. Your widgets and settings are kept.": "نکسا اسلایدر جایگزین افزونهٔ قبلی Product Carousel Elementor است. نسخهٔ قدیمی را غیرفعال و سپس نکسا اسلایدر را دوباره فعال کنید. ویجت‌ها و تنظیمات شما حفظ می‌شوند."
 }

@@ -1,18 +1,20 @@
-=== Product Carousel Elementor ===
+=== Nexa Slider ===
 Contributors: saeed
-Tags: elementor, carousel, slider, products
+Tags: nexa, elementor, slider, carousel, products
 Requires at least: 6.2
 Requires PHP: 7.4
 Requires Plugins: elementor
-Stable tag: 2.4.0
+Stable tag: 2.5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Responsive product carousels for Elementor with optional WooCommerce sources, Persian UI and RTL support.
+Responsive product and content sliders for Elementor with optional WooCommerce sources, Persian UI and RTL support.
 
 == Description ==
 
-Product Carousel Elementor adds manual and optional WooCommerce product carousels to Elementor (3.15 or later).
+Nexa Slider adds product and content sliders to Elementor (3.15 or later): manual cards, any public WordPress content type, and optional WooCommerce products. It was previously named Product Carousel Elementor.
+
+Product page and support: https://dbsstudio.ir/nexa-slider
 
 Features:
 - Repeater-based item management
@@ -38,10 +40,13 @@ Features:
 1. Upload the plugin folder to `/wp-content/plugins/`.
 2. Activate the plugin through the WordPress plugins screen.
 3. Make sure Elementor is installed and active.
-4. Edit a page with Elementor and search for `Product Carousel Pro` (Persian: اسلایدر محصولات).
-5. Select Manual items or WooCommerce products. WooCommerce is optional.
+4. Edit a page with Elementor and search for `Nexa Slider` (Persian: نکسا اسلایدر).
+5. Select Manual items, WordPress content or WooCommerce products. WooCommerce is optional.
 
 == Frequently Asked Questions ==
+
+= I used Product Carousel Elementor. How do I upgrade? =
+Nexa Slider installs into its own `nexa-slider` folder. Deactivate and delete the old plugin, then activate Nexa Slider. The widget ID and saved settings are unchanged, so existing pages keep working. If both plugins are active, Nexa Slider stays idle and shows a notice. Regenerate Elementor CSS and clear caches afterwards.
 
 = Is WooCommerce required? =
 No. Manual items work with Elementor alone. Product sources require active WooCommerce.
@@ -76,6 +81,21 @@ WordPress/Elementor/WooCommerce APIs and does not test a live database or Elemen
 Complete site/editor integration and touch/screen-reader checks are required before broad release.
 
 == Changelog ==
+
+= 2.5.0 =
+- Renamed the plugin to Nexa Slider (slug `nexa-slider`, text domain `nexa-slider`, installable ZIP `nexa-slider.zip`).
+- Kept the widget ID, saved settings and CSS classes, so existing pages continue to work.
+- Added a notice and a safe stop when the older Product Carousel Elementor copy is still active.
+- Renamed the Persian translation files and updated all plugin, widget and documentation names.
+- Includes everything from 2.4.1.
+
+= 2.4.1 =
+- Fixed the second button inheriting the primary button colors; it now has its own colors and hover colors.
+- Added vertical room for hover lift and scale so lifted cards and shadows are not clipped.
+- Broken card images now fall back to the placeholder and keep their space; a broken hover image is dropped.
+- Out-of-range item counts and summary lengths are limited to the allowed range instead of resetting to the default.
+- The editor search now lists the selected items by title and lets you remove them.
+- Test scripts can use an existing Chromium through PCE_CHROMIUM_PATH.
 
 = 2.4.0 =
 - Added a WordPress content source: any public content type with optional taxonomy filters, latest or selected IDs, ordering, exclusions and published-only output.
@@ -155,6 +175,13 @@ Complete site/editor integration and touch/screen-reader checks are required bef
 - Updated visual styling and responsive behavior
 
 == Upgrade Notice ==
+
+= 2.5.0 =
+The plugin is now Nexa Slider and installs into the `nexa-slider` folder. Deactivate and delete the older Product Carousel Elementor plugin, then activate this one. Widgets and settings are kept.
+
+= 2.4.1 =
+Maintenance release. Custom button colors no longer fill the second button; set its colors in Style > Button > Second Button.
+Regenerate Elementor CSS and clear caches after upgrading.
 
 = 2.4.0 =
 New sources and layout options are additive; saved widgets keep their source, IDs and behavior.

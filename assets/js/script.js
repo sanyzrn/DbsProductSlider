@@ -21,6 +21,22 @@
         } catch (error) { return {}; }
     }
 
+    // A broken image keeps its box: swap in the placeholder once; a broken hover image is simply dropped.
+    function repairImage(img) {
+        if (!img.matches || !img.matches('.pce-v5-media img')) { return; }
+        if (img.classList.contains('pce-v5-hover-image')) { img.remove(); return; }
+        var wrapper = img.closest('.pce-v5-wrapper');
+        var placeholder = wrapper && wrapper.getAttribute('data-placeholder');
+        if (!placeholder || img.getAttribute('data-pce-fallback')) { return; }
+        img.setAttribute('data-pce-fallback', '1');
+        img.removeAttribute('srcset');
+        img.removeAttribute('sizes');
+        img.src = placeholder;
+    }
+    document.addEventListener('error', function (event) {
+        if (event.target && event.target.tagName === 'IMG') { repairImage(event.target); }
+    }, true);
+
     function createController(wrapper, settings, key, previousState) {
         var slider = wrapper.querySelector('.pce-v5-slider');
         var nav = wrapper.querySelector('.pce-v5-navigation');

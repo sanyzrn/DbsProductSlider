@@ -15,13 +15,13 @@ if (($settings['image_ratio'] ?? '') === 'auto') {
     $wrapper_class .= ' pce-image-auto';
 }
 $direction = $slider_options['flowDirection'] === 'auto' ? (is_rtl() ? 'rtl' : 'ltr') : $slider_options['flowDirection'];
-$label = PCE_Settings::text($settings['carousel_label'] ?? '') ?: __('Product carousel', 'advanced-carousel-pro');
+$label = PCE_Settings::text($settings['carousel_label'] ?? '') ?: __('Product carousel', 'nexa-slider');
 $slider_id = $widget_id . '-slider';
 $show = static function ($part) use ($settings) { return ($settings['show_' . $part] ?? 'yes') === 'yes'; };
 ?>
 <div id="<?php echo esc_attr($widget_id); ?>" class="<?php echo esc_attr($wrapper_class); ?>" dir="<?php echo esc_attr($direction); ?>"
-    role="region"<?php echo $is_grid ? '' : ' aria-roledescription="' . esc_attr__('carousel', 'advanced-carousel-pro') . '"'; ?> aria-label="<?php echo esc_attr($label); ?>"
-    data-widget-id="<?php echo esc_attr($widget_id); ?>" data-settings="<?php echo esc_attr(wp_json_encode($slider_options)); ?>">
+    role="region"<?php echo $is_grid ? '' : ' aria-roledescription="' . esc_attr__('carousel', 'nexa-slider') . '"'; ?> aria-label="<?php echo esc_attr($label); ?>"
+    data-widget-id="<?php echo esc_attr($widget_id); ?>" data-placeholder="<?php echo esc_url(\Elementor\Utils::get_placeholder_image_src()); ?>" data-settings="<?php echo esc_attr(wp_json_encode($slider_options)); ?>">
     <div id="<?php echo esc_attr($slider_id); ?>" class="swiper pce-v5-slider" tabindex="0">
         <div class="swiper-wrapper">
             <?php foreach ($items as $index => $item) :
@@ -29,7 +29,7 @@ $show = static function ($part) use ($settings) { return ($settings['show_' . $p
                 $badge = trim(PCE_Settings::text($item['category'] ?? ''));
                 $price = trim(PCE_Settings::text($item['price'] ?? ''));
                 $desc = trim(PCE_Settings::text($item['desc'] ?? ''));
-                $btn_text = PCE_Settings::text($item['btn_text'] ?? '') ?: __('View Product', 'advanced-carousel-pro');
+                $btn_text = PCE_Settings::text($item['btn_text'] ?? '') ?: __('View Product', 'nexa-slider');
                 $has_btn_icon = !empty($item['btn_icon']['value']);
                 $position = ($item['btn_icon_position'] ?? '') === 'after' ? 'after' : 'before';
                 $button_classes = 'pce-v5-btn' . ($has_btn_icon ? ' has-icon icon-' . $position : '');

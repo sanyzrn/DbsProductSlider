@@ -31,11 +31,11 @@ if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, 'nee
 if (!plan.needed) { console.log(plan.reason); process.exit(0); }
 if (process.argv.includes('--check')) { console.log('Validated release candidate ' + info.tag + ' at ' + sha); process.exit(0); }
 
-const names = ['DbsProductSlider-' + info.version + '.zip', 'DbsProductSlider.zip', 'SHA256SUMS'];
+const names = ['nexa-slider-' + info.version + '.zip', 'nexa-slider.zip', 'SHA256SUMS'];
 const files = names.map(name => path.join(root, 'dist', name));
 files.forEach(file => { if (!fs.statSync(file).isFile()) throw new Error('Missing release asset: ' + file); });
 const notes = writeReleaseNotes(info);
-const title = 'Dbs Product Slider ' + info.version;
+const title = 'Nexa Slider ' + info.version;
 // Upload and verify a draft first; never replace assets on a published release.
 if (!existing) gh(['release', 'create', info.tag, ...files, '--repo', repository, '--target', sha, '--title', title, '--notes-file', notes, '--draft']);
 else {
