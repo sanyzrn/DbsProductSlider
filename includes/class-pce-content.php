@@ -109,6 +109,8 @@ final class PCE_Content {
         $query = new WP_Query($args);
         $button = is_string($settings['wp_button_text'] ?? null) && $settings['wp_button_text'] !== '' ? $settings['wp_button_text'] : __('View', 'advanced-carousel-pro');
         $price_key = self::meta_key($settings['wp_price_meta'] ?? '');
+        $hover_key = self::meta_key($settings['wp_hover_meta'] ?? '');
+        $words = (int) PCE_Settings::number($settings['desc_words'] ?? '', 30, 5, 100);
         $btn2_key = self::meta_key($settings['wp_btn2_meta'] ?? '');
         $btn2_text = is_string($settings['wp_btn2_text'] ?? null) ? $settings['wp_btn2_text'] : '';
         $items = [];
@@ -129,9 +131,10 @@ final class PCE_Content {
                 'title' => get_the_title($id),
                 'category' => $badge,
                 'image' => ['id' => $image_id, 'url' => $image_id ? wp_get_attachment_image_url($image_id, 'large') : ''],
+                'image_hover' => ['url' => $hover_key !== '' ? self::meta_url($id, $hover_key) : ''],
                 'price' => self::meta_text($id, $price_key),
                 'price_html' => '',
-                'desc' => wp_trim_words(wp_strip_all_tags(strip_shortcodes((string) get_post_field('post_excerpt', $id))), 30),
+                'desc' => wp_trim_words(wp_strip_all_tags(strip_shortcodes((string) get_post_field('post_excerpt', $id))), $words),
                 'link' => ['url' => get_permalink($id)],
                 'btn_text' => $button,
                 'btn2_text' => $btn2_text,

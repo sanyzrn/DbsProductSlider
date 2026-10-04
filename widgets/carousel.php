@@ -330,6 +330,22 @@ class PCE_Carousel_V5 extends Widget_Base {
             ]
         );
 
+        $this->add_control('image_position', [
+            'label' => __('Object Position', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT, 'default' => 'center center',
+            'options' => [
+                'center center' => __('Center', 'advanced-carousel-pro'), 'center top' => __('Top', 'advanced-carousel-pro'), 'center bottom' => __('Bottom', 'advanced-carousel-pro'),
+                'left center' => __('Left', 'advanced-carousel-pro'), 'right center' => __('Right', 'advanced-carousel-pro'),
+            ],
+            'selectors' => ['{{WRAPPER}} .pce-v5-media img' => 'object-position: {{VALUE}};'],
+        ]);
+
+        $this->add_responsive_control('image_height', [
+            'label' => __('Image Height', 'advanced-carousel-pro'), 'type' => Controls_Manager::SLIDER, 'size_units' => ['px', 'vh'],
+            'range' => ['px' => ['min' => 80, 'max' => 700], 'vh' => ['min' => 10, 'max' => 80]],
+            'description' => __('Overrides the aspect ratio when set.', 'advanced-carousel-pro'),
+            'selectors' => ['{{WRAPPER}} .pce-v5-media' => 'height: {{SIZE}}{{UNIT}}; aspect-ratio: auto;'],
+        ]);
+
         $this->add_responsive_control(
             'image_radius',
             [
@@ -407,6 +423,17 @@ class PCE_Carousel_V5 extends Widget_Base {
                 ],
             ]
         );
+
+        $this->add_control('desc_full', [
+            'label' => __('Show Full Description', 'advanced-carousel-pro'), 'type' => Controls_Manager::SWITCHER, 'default' => '',
+            'selectors' => ['{{WRAPPER}} .pce-v5-desc' => 'display: block; -webkit-line-clamp: unset; overflow: visible;'],
+        ]);
+
+        $this->add_control('title_max_lines', [
+            'label' => __('Title Max Lines', 'advanced-carousel-pro'), 'type' => Controls_Manager::NUMBER, 'min' => 1, 'max' => 6, 'step' => 1,
+            'description' => __('Leave empty to show the whole title.', 'advanced-carousel-pro'),
+            'selectors' => ['{{WRAPPER}} .pce-v5-title' => 'display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: {{VALUE}}; overflow: hidden;'],
+        ]);
 
         $this->add_control(
             'title_color',
@@ -973,6 +1000,31 @@ class PCE_Carousel_V5 extends Widget_Base {
             ]
         );
 
+        $this->add_control('fraction_color', [
+            'label' => __('Counter Color', 'advanced-carousel-pro'), 'type' => Controls_Manager::COLOR,
+            'condition' => ['pagination_type' => 'fraction'],
+            'selectors' => ['{{WRAPPER}} .pce-v5-pagination-fraction' => 'color: {{VALUE}};'],
+        ]);
+        $this->add_group_control(Group_Control_Typography::get_type(), [
+            'name' => 'fraction_typography', 'selector' => '{{WRAPPER}} .pce-v5-pagination-fraction',
+            'condition' => ['pagination_type' => 'fraction'],
+        ]);
+        $this->add_control('progress_height', [
+            'label' => __('Progress Bar Height', 'advanced-carousel-pro'), 'type' => Controls_Manager::SLIDER,
+            'range' => ['px' => ['min' => 1, 'max' => 16]], 'condition' => ['pagination_type' => 'progressbar'],
+            'selectors' => ['{{WRAPPER}} .pce-v5-pagination-progressbar' => 'height: {{SIZE}}{{UNIT}};'],
+        ]);
+        $this->add_control('progress_track_color', [
+            'label' => __('Progress Track Color', 'advanced-carousel-pro'), 'type' => Controls_Manager::COLOR,
+            'condition' => ['pagination_type' => 'progressbar'],
+            'selectors' => ['{{WRAPPER}} .pce-v5-pagination-progressbar' => 'background: {{VALUE}};'],
+        ]);
+        $this->add_control('progress_fill_color', [
+            'label' => __('Progress Fill Color', 'advanced-carousel-pro'), 'type' => Controls_Manager::COLOR,
+            'condition' => ['pagination_type' => 'progressbar'],
+            'selectors' => ['{{WRAPPER}} .pce-v5-pagination-progressbar .swiper-pagination-progressbar-fill' => 'background: {{VALUE}};'],
+        ]);
+
         $this->end_controls_section();
 
         $this->start_controls_section(
@@ -1390,6 +1442,22 @@ class PCE_Carousel_V5 extends Widget_Base {
             $url = esc_url(Utils::get_placeholder_image_src());
         }
         return '<img src="' . $url . '" alt="' . esc_attr($alt) . '" loading="' . $loading . '" decoding="async" />';
+    }
+
+    /** Optional decorative second image; empty when the item has no valid hover image. */
+    private function get_hover_image_html($item, $settings) {
+        $hover = is_array($item['image_hover'] ?? null) ? $item['image_hover'] : [];
+        $size = $this->sanitize_choice($settings['image_size'] ?? 'medium_large', ['thumbnail', 'medium', 'medium_large', 'large', 'full'], 'medium_large');
+        $image_id = (int) PCE_Settings::number($hover['id'] ?? '', 0, 1, PHP_INT_MAX);
+        $image = $image_id ? wp_get_attachment_image($image_id, $size, false, ['alt' => '', 'loading' => 'lazy', 'decoding' => 'async', 'class' => 'pce-v5-hover-image', 'aria-hidden' => 'true']) : '';
+        if ($image) {
+            return $image;
+        }
+        $url = esc_url_raw(PCE_Settings::text($hover['url'] ?? ''));
+        if (!$url) {
+            return '';
+        }
+        return '<img class="pce-v5-hover-image" src="' . esc_url($url) . '" alt="" aria-hidden="true" loading="lazy" decoding="async" />';
     }
 
     private function sanitize_int($value, $min, $max, $fallback) {

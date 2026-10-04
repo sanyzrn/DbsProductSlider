@@ -85,7 +85,7 @@ $show = static function ($part) use ($settings) { return ($settings['show_' . $p
                             </span>
                         <?php endif; ?>
                         <?php if ($show('image')) : ?>
-                            <div class="pce-v5-media"><?php echo $this->get_image_html($item, $settings, $title); // WordPress-generated image or escaped fallback. ?></div>
+                            <div class="pce-v5-media"><?php echo $this->get_image_html($item, $settings, $title); // WordPress-generated image or escaped fallback. ?><?php echo $this->get_hover_image_html($item, $settings); ?></div>
                         <?php endif; ?>
                         <div class="pce-v5-body">
                             <?php if ($show('title') && $title !== '') : ?>

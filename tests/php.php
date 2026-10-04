@@ -55,7 +55,7 @@ namespace {
     function wp_get_attachment_url($id) { return $id === 77 ? 'https://example.test/uploads/brochure.pdf' : false; }
     function wp_get_attachment_image($id, $size, $icon, $attributes) {
         if ($id === 999) { return ''; }
-        return '<img src="https://example.test/' . $size . '.png" width="768" height="768" srcset="https://example.test/small.png 300w, https://example.test/large.png 768w" sizes="(max-width: 768px) 100vw, 768px" alt="' . esc_attr($attributes['alt']) . '" loading="' . $attributes['loading'] . '" decoding="async" />';
+        return '<img src="https://example.test/' . $size . '.png" width="768" height="768" srcset="https://example.test/small.png 300w, https://example.test/large.png 768w" sizes="(max-width: 768px) 100vw, 768px" alt="' . esc_attr($attributes['alt']) . '"' . (isset($attributes['class']) ? ' class="' . esc_attr($attributes['class']) . '" aria-hidden="' . esc_attr($attributes['aria-hidden'] ?? '') . '"' : '') . ' loading="' . $attributes['loading'] . '" decoding="async" />';
     }
     function wp_get_attachment_image_url($id, $size) { return 'https://example.test/product.png'; }
     function wp_kses_post($html) { return strip_tags($html, '<del><ins><span><bdi>'); }
@@ -65,7 +65,7 @@ namespace {
     function sanitize_title($value) { return strtolower(trim($value)); }
     function is_singular($type) { return $GLOBALS['current_product'] > 0; }
     function get_queried_object_id() { return $GLOBALS['current_product']; }
-    function get_post_field($field, $id) { if ($field === 'post_excerpt') { return 'Excerpt ' . $id; } return $id === 9 || (($GLOBALS['wp_posts'][$id][2] ?? '') !== '') ? ($GLOBALS['wp_posts'][$id][2] ?? 'secret') : ''; }
+    function get_post_field($field, $id) { if ($field === 'post_excerpt') { return $id === 6 ? 'one two three four five six seven' : 'Excerpt ' . $id; } return $id === 9 || (($GLOBALS['wp_posts'][$id][2] ?? '') !== '') ? ($GLOBALS['wp_posts'][$id][2] ?? 'secret') : ''; }
     function wc_get_product_ids_on_sale() { return $GLOBALS['sale_ids']; }
     $GLOBALS['ajax'] = ['nonce_ok' => true, 'can' => true, 'out' => null];
     function check_ajax_referer($action, $field) { if (!$GLOBALS['ajax']['nonce_ok']) { throw new \RuntimeException('bad nonce'); } return 1; }
@@ -324,6 +324,20 @@ namespace {
     try { PCE_Search::handle(); } catch (\RuntimeException $e) { $blocked = true; }
     check($blocked, 'Search endpoint requires a valid nonce');
     $GLOBALS['ajax']['nonce_ok'] = true;
+    // Phase 3: image/text/pagination controls and hover image.
+    foreach (['image_position', 'image_height', 'title_max_lines', 'desc_full', 'fraction_color', 'progress_height', 'progress_track_color', 'progress_fill_color', 'desc_words', 'wp_hover_meta'] as $control) {
+        check(isset($widget->controls[$control]), 'Phase 3 control registered: ' . $control);
+    }
+    check($widget->controls['progress_fill_color']['condition'] === ['pagination_type' => 'progressbar'] && $widget->controls['fraction_color']['condition'] === ['pagination_type' => 'fraction'], 'Pagination style controls depend on the pagination type');
+    $hover_item = ['title' => 'Hover', 'image' => ['id' => 42], 'image_hover' => ['id' => 42, 'url' => 'https://example.test/hover.png']];
+    $html = render(['items' => [$hover_item]]);
+    check(substr_count($html, 'class="pce-v5-hover-image"') <= 1 && strpos($html, 'pce-v5-hover-image') !== false, 'Hover image rendered');
+    check(strpos($html, 'aria-hidden="true"') !== false, 'Hover image is decorative');
+    check(strpos(render(['items' => [['title' => 'No hover', 'image' => ['id' => 42]]]]), 'pce-v5-hover-image') === false, 'No hover image without a value');
+    check(strpos(render(['items' => [['title' => 'Bad', 'image_hover' => ['url' => 'javascript:alert(1)']]]]), 'pce-v5-hover-image') === false, 'Unsafe hover image URL rejected');
+    check(strpos(render(['items' => [['title' => 'Bad', 'image_hover' => 'oops']]]), 'pce-v5-hover-image') === false, 'Malformed hover image ignored');
+    check(PCE_Content::items(['wp_post_type' => 'gift', 'wp_hover_meta' => 'link_field'])[0]['image_hover']['url'] === 'https://example.test/file.pdf' && PCE_Content::items(['wp_post_type' => 'gift'])[0]['image_hover']['url'] === '', 'WordPress hover image from custom field');
+    check(PCE_Content::items(['wp_post_type' => 'gift', 'desc_words' => 5])[2]['desc'] === 'one two three four five' && PCE_Content::items(['wp_post_type' => 'gift', 'desc_words' => 1000])[2]['desc'] === 'one two three four five six seven', 'Summary length applied and bounded');
     $fixture_items = [];
     for ($i = 0; $i < 10; $i++) {
         $fixture_items[] = ['_id' => 'card-' . $i, 'title' => 'محصول ' . ($i + 1), 'category' => 'محصول', 'badge_icon' => ['value' => 'test'], 'btn_icon' => ['value' => 'test'], 'desc' => $i % 2 ? str_repeat('توضیحات محصول ', 20) : 'کوتاه', 'price' => '۱۰۰ تومان', 'link' => ['url' => '#product-' . $i]];
