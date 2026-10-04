@@ -167,8 +167,6 @@
     margin-top: 16px;
 }
 
-.pce-v5-btn-wrapper .pce-v5-btn { flex: 1 1 0; min-width: max-content; }
-
 .pce-v5-btn-secondary {
     background: transparent;
     color: var(--pce-color-accent);
