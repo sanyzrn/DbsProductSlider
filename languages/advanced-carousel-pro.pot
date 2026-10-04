@@ -22,6 +22,12 @@ msgstr ""
 msgid "Alignment"
 msgstr ""
 
+msgid "All / latest"
+msgstr ""
+
+msgid "Any group"
+msgstr ""
+
 msgid "Arrow Button Margin"
 msgstr ""
 
@@ -133,6 +139,9 @@ msgstr ""
 msgid "Classic"
 msgstr ""
 
+msgid "Comma-separated IDs, in display order. Maximum 40 items."
+msgstr ""
+
 msgid "Comma-separated IDs, in display order. Maximum 40 products."
 msgstr ""
 
@@ -149,6 +158,9 @@ msgid "Content & Products"
 msgstr ""
 
 msgid "Content Source"
+msgstr ""
+
+msgid "Content Type"
 msgstr ""
 
 msgid "Cover"
@@ -217,7 +229,13 @@ msgstr ""
 msgid "Equal Card Heights"
 msgstr ""
 
+msgid "Exclude Current Item"
+msgstr ""
+
 msgid "Exclude Current Product"
+msgstr ""
+
+msgid "Exclude IDs"
 msgstr ""
 
 msgid "Exclude Product IDs"
@@ -233,6 +251,9 @@ msgid "Fill"
 msgstr ""
 
 msgid "Fine Tuning"
+msgstr ""
+
+msgid "First group name"
 msgstr ""
 
 msgid "Fraction"
@@ -251,6 +272,12 @@ msgid "Gap"
 msgstr ""
 
 msgid "Go to slide {{index}}"
+msgstr ""
+
+msgid "Group (Term) IDs"
+msgstr ""
+
+msgid "Group Taxonomy"
 msgstr ""
 
 msgid "Hide Out of Stock"
@@ -281,6 +308,9 @@ msgid "Hover Scale"
 msgstr ""
 
 msgid "Hover Transition Duration (ms)"
+msgstr ""
+
+msgid "ID"
 msgstr ""
 
 msgid "Icon Color"
@@ -317,6 +347,9 @@ msgid "Image Zoom On Hover"
 msgstr ""
 
 msgid "Input"
+msgstr ""
+
+msgid "Item IDs"
 msgstr ""
 
 msgid "Items"
@@ -367,6 +400,9 @@ msgstr ""
 msgid "Manual items"
 msgstr ""
 
+msgid "Maximum Items"
+msgstr ""
+
 msgid "Maximum Products"
 msgstr ""
 
@@ -403,6 +439,9 @@ msgstr ""
 msgid "No items match the selected source. Add items or adjust product filters."
 msgstr ""
 
+msgid "None"
+msgstr ""
+
 msgid "Normal"
 msgstr ""
 
@@ -416,6 +455,12 @@ msgid "On sale"
 msgstr ""
 
 msgid "Optional comma-separated category slugs. Leave empty for all categories."
+msgstr ""
+
+msgid "Optional comma-separated term IDs. Leave empty for all groups."
+msgstr ""
+
+msgid "Optional. Must be registered for the selected content type."
 msgstr ""
 
 msgid "Order"
@@ -537,7 +582,13 @@ msgstr ""
 msgid "Select options"
 msgstr ""
 
+msgid "Selected IDs"
+msgstr ""
+
 msgid "Selected product IDs"
+msgstr ""
+
+msgid "Selection"
 msgstr ""
 
 msgid "Show Arrows"
@@ -636,6 +687,9 @@ msgstr ""
 msgid "Vertical Position"
 msgstr ""
 
+msgid "View"
+msgstr ""
+
 msgid "View Product"
 msgstr ""
 
@@ -649,6 +703,12 @@ msgid "Width"
 msgstr ""
 
 msgid "WooCommerce products"
+msgstr ""
+
+msgid "WordPress Content"
+msgstr ""
+
+msgid "WordPress content"
 msgstr ""
 
 msgid "Wrapper"
