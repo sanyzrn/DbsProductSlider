@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: DbsProductSlider 2.3.2\nLanguage:\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+msgstr "Project-Id-Version: DbsProductSlider 2.4.0\nLanguage:\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "Accessible Carousel Name"
 msgstr ""
