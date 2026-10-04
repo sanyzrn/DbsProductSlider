@@ -60,7 +60,7 @@ namespace {
     function sanitize_title($value) { return strtolower(trim($value)); }
     function is_singular($type) { return $GLOBALS['current_product'] > 0; }
     function get_queried_object_id() { return $GLOBALS['current_product']; }
-    function get_post_field($field, $id) { return $id === 9 ? 'secret' : ''; }
+    function get_post_field($field, $id) { if ($field === 'post_excerpt') { return 'Excerpt ' . $id; } return $id === 9 || (($GLOBALS['wp_posts'][$id][2] ?? '') !== '') ? ($GLOBALS['wp_posts'][$id][2] ?? 'secret') : ''; }
     function wc_get_product_ids_on_sale() { return $GLOBALS['sale_ids']; }
     function wc_get_products($args) { $GLOBALS['query_args'] = $args; return $GLOBALS['products']; }
     class Product {
@@ -86,9 +86,30 @@ namespace {
     $GLOBALS['current_product'] = 0;
     $GLOBALS['products'] = [];
     $GLOBALS['sale_ids'] = [];
+    // WordPress content fixtures: id => [type, status, password, term]. Id 3 is a draft, 4 is protected, 5 is another type.
+    $GLOBALS['wp_posts'] = [1 => ['gift', 'publish', '', 'Group A'], 2 => ['gift', 'publish', '', 'Group B'], 3 => ['gift', 'draft', '', 'Group A'], 4 => ['gift', 'publish', 'secret', 'Group A'], 5 => ['page', 'publish', '', ''], 6 => ['gift', 'publish', '', 'Group A']];
+    function get_post_types($args = [], $output = 'names') { return ['post' => (object) ['labels' => (object) ['singular_name' => 'Post']], 'gift' => (object) ['labels' => (object) ['singular_name' => 'Gift']], 'attachment' => (object) ['labels' => (object) ['singular_name' => 'Media']]]; }
+    function get_taxonomies($args = [], $output = 'names') { return ['gift_group' => (object) ['labels' => (object) ['name' => 'Groups']]]; }
+    function taxonomy_exists($taxonomy) { return $taxonomy === 'gift_group'; }
+    function is_object_in_taxonomy($type, $taxonomy) { return $type === 'gift' && $taxonomy === 'gift_group'; }
+    function wp_get_post_terms($id, $taxonomy, $args) { return [$GLOBALS['wp_posts'][$id][3]]; }
+    function get_post_status($id) { return $GLOBALS['wp_posts'][$id][1] ?? false; }
+    function get_the_title($id) { return 'Gift ' . $id; }
+    function get_post_thumbnail_id($id) { return $id === 2 ? 0 : 42; }
+    function get_permalink($id) { return 'https://example.test/gift/' . $id; }
+    class WP_Query {
+        public $posts = [];
+        public function __construct($args) {
+            $GLOBALS['wp_query_args'] = $args;
+            $ids = $args['post__in'] ?? array_keys($GLOBALS['wp_posts']);
+            // A hostile filter may ignore status/password constraints; PCE_Content must still filter.
+            foreach ($ids as $id) { if (isset($GLOBALS['wp_posts'][$id]) && $GLOBALS['wp_posts'][$id][0] === $args['post_type'] && !in_array($id, $args['post__not_in'], true)) { $this->posts[] = $id; } }
+        }
+    }
     \Elementor\Plugin::$instance = (object) ['editor' => new class { public function is_edit_mode() { return false; } }];
     require ACP_PLUGIN_PATH . 'includes/class-pce-settings.php';
     require ACP_PLUGIN_PATH . 'includes/class-pce-products.php';
+    require ACP_PLUGIN_PATH . 'includes/class-pce-content.php';
     require ACP_PLUGIN_PATH . 'widgets/carousel.php';
     $checks = 0;
     function check($condition, $label) {
@@ -221,6 +242,27 @@ namespace {
     PCE_Products::items(['product_query' => 'sale']);
     check($GLOBALS['query_args']['include'] === [1], 'Sale selection reaches WooCommerce');
     check(PCE_Products::items(['exclude_product_ids' => '1,6', 'exclude_current_product' => '', 'hide_out_of_stock' => '']) === [], 'Excluded product IDs are enforced');
+    // WordPress content source (generic post types, no WooCommerce).
+    check(array_keys(PCE_Content::post_type_options()) === ['post', 'gift'], 'Content type list is public types without attachments');
+    $cards = PCE_Content::items(['wp_post_type' => 'gift']);
+    check(array_column($cards, 'title') === ['Gift 1', 'Gift 2', 'Gift 6'], 'Draft and password-protected content never shown');
+    check($cards[0]['link']['url'] === 'https://example.test/gift/1' && $cards[0]['desc'] === 'Excerpt 1' && $cards[0]['_id'] === 'wp-gift-1' && $cards[0]['price_html'] === '', 'Card fields come from WordPress API');
+    check($GLOBALS['wp_query_args']['post_status'] === 'publish' && $GLOBALS['wp_query_args']['no_found_rows'] === true && $GLOBALS['wp_query_args']['posts_per_page'] === 8, 'Bounded published-only query');
+    check(PCE_Content::items(['wp_post_type' => 'secret_type']) === [] && PCE_Content::items(['wp_post_type' => 'attachment']) === [] && PCE_Content::items([]) === [], 'Unlisted content types rejected');
+    check($cards[1]['image']['id'] === 0 && strpos(render(['source' => 'wordpress', 'wp_post_type' => 'gift']), 'placeholder.png') !== false, 'Content without image does not break render');
+    PCE_Content::items(['wp_post_type' => 'gift', 'wp_limit' => 500]);
+    check($GLOBALS['wp_query_args']['posts_per_page'] === 8, 'Out-of-range limit falls back to bounded default');
+    $cards = PCE_Content::items(['wp_post_type' => 'gift', 'wp_query' => 'selected', 'wp_selected_ids' => '6,3,1,4,99']);
+    check(array_column($cards, 'title') === ['Gift 6', 'Gift 1'] && $GLOBALS['wp_query_args']['orderby'] === 'post__in', 'Selected order kept, unpublished IDs dropped');
+    check(PCE_Content::items(['wp_post_type' => 'gift', 'wp_query' => 'selected']) === [], 'Empty selection cannot expose all content');
+    PCE_Content::items(['wp_post_type' => 'gift', 'wp_taxonomy' => 'gift_group', 'wp_term_ids' => '7,8', 'wp_orderby' => 'name', 'wp_order' => 'ASC']);
+    check($GLOBALS['wp_query_args']['tax_query'][0] === ['taxonomy' => 'gift_group', 'field' => 'term_id', 'terms' => [7, 8]] && $GLOBALS['wp_query_args']['orderby'] === 'title' && $GLOBALS['wp_query_args']['order'] === 'ASC', 'Term filter and sort mapping');
+    check(PCE_Content::items(['wp_post_type' => 'post', 'wp_taxonomy' => 'gift_group', 'wp_term_ids' => '7']) === [] && PCE_Content::items(['wp_post_type' => 'gift', 'wp_taxonomy' => 'nope', 'wp_term_ids' => '7']) === [], 'Taxonomy must belong to content type');
+    check(PCE_Content::items(['wp_post_type' => 'gift', 'wp_taxonomy' => 'gift_group'])[0]['category'] === 'Group A' && PCE_Content::items(['wp_post_type' => 'gift', 'wp_taxonomy' => 'gift_group', 'wp_badge' => 'none'])[0]['category'] === '', 'Group badge switch');
+    check(array_column(PCE_Content::items(['wp_post_type' => 'gift', 'wp_exclude_ids' => '1,2']), 'title') === ['Gift 6'], 'Excluded IDs enforced');
+    $html = render(['source' => 'wordpress', 'wp_post_type' => 'gift', 'wp_button_text' => 'Details']);
+    check(strpos($html, 'Gift 1') !== false && strpos($html, 'Details') !== false && strpos($html, 'Gift 3') === false, 'WordPress source renders through widget');
+    check(strpos(render(['source' => 'bogus', 'items' => [$full_item]]), 'Visible title') !== false, 'Unknown source falls back to manual');
     $fixture_items = [];
     for ($i = 0; $i < 10; $i++) {
         $fixture_items[] = ['_id' => 'card-' . $i, 'title' => 'محصول ' . ($i + 1), 'category' => 'محصول', 'badge_icon' => ['value' => 'test'], 'btn_icon' => ['value' => 'test'], 'desc' => $i % 2 ? str_repeat('توضیحات محصول ', 20) : 'کوتاه', 'price' => '۱۰۰ تومان', 'link' => ['url' => '#product-' . $i]];
