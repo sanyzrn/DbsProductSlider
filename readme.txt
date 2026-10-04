@@ -4,7 +4,7 @@ Tags: elementor, carousel, slider, products
 Requires at least: 6.2
 Requires PHP: 7.4
 Requires Plugins: elementor
-Stable tag: 2.3.2
+Stable tag: 2.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,7 +55,7 @@ catalog-visible, non-password-protected products are shown.
 The default opens the product page. Purchase mode uses standard WooCommerce URLs for
 available purchasable simple products, option selection for variable products, the
 detail page for grouped/unavailable products, and the product URL for external products.
-This version does not implement AJAX add-to-cart or a product search control.
+The editor can search products and content by title or SKU to fill selected IDs. This version does not implement AJAX add-to-cart.
 
 = Why can loop turn off? =
 Swiper requires enough cards for the active view, effect and group size. If that condition
@@ -76,6 +76,15 @@ WordPress/Elementor/WooCommerce APIs and does not test a live database or Elemen
 Complete site/editor integration and touch/screen-reader checks are required before broad release.
 
 == Changelog ==
+
+= 2.4.0 =
+- Added a WordPress content source: any public content type with optional taxonomy filters, latest or selected IDs, ordering, exclusions and published-only output.
+- Added an editor search box (title or SKU) that fills the selected-ID fields for WordPress content and WooCommerce.
+- Added a second taxonomy filter and WooCommerce ordering by price, sales and rating.
+- Added card link modes (button, title or whole card), an optional second button and custom field mapping for price, second-button link and hover image.
+- Added image position and height, hover image, title line limit, full description switch, summary length and counter/progress bar styling.
+- Added a Grid layout with responsive columns and gap that does not use the sliding engine.
+- Added Persian translations and regression checks for every new control.
 
 = 2.3.2 =
 - Added a Show Play/Pause Button switch and a compact, accessible playback icon.
@@ -146,6 +155,10 @@ Complete site/editor integration and touch/screen-reader checks are required bef
 - Updated visual styling and responsive behavior
 
 == Upgrade Notice ==
+
+= 2.4.0 =
+New sources and layout options are additive; saved widgets keep their source, IDs and behavior.
+Regenerate Elementor CSS and clear caches after upgrading.
 
 = 2.3.2 =
 Playback button visibility is in Content > Autoplay. Mousewheel accepts vertical and
