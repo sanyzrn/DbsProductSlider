@@ -22,7 +22,7 @@ final class PCE_Content {
 
     /** Public taxonomies, labelled with the post types they belong to. */
     public static function taxonomy_options() {
-        $options = ['' => __('Any group', 'advanced-carousel-pro')];
+        $options = ['' => __('Any group', 'nexa-slider')];
         if (function_exists('get_taxonomies')) {
             foreach (get_taxonomies(['public' => true], 'objects') as $slug => $object) {
                 $options[$slug] = ($object->labels->name ?? $slug) . ' (' . $slug . ')';
@@ -107,7 +107,7 @@ final class PCE_Content {
             $args['posts_per_page'] = count($selected);
         }
         $query = new WP_Query($args);
-        $button = is_string($settings['wp_button_text'] ?? null) && $settings['wp_button_text'] !== '' ? $settings['wp_button_text'] : __('View', 'advanced-carousel-pro');
+        $button = is_string($settings['wp_button_text'] ?? null) && $settings['wp_button_text'] !== '' ? $settings['wp_button_text'] : __('View', 'nexa-slider');
         $price_key = self::meta_key($settings['wp_price_meta'] ?? '');
         $hover_key = self::meta_key($settings['wp_hover_meta'] ?? '');
         $words = (int) PCE_Settings::clamp($settings['desc_words'] ?? '', 30, 5, 100);

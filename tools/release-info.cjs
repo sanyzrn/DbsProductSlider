@@ -16,7 +16,7 @@ function parseReleaseInfo(source, readme) {
 }
 
 function readReleaseInfo() {
-    return parseReleaseInfo(fs.readFileSync(path.join(root, 'product-carousel-elementor.php'), 'utf8'), fs.readFileSync(path.join(root, 'readme.txt'), 'utf8'));
+    return parseReleaseInfo(fs.readFileSync(path.join(root, 'nexa-slider.php'), 'utf8'), fs.readFileSync(path.join(root, 'readme.txt'), 'utf8'));
 }
 
 function compareVersions(a, b) {
@@ -47,7 +47,7 @@ function lookupRelease(tag, request) {
 }
 
 function writeReleaseNotes(info) {
-    const notes = `Dbs Product Slider ${info.version}\n\nResponsive Elementor carousels with manual cards, optional WooCommerce sources, Persian / RTL support and a local Swiper engine.\n\n## Changes\n\n${info.changes}\n\n## Installation\n\nDownload \`DbsProductSlider.zip\` or \`DbsProductSlider-${info.version}.zip\` below and upload it in **WordPress → Plugins → Add New → Upload Plugin**. WooCommerce is optional. GitHub's source archives are for development.\n\nRequires WordPress 6.2+, PHP 7.4+ and Elementor 3.15+. After upgrading, regenerate Elementor CSS and clear page caches.\n\n[راهنمای فارسی](https://github.com/sanyzrn/DbsProductSlider/blob/${info.tag}/README_FA.md) · [Changelog](https://github.com/sanyzrn/DbsProductSlider/blob/${info.tag}/readme.txt)\n\nAutomated PHP and Chromium checks pass for this commit. They do not replace full WordPress / Elementor site integration testing.\n`;
+    const notes = `Nexa Slider ${info.version}\n\nResponsive Elementor sliders for products and site content: manual cards, WordPress content, optional WooCommerce, Persian / RTL support and a local Swiper engine.\n\n## Changes\n\n${info.changes}\n\n## Installation\n\nDownload \`DbsProductSlider.zip\` or \`DbsProductSlider-${info.version}.zip\` below and upload it in **WordPress → Plugins → Add New → Upload Plugin**. WooCommerce is optional. GitHub's source archives are for development.\n\nRequires WordPress 6.2+, PHP 7.4+ and Elementor 3.15+. After upgrading, regenerate Elementor CSS and clear page caches.\n\n[راهنمای فارسی](https://github.com/sanyzrn/DbsProductSlider/blob/${info.tag}/README_FA.md) · [Changelog](https://github.com/sanyzrn/DbsProductSlider/blob/${info.tag}/readme.txt)\n\nAutomated PHP and Chromium checks pass for this commit. They do not replace full WordPress / Elementor site integration testing.\n`;
     fs.mkdirSync(path.join(root, 'dist'), { recursive: true });
     const filename = path.join(root, 'dist/release-notes.md');
     fs.writeFileSync(filename, notes);

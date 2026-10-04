@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: DbsProductSlider 2.4.1\nLanguage: fa_IR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+msgstr "Project-Id-Version: Nexa Slider 2.5.0\nLanguage: fa_IR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "Accessible Carousel Name"
 msgstr "نام اسلایدر برای دسترس‌پذیری"
@@ -490,6 +490,23 @@ msgstr "ناوبری"
 msgid "New"
 msgstr "جدید"
 
+msgid "Nexa Slider"
+msgstr "نکسا اسلایدر"
+
+msgid "Nexa Slider replaces the earlier Product Carousel Elementor plugin. Deactivate the older copy, then reactivate Nexa Slider. Your widgets and settings are kept."
+msgstr "نکسا اسلایدر جایگزین افزونهٔ قبلی Product Carousel Elementor است. نسخهٔ قدیمی را غیرفعال و سپس نکسا اسلایدر را دوباره فعال کنید. ویجت‌ها و تنظیمات شما حفظ می‌شوند."
+
+msgid "Nexa Slider requires Elementor to be installed and active."
+msgstr "افزونهٔ نکسا اسلایدر به نصب و فعال بودن المنتور نیاز دارد."
+
+#, php-format
+msgid "Nexa Slider requires Elementor version %s or greater."
+msgstr "افزونهٔ نکسا اسلایدر به المنتور نسخهٔ %s یا بالاتر نیاز دارد."
+
+#, php-format
+msgid "Nexa Slider requires PHP version %s or greater."
+msgstr "افزونهٔ نکسا اسلایدر به PHP نسخهٔ %s یا بالاتر نیاز دارد."
+
 msgid "Next slide"
 msgstr "اسلاید بعدی"
 
@@ -591,20 +608,6 @@ msgstr "رنگ قیمت"
 
 msgid "Product Button Action"
 msgstr "عملکرد دکمهٔ محصول"
-
-msgid "Product Carousel Elementor requires Elementor to be installed and active."
-msgstr "افزونهٔ اسلایدر محصولات به نصب و فعال بودن المنتور نیاز دارد."
-
-#, php-format
-msgid "Product Carousel Elementor requires Elementor version %s or greater."
-msgstr "افزونهٔ اسلایدر محصولات به المنتور نسخهٔ %s یا بالاتر نیاز دارد."
-
-#, php-format
-msgid "Product Carousel Elementor requires PHP version %s or greater."
-msgstr "افزونهٔ اسلایدر محصولات به PHP نسخهٔ %s یا بالاتر نیاز دارد."
-
-msgid "Product Carousel Pro"
-msgstr "اسلایدر محصولات"
 
 msgid "Product ID"
 msgstr "شناسهٔ محصول"

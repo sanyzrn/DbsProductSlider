@@ -95,16 +95,16 @@ final class PCE_Products {
                 continue;
             }
             $url = $product->get_permalink();
-            $button = __('View Product', 'advanced-carousel-pro');
+            $button = __('View Product', 'nexa-slider');
             if (($settings['product_action'] ?? 'view') === 'purchase' && $product->is_in_stock()) {
                 if ($product->is_type('external') || ($product->is_type('simple') && $product->is_purchasable())) {
                     $url = $product->add_to_cart_url();
                     $button = $product->add_to_cart_text();
                 } elseif ($product->is_type('variable') && $product->is_purchasable()) {
-                    $button = __('Select options', 'advanced-carousel-pro');
+                    $button = __('Select options', 'nexa-slider');
                 }
             }
-            $badge = !$product->is_in_stock() ? __('Out of stock', 'advanced-carousel-pro') : ($product->is_on_sale() ? __('Sale', 'advanced-carousel-pro') : '');
+            $badge = !$product->is_in_stock() ? __('Out of stock', 'nexa-slider') : ($product->is_on_sale() ? __('Sale', 'nexa-slider') : '');
             $image_id = $product->get_image_id();
             $items[] = [
                 '_id' => 'product-' . $product->get_id(),

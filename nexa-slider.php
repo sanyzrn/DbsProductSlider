@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name: Product Carousel Elementor
- * Plugin URI: https://dbsgraphic.ir/
- * Description: Manual and optional WooCommerce product carousels for Elementor with responsive controls, Persian UI and accessible playback.
- * Version: 2.4.1
+ * Plugin Name: Nexa Slider
+ * Plugin URI: https://dbsstudio.ir/nexa-slider
+ * Description: Product and content sliders for Elementor: manual cards, WordPress content and optional WooCommerce, with responsive controls, Persian UI and accessible playback.
+ * Version: 2.5.0
  * Author: Saeed Zarrini
  * Author URI: https://dbsgraphic.ir/
- * Text Domain: advanced-carousel-pro
+ * Text Domain: nexa-slider
  * Domain Path: /languages
  * Requires at least: 6.2
  * Requires PHP: 7.4
@@ -18,10 +18,21 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// An older copy under its previous name ("Product Carousel Elementor" / DbsProductSlider) already defined these constants and classes.
+if (defined('ACP_PLUGIN_FILE')) {
+    add_action('admin_notices', static function () {
+        if (!current_user_can('activate_plugins')) {
+            return;
+        }
+        printf('<div class="notice notice-warning"><p>%s</p></div>', esc_html__('Nexa Slider replaces the earlier Product Carousel Elementor plugin. Deactivate the older copy, then reactivate Nexa Slider. Your widgets and settings are kept.', 'nexa-slider'));
+    });
+    return;
+}
+
 final class ACP_Plugin {
     private const MINIMUM_ELEMENTOR_VERSION = '3.15.0';
     private const MINIMUM_PHP_VERSION = '7.4';
-    private const VERSION = '2.4.1';
+    private const VERSION = '2.5.0';
 
     public function __construct() {
         $this->define_constants();
@@ -38,7 +49,7 @@ final class ACP_Plugin {
     }
 
     public function load_textdomain() {
-        load_plugin_textdomain('advanced-carousel-pro', false, dirname(plugin_basename(__FILE__)) . '/languages');
+        load_plugin_textdomain('nexa-slider', false, dirname(plugin_basename(__FILE__)) . '/languages');
     }
 
     public function init() {
@@ -105,7 +116,7 @@ final class ACP_Plugin {
 
         printf(
             '<div class="notice notice-warning is-dismissible"><p>%s</p></div>',
-            esc_html__('Product Carousel Elementor requires Elementor to be installed and active.', 'advanced-carousel-pro')
+            esc_html__('Nexa Slider requires Elementor to be installed and active.', 'nexa-slider')
         );
     }
 
@@ -118,7 +129,7 @@ final class ACP_Plugin {
             '<div class="notice notice-warning is-dismissible"><p>%s</p></div>',
             esc_html(sprintf(
                 /* translators: %s: minimum Elementor version */
-                __('Product Carousel Elementor requires Elementor version %s or greater.', 'advanced-carousel-pro'),
+                __('Nexa Slider requires Elementor version %s or greater.', 'nexa-slider'),
                 self::MINIMUM_ELEMENTOR_VERSION
             ))
         );
@@ -133,7 +144,7 @@ final class ACP_Plugin {
             '<div class="notice notice-warning is-dismissible"><p>%s</p></div>',
             esc_html(sprintf(
                 /* translators: %s: minimum PHP version */
-                __('Product Carousel Elementor requires PHP version %s or greater.', 'advanced-carousel-pro'),
+                __('Nexa Slider requires PHP version %s or greater.', 'nexa-slider'),
                 self::MINIMUM_PHP_VERSION
             ))
         );

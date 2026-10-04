@@ -20,12 +20,12 @@ final class PCE_Search {
             'action' => self::ACTION,
             'nonce' => wp_create_nonce(self::ACTION),
             'i18n' => [
-                'placeholder' => __('Search by title or SKU…', 'advanced-carousel-pro'),
-                'empty' => __('No published items found.', 'advanced-carousel-pro'),
-                'error' => __('Search failed. Try again.', 'advanced-carousel-pro'),
-                'added' => __('Added', 'advanced-carousel-pro'),
-                'remove' => __('Remove', 'advanced-carousel-pro'),
-                'unavailable' => __('unavailable', 'advanced-carousel-pro'),
+                'placeholder' => __('Search by title or SKU…', 'nexa-slider'),
+                'empty' => __('No published items found.', 'nexa-slider'),
+                'error' => __('Search failed. Try again.', 'nexa-slider'),
+                'added' => __('Added', 'nexa-slider'),
+                'remove' => __('Remove', 'nexa-slider'),
+                'unavailable' => __('unavailable', 'nexa-slider'),
             ],
         ]);
     }

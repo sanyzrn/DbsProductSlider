@@ -21,7 +21,7 @@ class PCE_Carousel_V5 extends Widget_Base {
     }
 
     public function get_title() {
-        return __('Product Carousel Pro', 'advanced-carousel-pro');
+        return __('Nexa Slider', 'nexa-slider');
     }
 
     public function get_icon() {
@@ -33,7 +33,7 @@ class PCE_Carousel_V5 extends Widget_Base {
     }
 
     public function get_keywords() {
-        return ['carousel', 'product', 'slider', 'elementor', 'woocommerce', 'اسلایدر', 'محصول', 'ووکامرس'];
+        return ['nexa', 'carousel', 'product', 'slider', 'elementor', 'woocommerce', 'نکسا', 'اسلایدر', 'محصول', 'ووکامرس'];
     }
 
     public function get_script_depends() {
@@ -55,7 +55,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->start_controls_section(
             'style_wrapper',
             [
-                'label' => __('Wrapper', 'advanced-carousel-pro'),
+                'label' => __('Wrapper', 'nexa-slider'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -72,7 +72,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'wrapper_padding',
             [
-                'label' => __('Padding', 'advanced-carousel-pro'),
+                'label' => __('Padding', 'nexa-slider'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -83,7 +83,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'wrapper_radius',
             [
-                'label' => __('Border Radius', 'advanced-carousel-pro'),
+                'label' => __('Border Radius', 'nexa-slider'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -104,21 +104,21 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->start_controls_section(
             'style_card',
             [
-                'label' => __('Card', 'advanced-carousel-pro'),
+                'label' => __('Card', 'nexa-slider'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
 
         $this->add_control('card_preset', [
-            'label' => __('Card Preset', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT, 'default' => 'default',
-            'options' => ['default' => __('Classic', 'advanced-carousel-pro'), 'minimal' => __('Minimal', 'advanced-carousel-pro'), 'catalog' => __('Catalog', 'advanced-carousel-pro')],
-            'description' => __('Style controls can further customize the selected preset.', 'advanced-carousel-pro'),
+            'label' => __('Card Preset', 'nexa-slider'), 'type' => Controls_Manager::SELECT, 'default' => 'default',
+            'options' => ['default' => __('Classic', 'nexa-slider'), 'minimal' => __('Minimal', 'nexa-slider'), 'catalog' => __('Catalog', 'nexa-slider')],
+            'description' => __('Style controls can further customize the selected preset.', 'nexa-slider'),
         ]);
 
         $this->add_control(
             'card_bg',
             [
-                'label' => __('Background', 'advanced-carousel-pro'),
+                'label' => __('Background', 'nexa-slider'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '#ffffff',
                 'selectors' => [
@@ -130,7 +130,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'card_padding',
             [
-                'label' => __('Padding', 'advanced-carousel-pro'),
+                'label' => __('Padding', 'nexa-slider'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%', 'em', 'rem'],
                 'selectors' => [
@@ -142,7 +142,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'card_radius',
             [
-                'label' => __('Border Radius', 'advanced-carousel-pro'),
+                'label' => __('Border Radius', 'nexa-slider'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-card' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -161,7 +161,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'card_hover_heading',
             [
-                'label' => __('Hover Effects', 'advanced-carousel-pro'),
+                'label' => __('Hover Effects', 'nexa-slider'),
                 'type' => Controls_Manager::HEADING,
                 'separator' => 'before',
             ]
@@ -170,7 +170,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'card_hover_translate',
             [
-                'label' => __('Lift On Hover (Y)', 'advanced-carousel-pro'),
+                'label' => __('Lift On Hover (Y)', 'nexa-slider'),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -192,7 +192,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'card_hover_scale',
             [
-                'label' => __('Scale On Hover', 'advanced-carousel-pro'),
+                'label' => __('Scale On Hover', 'nexa-slider'),
                 'type' => Controls_Manager::NUMBER,
                 'default' => 1,
                 'min' => 0.9,
@@ -208,7 +208,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'card_hover_rotate',
             [
-                'label' => __('Rotate On Hover (deg)', 'advanced-carousel-pro'),
+                'label' => __('Rotate On Hover (deg)', 'nexa-slider'),
                 'type' => Controls_Manager::NUMBER,
                 'default' => 0,
                 'min' => -8,
@@ -223,7 +223,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'card_hover_transition',
             [
-                'label' => __('Hover Transition Duration (ms)', 'advanced-carousel-pro'),
+                'label' => __('Hover Transition Duration (ms)', 'nexa-slider'),
                 'type' => Controls_Manager::NUMBER,
                 'default' => 250,
                 'min' => 100,
@@ -239,7 +239,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'card_image_hover_scale',
             [
-                'label' => __('Image Zoom On Hover', 'advanced-carousel-pro'),
+                'label' => __('Image Zoom On Hover', 'nexa-slider'),
                 'type' => Controls_Manager::NUMBER,
                 'default' => 1.04,
                 'min' => 1,
@@ -254,7 +254,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'card_hover_bg',
             [
-                'label' => __('Hover Background', 'advanced-carousel-pro'),
+                'label' => __('Hover Background', 'nexa-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-card:hover' => 'background-color: {{VALUE}};',
@@ -265,7 +265,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'card_hover_border',
             [
-                'label' => __('Hover Border Color', 'advanced-carousel-pro'),
+                'label' => __('Hover Border Color', 'nexa-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-card:hover' => 'border-color: {{VALUE}};',
@@ -286,28 +286,28 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->start_controls_section(
             'style_image',
             [
-                'label' => __('Image', 'advanced-carousel-pro'),
+                'label' => __('Image', 'nexa-slider'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
 
         $this->add_control('image_size', [
-            'label' => __('Image Resolution', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT, 'default' => 'medium_large',
-            'options' => ['thumbnail' => __('Thumbnail', 'advanced-carousel-pro'), 'medium' => __('Medium', 'advanced-carousel-pro'), 'medium_large' => __('Medium large', 'advanced-carousel-pro'), 'large' => __('Large', 'advanced-carousel-pro'), 'full' => __('Full', 'advanced-carousel-pro')],
+            'label' => __('Image Resolution', 'nexa-slider'), 'type' => Controls_Manager::SELECT, 'default' => 'medium_large',
+            'options' => ['thumbnail' => __('Thumbnail', 'nexa-slider'), 'medium' => __('Medium', 'nexa-slider'), 'medium_large' => __('Medium large', 'nexa-slider'), 'large' => __('Large', 'nexa-slider'), 'full' => __('Full', 'nexa-slider')],
         ]);
 
         $this->add_control(
             'image_ratio',
             [
-                'label' => __('Aspect Ratio', 'advanced-carousel-pro'),
+                'label' => __('Aspect Ratio', 'nexa-slider'),
                 'type' => Controls_Manager::SELECT,
                 'default' => '1 / 1',
                 'options' => [
-                    '1 / 1' => __('Square (1:1)', 'advanced-carousel-pro'),
-                    '4 / 5' => __('Portrait (4:5)', 'advanced-carousel-pro'),
-                    '3 / 4' => __('Portrait (3:4)', 'advanced-carousel-pro'),
-                    '16 / 9' => __('Landscape (16:9)', 'advanced-carousel-pro'),
-                    'auto' => __('Auto', 'advanced-carousel-pro'),
+                    '1 / 1' => __('Square (1:1)', 'nexa-slider'),
+                    '4 / 5' => __('Portrait (4:5)', 'nexa-slider'),
+                    '3 / 4' => __('Portrait (3:4)', 'nexa-slider'),
+                    '16 / 9' => __('Landscape (16:9)', 'nexa-slider'),
+                    'auto' => __('Auto', 'nexa-slider'),
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-media' => 'aspect-ratio: {{VALUE}};',
@@ -318,13 +318,13 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'image_fit',
             [
-                'label' => __('Object Fit', 'advanced-carousel-pro'),
+                'label' => __('Object Fit', 'nexa-slider'),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'cover',
                 'options' => [
-                    'cover' => __('Cover', 'advanced-carousel-pro'),
-                    'contain' => __('Contain', 'advanced-carousel-pro'),
-                    'fill' => __('Fill', 'advanced-carousel-pro'),
+                    'cover' => __('Cover', 'nexa-slider'),
+                    'contain' => __('Contain', 'nexa-slider'),
+                    'fill' => __('Fill', 'nexa-slider'),
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-media img' => 'object-fit: {{VALUE}};',
@@ -333,25 +333,25 @@ class PCE_Carousel_V5 extends Widget_Base {
         );
 
         $this->add_control('image_position', [
-            'label' => __('Object Position', 'advanced-carousel-pro'), 'type' => Controls_Manager::SELECT, 'default' => 'center center',
+            'label' => __('Object Position', 'nexa-slider'), 'type' => Controls_Manager::SELECT, 'default' => 'center center',
             'options' => [
-                'center center' => __('Center', 'advanced-carousel-pro'), 'center top' => __('Top', 'advanced-carousel-pro'), 'center bottom' => __('Bottom', 'advanced-carousel-pro'),
-                'left center' => __('Left', 'advanced-carousel-pro'), 'right center' => __('Right', 'advanced-carousel-pro'),
+                'center center' => __('Center', 'nexa-slider'), 'center top' => __('Top', 'nexa-slider'), 'center bottom' => __('Bottom', 'nexa-slider'),
+                'left center' => __('Left', 'nexa-slider'), 'right center' => __('Right', 'nexa-slider'),
             ],
             'selectors' => ['{{WRAPPER}} .pce-v5-media img' => 'object-position: {{VALUE}};'],
         ]);
 
         $this->add_responsive_control('image_height', [
-            'label' => __('Image Height', 'advanced-carousel-pro'), 'type' => Controls_Manager::SLIDER, 'size_units' => ['px', 'vh'],
+            'label' => __('Image Height', 'nexa-slider'), 'type' => Controls_Manager::SLIDER, 'size_units' => ['px', 'vh'],
             'range' => ['px' => ['min' => 80, 'max' => 700], 'vh' => ['min' => 10, 'max' => 80]],
-            'description' => __('Overrides the aspect ratio when set.', 'advanced-carousel-pro'),
+            'description' => __('Overrides the aspect ratio when set.', 'nexa-slider'),
             'selectors' => ['{{WRAPPER}} .pce-v5-media' => 'height: {{SIZE}}{{UNIT}}; aspect-ratio: auto;'],
         ]);
 
         $this->add_responsive_control(
             'image_radius',
             [
-                'label' => __('Border Radius', 'advanced-carousel-pro'),
+                'label' => __('Border Radius', 'nexa-slider'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-media' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -380,7 +380,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->start_controls_section(
             'style_text',
             [
-                'label' => __('Text', 'advanced-carousel-pro'),
+                'label' => __('Text', 'nexa-slider'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -388,19 +388,19 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'text_align',
             [
-                'label' => __('Alignment', 'advanced-carousel-pro'),
+                'label' => __('Alignment', 'nexa-slider'),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => __('Left', 'advanced-carousel-pro'),
+                        'title' => __('Left', 'nexa-slider'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => __('Center', 'advanced-carousel-pro'),
+                        'title' => __('Center', 'nexa-slider'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'right' => [
-                        'title' => __('Right', 'advanced-carousel-pro'),
+                        'title' => __('Right', 'nexa-slider'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
@@ -414,7 +414,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'desc_max_lines',
             [
-                'label' => __('Description Max Lines', 'advanced-carousel-pro'),
+                'label' => __('Description Max Lines', 'nexa-slider'),
                 'type' => Controls_Manager::NUMBER,
                 'default' => 3,
                 'min' => 1,
@@ -427,20 +427,20 @@ class PCE_Carousel_V5 extends Widget_Base {
         );
 
         $this->add_control('desc_full', [
-            'label' => __('Show Full Description', 'advanced-carousel-pro'), 'type' => Controls_Manager::SWITCHER, 'default' => '',
+            'label' => __('Show Full Description', 'nexa-slider'), 'type' => Controls_Manager::SWITCHER, 'default' => '',
             'selectors' => ['{{WRAPPER}} .pce-v5-desc' => 'display: block; -webkit-line-clamp: unset; overflow: visible;'],
         ]);
 
         $this->add_control('title_max_lines', [
-            'label' => __('Title Max Lines', 'advanced-carousel-pro'), 'type' => Controls_Manager::NUMBER, 'min' => 1, 'max' => 6, 'step' => 1,
-            'description' => __('Leave empty to show the whole title.', 'advanced-carousel-pro'),
+            'label' => __('Title Max Lines', 'nexa-slider'), 'type' => Controls_Manager::NUMBER, 'min' => 1, 'max' => 6, 'step' => 1,
+            'description' => __('Leave empty to show the whole title.', 'nexa-slider'),
             'selectors' => ['{{WRAPPER}} .pce-v5-title' => 'display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: {{VALUE}}; overflow: hidden;'],
         ]);
 
         $this->add_control(
             'title_color',
             [
-                'label' => __('Title Color', 'advanced-carousel-pro'),
+                'label' => __('Title Color', 'nexa-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-title' => 'color: {{VALUE}};',
@@ -459,7 +459,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'price_color',
             [
-                'label' => __('Price Color', 'advanced-carousel-pro'),
+                'label' => __('Price Color', 'nexa-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-price' => 'color: {{VALUE}};',
@@ -478,7 +478,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'desc_color',
             [
-                'label' => __('Description Color', 'advanced-carousel-pro'),
+                'label' => __('Description Color', 'nexa-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-desc' => 'color: {{VALUE}};',
@@ -499,7 +499,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->start_controls_section(
             'style_badge',
             [
-                'label' => __('Badge', 'advanced-carousel-pro'),
+                'label' => __('Badge', 'nexa-slider'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -507,7 +507,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'badge_text_color',
             [
-                'label' => __('Text Color', 'advanced-carousel-pro'),
+                'label' => __('Text Color', 'nexa-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-badge' => 'color: {{VALUE}};',
@@ -518,7 +518,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'badge_bg_color',
             [
-                'label' => __('Background Color', 'advanced-carousel-pro'),
+                'label' => __('Background Color', 'nexa-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-badge' => 'background-color: {{VALUE}};',
@@ -537,7 +537,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'badge_padding',
             [
-                'label' => __('Padding', 'advanced-carousel-pro'),
+                'label' => __('Padding', 'nexa-slider'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-badge' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -548,7 +548,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'badge_radius',
             [
-                'label' => __('Border Radius', 'advanced-carousel-pro'),
+                'label' => __('Border Radius', 'nexa-slider'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-badge' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -559,7 +559,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'badge_offset_top',
             [
-                'label' => __('Top Offset', 'advanced-carousel-pro'),
+                'label' => __('Top Offset', 'nexa-slider'),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px', '%'],
                 'range' => [
@@ -577,7 +577,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'badge_offset_inline',
             [
-                'label' => __('Side Offset', 'advanced-carousel-pro'),
+                'label' => __('Side Offset', 'nexa-slider'),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px', '%'],
                 'range' => [
@@ -595,15 +595,15 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'badge_icon_position',
             [
-                'label' => __('Icon Position', 'advanced-carousel-pro'),
+                'label' => __('Icon Position', 'nexa-slider'),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'row' => [
-                        'title' => __('Before', 'advanced-carousel-pro'),
+                        'title' => __('Before', 'nexa-slider'),
                         'icon' => 'eicon-arrow-left',
                     ],
                     'row-reverse' => [
-                        'title' => __('After', 'advanced-carousel-pro'),
+                        'title' => __('After', 'nexa-slider'),
                         'icon' => 'eicon-arrow-right',
                     ],
                 ],
@@ -617,7 +617,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'badge_icon_gap',
             [
-                'label' => __('Icon Spacing', 'advanced-carousel-pro'),
+                'label' => __('Icon Spacing', 'nexa-slider'),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -635,7 +635,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'badge_icon_color',
             [
-                'label' => __('Icon Color', 'advanced-carousel-pro'),
+                'label' => __('Icon Color', 'nexa-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-badge .pce-v5-badge-icon' => 'color: {{VALUE}};',
@@ -647,7 +647,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'badge_icon_size',
             [
-                'label' => __('Icon Size', 'advanced-carousel-pro'),
+                'label' => __('Icon Size', 'nexa-slider'),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -668,7 +668,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->start_controls_section(
             'style_arrows',
             [
-                'label' => __('Arrows', 'advanced-carousel-pro'),
+                'label' => __('Arrows', 'nexa-slider'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -676,7 +676,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'arrow_size',
             [
-                'label' => __('Arrow Button Size', 'advanced-carousel-pro'),
+                'label' => __('Arrow Button Size', 'nexa-slider'),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -694,7 +694,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'arrow_icon_size',
             [
-                'label' => __('Arrow Icon Size', 'advanced-carousel-pro'),
+                'label' => __('Arrow Icon Size', 'nexa-slider'),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -712,7 +712,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'arrows_position_top',
             [
-                'label' => __('Vertical Position', 'advanced-carousel-pro'),
+                'label' => __('Vertical Position', 'nexa-slider'),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px', '%'],
                 'range' => [
@@ -730,8 +730,8 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'arrows_position_sides',
             [
-                'label' => __('Horizontal Offset', 'advanced-carousel-pro'),
-                'description' => __('Use negative values to push arrows outside the carousel.', 'advanced-carousel-pro'),
+                'label' => __('Horizontal Offset', 'nexa-slider'),
+                'description' => __('Use negative values to push arrows outside the carousel.', 'nexa-slider'),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px', '%'],
                 'range' => [
@@ -749,7 +749,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'arrows_wrapper_padding',
             [
-                'label' => __('Arrows Wrapper Padding', 'advanced-carousel-pro'),
+                'label' => __('Arrows Wrapper Padding', 'nexa-slider'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-navigation' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -760,7 +760,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'arrows_button_margin',
             [
-                'label' => __('Arrow Button Margin', 'advanced-carousel-pro'),
+                'label' => __('Arrow Button Margin', 'nexa-slider'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-nav' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -771,7 +771,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'arrows_button_padding',
             [
-                'label' => __('Arrow Button Padding', 'advanced-carousel-pro'),
+                'label' => __('Arrow Button Padding', 'nexa-slider'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-nav' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -784,14 +784,14 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->start_controls_tab(
             'arrows_normal_tab',
             [
-                'label' => __('Normal', 'advanced-carousel-pro'),
+                'label' => __('Normal', 'nexa-slider'),
             ]
         );
 
         $this->add_control(
             'arrows_color',
             [
-                'label' => __('Icon Color', 'advanced-carousel-pro'),
+                'label' => __('Icon Color', 'nexa-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-nav' => 'color: {{VALUE}};',
@@ -802,7 +802,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'arrows_bg_color',
             [
-                'label' => __('Background', 'advanced-carousel-pro'),
+                'label' => __('Background', 'nexa-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-nav' => 'background-color: {{VALUE}};',
@@ -815,14 +815,14 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->start_controls_tab(
             'arrows_hover_tab',
             [
-                'label' => __('Hover', 'advanced-carousel-pro'),
+                'label' => __('Hover', 'nexa-slider'),
             ]
         );
 
         $this->add_control(
             'arrows_color_hover',
             [
-                'label' => __('Icon Color', 'advanced-carousel-pro'),
+                'label' => __('Icon Color', 'nexa-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-nav:hover' => 'color: {{VALUE}};',
@@ -833,7 +833,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'arrows_bg_color_hover',
             [
-                'label' => __('Background', 'advanced-carousel-pro'),
+                'label' => __('Background', 'nexa-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-nav:hover' => 'background-color: {{VALUE}};',
@@ -856,7 +856,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'arrows_radius',
             [
-                'label' => __('Border Radius', 'advanced-carousel-pro'),
+                'label' => __('Border Radius', 'nexa-slider'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-nav' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -877,7 +877,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->start_controls_section(
             'style_dots',
             [
-                'label' => __('Dots', 'advanced-carousel-pro'),
+                'label' => __('Dots', 'nexa-slider'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -885,7 +885,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'dots_size',
             [
-                'label' => __('Dot Size', 'advanced-carousel-pro'),
+                'label' => __('Dot Size', 'nexa-slider'),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -903,7 +903,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'dots_active_width',
             [
-                'label' => __('Active Dot Width', 'advanced-carousel-pro'),
+                'label' => __('Active Dot Width', 'nexa-slider'),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -921,7 +921,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'dots_spacing',
             [
-                'label' => __('Dots Spacing', 'advanced-carousel-pro'),
+                'label' => __('Dots Spacing', 'nexa-slider'),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -939,7 +939,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'dots_top_margin',
             [
-                'label' => __('Top Margin', 'advanced-carousel-pro'),
+                'label' => __('Top Margin', 'nexa-slider'),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -957,19 +957,19 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'dots_alignment',
             [
-                'label' => __('Alignment', 'advanced-carousel-pro'),
+                'label' => __('Alignment', 'nexa-slider'),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'left' => [
-                        'title' => __('Left', 'advanced-carousel-pro'),
+                        'title' => __('Left', 'nexa-slider'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => __('Center', 'advanced-carousel-pro'),
+                        'title' => __('Center', 'nexa-slider'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'right' => [
-                        'title' => __('Right', 'advanced-carousel-pro'),
+                        'title' => __('Right', 'nexa-slider'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
@@ -983,7 +983,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'dots_color',
             [
-                'label' => __('Dot Color', 'advanced-carousel-pro'),
+                'label' => __('Dot Color', 'nexa-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-pagination .swiper-pagination-bullet' => 'background: {{VALUE}};',
@@ -994,7 +994,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'dots_color_active',
             [
-                'label' => __('Active Dot Color', 'advanced-carousel-pro'),
+                'label' => __('Active Dot Color', 'nexa-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-pagination .swiper-pagination-bullet-active' => 'background: {{VALUE}};',
@@ -1003,7 +1003,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         );
 
         $this->add_control('fraction_color', [
-            'label' => __('Counter Color', 'advanced-carousel-pro'), 'type' => Controls_Manager::COLOR,
+            'label' => __('Counter Color', 'nexa-slider'), 'type' => Controls_Manager::COLOR,
             'condition' => ['pagination_type' => 'fraction'],
             'selectors' => ['{{WRAPPER}} .pce-v5-pagination-fraction' => 'color: {{VALUE}};'],
         ]);
@@ -1012,17 +1012,17 @@ class PCE_Carousel_V5 extends Widget_Base {
             'condition' => ['pagination_type' => 'fraction'],
         ]);
         $this->add_control('progress_height', [
-            'label' => __('Progress Bar Height', 'advanced-carousel-pro'), 'type' => Controls_Manager::SLIDER,
+            'label' => __('Progress Bar Height', 'nexa-slider'), 'type' => Controls_Manager::SLIDER,
             'range' => ['px' => ['min' => 1, 'max' => 16]], 'condition' => ['pagination_type' => 'progressbar'],
             'selectors' => ['{{WRAPPER}} .pce-v5-pagination-progressbar' => 'height: {{SIZE}}{{UNIT}};'],
         ]);
         $this->add_control('progress_track_color', [
-            'label' => __('Progress Track Color', 'advanced-carousel-pro'), 'type' => Controls_Manager::COLOR,
+            'label' => __('Progress Track Color', 'nexa-slider'), 'type' => Controls_Manager::COLOR,
             'condition' => ['pagination_type' => 'progressbar'],
             'selectors' => ['{{WRAPPER}} .pce-v5-pagination-progressbar' => 'background: {{VALUE}};'],
         ]);
         $this->add_control('progress_fill_color', [
-            'label' => __('Progress Fill Color', 'advanced-carousel-pro'), 'type' => Controls_Manager::COLOR,
+            'label' => __('Progress Fill Color', 'nexa-slider'), 'type' => Controls_Manager::COLOR,
             'condition' => ['pagination_type' => 'progressbar'],
             'selectors' => ['{{WRAPPER}} .pce-v5-pagination-progressbar .swiper-pagination-progressbar-fill' => 'background: {{VALUE}};'],
         ]);
@@ -1032,7 +1032,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->start_controls_section(
             'style_button',
             [
-                'label' => __('Button', 'advanced-carousel-pro'),
+                'label' => __('Button', 'nexa-slider'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
@@ -1040,19 +1040,19 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'btn_alignment',
             [
-                'label' => __('Alignment', 'advanced-carousel-pro'),
+                'label' => __('Alignment', 'nexa-slider'),
                 'type' => Controls_Manager::CHOOSE,
                 'options' => [
                     'flex-start' => [
-                        'title' => __('Left', 'advanced-carousel-pro'),
+                        'title' => __('Left', 'nexa-slider'),
                         'icon' => 'eicon-text-align-left',
                     ],
                     'center' => [
-                        'title' => __('Center', 'advanced-carousel-pro'),
+                        'title' => __('Center', 'nexa-slider'),
                         'icon' => 'eicon-text-align-center',
                     ],
                     'flex-end' => [
-                        'title' => __('Right', 'advanced-carousel-pro'),
+                        'title' => __('Right', 'nexa-slider'),
                         'icon' => 'eicon-text-align-right',
                     ],
                 ],
@@ -1066,13 +1066,13 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'btn_width_type',
             [
-                'label' => __('Width', 'advanced-carousel-pro'),
+                'label' => __('Width', 'nexa-slider'),
                 'type' => Controls_Manager::SELECT,
                 'default' => 'full',
                 'options' => [
-                    'full' => __('Full Width', 'advanced-carousel-pro'),
-                    'auto' => __('Auto', 'advanced-carousel-pro'),
-                    'custom' => __('Custom', 'advanced-carousel-pro'),
+                    'full' => __('Full Width', 'nexa-slider'),
+                    'auto' => __('Auto', 'nexa-slider'),
+                    'custom' => __('Custom', 'nexa-slider'),
                 ],
                 'selectors_dictionary' => [
                     'full' => 'width: 100%;',
@@ -1088,7 +1088,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'btn_custom_width',
             [
-                'label' => __('Custom Width', 'advanced-carousel-pro'),
+                'label' => __('Custom Width', 'nexa-slider'),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px', '%'],
                 'range' => [
@@ -1113,7 +1113,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'btn_min_height',
             [
-                'label' => __('Minimum Height', 'advanced-carousel-pro'),
+                'label' => __('Minimum Height', 'nexa-slider'),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -1131,7 +1131,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'btn_icon_size',
             [
-                'label' => __('Icon Size', 'advanced-carousel-pro'),
+                'label' => __('Icon Size', 'nexa-slider'),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -1150,7 +1150,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'btn_icon_gap',
             [
-                'label' => __('Icon Gap', 'advanced-carousel-pro'),
+                'label' => __('Icon Gap', 'nexa-slider'),
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -1176,7 +1176,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'btn_padding',
             [
-                'label' => __('Padding', 'advanced-carousel-pro'),
+                'label' => __('Padding', 'nexa-slider'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -1187,7 +1187,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_responsive_control(
             'btn_radius',
             [
-                'label' => __('Border Radius', 'advanced-carousel-pro'),
+                'label' => __('Border Radius', 'nexa-slider'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -1200,14 +1200,14 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->start_controls_tab(
             'btn_normal_tab',
             [
-                'label' => __('Normal', 'advanced-carousel-pro'),
+                'label' => __('Normal', 'nexa-slider'),
             ]
         );
 
         $this->add_control(
             'btn_color',
             [
-                'label' => __('Text Color', 'advanced-carousel-pro'),
+                'label' => __('Text Color', 'nexa-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-btn:not(.pce-v5-btn-secondary)' => 'color: {{VALUE}};',
@@ -1220,7 +1220,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'btn_bg',
             [
-                'label' => __('Background', 'advanced-carousel-pro'),
+                'label' => __('Background', 'nexa-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-btn:not(.pce-v5-btn-secondary)' => 'background-color: {{VALUE}};',
@@ -1231,7 +1231,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'btn_border_color',
             [
-                'label' => __('Border Color', 'advanced-carousel-pro'),
+                'label' => __('Border Color', 'nexa-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-btn:not(.pce-v5-btn-secondary)' => 'border-color: {{VALUE}};',
@@ -1244,14 +1244,14 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->start_controls_tab(
             'btn_hover_tab',
             [
-                'label' => __('Hover', 'advanced-carousel-pro'),
+                'label' => __('Hover', 'nexa-slider'),
             ]
         );
 
         $this->add_control(
             'btn_color_hover',
             [
-                'label' => __('Text Color', 'advanced-carousel-pro'),
+                'label' => __('Text Color', 'nexa-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-btn:not(.pce-v5-btn-secondary):hover, {{WRAPPER}} .pce-v5-btn:not(.pce-v5-btn-secondary):focus' => 'color: {{VALUE}};',
@@ -1264,7 +1264,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'btn_bg_hover',
             [
-                'label' => __('Background', 'advanced-carousel-pro'),
+                'label' => __('Background', 'nexa-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-btn:not(.pce-v5-btn-secondary):hover, {{WRAPPER}} .pce-v5-btn:not(.pce-v5-btn-secondary):focus' => 'background-color: {{VALUE}};',
@@ -1275,7 +1275,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'btn_border_color_hover',
             [
-                'label' => __('Border Color', 'advanced-carousel-pro'),
+                'label' => __('Border Color', 'nexa-slider'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-btn:not(.pce-v5-btn-secondary):hover, {{WRAPPER}} .pce-v5-btn:not(.pce-v5-btn-secondary):focus' => 'border-color: {{VALUE}};',
@@ -1286,7 +1286,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'btn_hover_translate',
             [
-                'label' => __('Hover Lift (Y)', 'advanced-carousel-pro'),
+                'label' => __('Hover Lift (Y)', 'nexa-slider'),
                 'type' => Controls_Manager::NUMBER,
                 'default' => -1,
                 'min' => -20,
@@ -1301,7 +1301,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'btn_hover_scale',
             [
-                'label' => __('Hover Scale', 'advanced-carousel-pro'),
+                'label' => __('Hover Scale', 'nexa-slider'),
                 'type' => Controls_Manager::NUMBER,
                 'default' => 1,
                 'min' => 0.9,
@@ -1316,7 +1316,7 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->add_control(
             'btn_transition_duration',
             [
-                'label' => __('Transition Duration (ms)', 'advanced-carousel-pro'),
+                'label' => __('Transition Duration (ms)', 'nexa-slider'),
                 'type' => Controls_Manager::NUMBER,
                 'default' => 200,
                 'min' => 100,
@@ -1332,14 +1332,14 @@ class PCE_Carousel_V5 extends Widget_Base {
 
         $this->end_controls_tabs();
 
-        $this->add_control('btn2_heading', ['label' => __('Second Button', 'advanced-carousel-pro'), 'type' => Controls_Manager::HEADING, 'separator' => 'before']);
+        $this->add_control('btn2_heading', ['label' => __('Second Button', 'nexa-slider'), 'type' => Controls_Manager::HEADING, 'separator' => 'before']);
         foreach ([
-            'btn2_color' => [__('Text Color', 'advanced-carousel-pro'), '.pce-v5-btn-secondary', 'color'],
-            'btn2_bg' => [__('Background', 'advanced-carousel-pro'), '.pce-v5-btn-secondary', 'background-color'],
-            'btn2_border_color' => [__('Border Color', 'advanced-carousel-pro'), '.pce-v5-btn-secondary', 'border-color'],
-            'btn2_color_hover' => [__('Text Color (Hover)', 'advanced-carousel-pro'), '.pce-v5-btn-secondary:hover, {{WRAPPER}} .pce-v5-btn-secondary:focus', 'color'],
-            'btn2_bg_hover' => [__('Background (Hover)', 'advanced-carousel-pro'), '.pce-v5-btn-secondary:hover, {{WRAPPER}} .pce-v5-btn-secondary:focus', 'background-color'],
-            'btn2_border_color_hover' => [__('Border Color (Hover)', 'advanced-carousel-pro'), '.pce-v5-btn-secondary:hover, {{WRAPPER}} .pce-v5-btn-secondary:focus', 'border-color'],
+            'btn2_color' => [__('Text Color', 'nexa-slider'), '.pce-v5-btn-secondary', 'color'],
+            'btn2_bg' => [__('Background', 'nexa-slider'), '.pce-v5-btn-secondary', 'background-color'],
+            'btn2_border_color' => [__('Border Color', 'nexa-slider'), '.pce-v5-btn-secondary', 'border-color'],
+            'btn2_color_hover' => [__('Text Color (Hover)', 'nexa-slider'), '.pce-v5-btn-secondary:hover, {{WRAPPER}} .pce-v5-btn-secondary:focus', 'color'],
+            'btn2_bg_hover' => [__('Background (Hover)', 'nexa-slider'), '.pce-v5-btn-secondary:hover, {{WRAPPER}} .pce-v5-btn-secondary:focus', 'background-color'],
+            'btn2_border_color_hover' => [__('Border Color (Hover)', 'nexa-slider'), '.pce-v5-btn-secondary:hover, {{WRAPPER}} .pce-v5-btn-secondary:focus', 'border-color'],
         ] as $control_id => [$label, $selector, $property]) {
             $this->add_control($control_id, [
                 'label' => $label, 'type' => Controls_Manager::COLOR,
@@ -1383,8 +1383,8 @@ class PCE_Carousel_V5 extends Widget_Base {
         if (!$items) {
             if (\Elementor\Plugin::$instance->editor->is_edit_mode()) {
                 $message = $source === 'woocommerce' && !function_exists('wc_get_products')
-                    ? __('Activate WooCommerce to display products.', 'advanced-carousel-pro')
-                    : __('No items match the selected source. Add items or adjust product filters.', 'advanced-carousel-pro');
+                    ? __('Activate WooCommerce to display products.', 'nexa-slider')
+                    : __('No items match the selected source. Add items or adjust product filters.', 'nexa-slider');
                 echo '<div class="pce-v5-empty" role="status">' . esc_html($message) . '</div>';
             }
             return;
@@ -1432,15 +1432,15 @@ class PCE_Carousel_V5 extends Widget_Base {
         ];
         $slider_options['profiles'] = PCE_Settings::profiles($settings, $this->get_data('settings'));
         $slider_options['messages'] = [
-            'prev' => __('Previous slide', 'advanced-carousel-pro'),
-            'next' => __('Next slide', 'advanced-carousel-pro'),
-            'first' => __('This is the first slide', 'advanced-carousel-pro'),
-            'last' => __('This is the last slide', 'advanced-carousel-pro'),
-            'bullet' => __('Go to slide {{index}}', 'advanced-carousel-pro'),
-            'slide' => __('{{index}} of {{slidesLength}}', 'advanced-carousel-pro'),
-            'pause' => __('Pause slideshow', 'advanced-carousel-pro'),
-            'play' => __('Play slideshow', 'advanced-carousel-pro'),
-            'reduced' => __('Slideshow paused: reduced motion', 'advanced-carousel-pro'),
+            'prev' => __('Previous slide', 'nexa-slider'),
+            'next' => __('Next slide', 'nexa-slider'),
+            'first' => __('This is the first slide', 'nexa-slider'),
+            'last' => __('This is the last slide', 'nexa-slider'),
+            'bullet' => __('Go to slide {{index}}', 'nexa-slider'),
+            'slide' => __('{{index}} of {{slidesLength}}', 'nexa-slider'),
+            'pause' => __('Pause slideshow', 'nexa-slider'),
+            'play' => __('Play slideshow', 'nexa-slider'),
+            'reduced' => __('Slideshow paused: reduced motion', 'nexa-slider'),
         ];
         require ACP_PLUGIN_PATH . 'includes/templates/carousel.php';
     }
@@ -1508,6 +1508,6 @@ class PCE_Carousel_V5 extends Widget_Base {
             return $fallback;
         }
 
-        return __('Product image', 'advanced-carousel-pro');
+        return __('Product image', 'nexa-slider');
     }
 }
