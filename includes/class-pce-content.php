@@ -31,6 +31,29 @@ final class PCE_Content {
         return $options;
     }
 
+    /** Custom field names must be plain and public; protected/underscore keys are never read. */
+    private static function meta_key($value) {
+        $key = is_string($value) ? trim($value) : '';
+        if ($key === '' || !preg_match('/^[A-Za-z0-9][A-Za-z0-9_\-]{0,63}$/', $key) || (function_exists('is_protected_meta') && is_protected_meta($key, 'post'))) {
+            return '';
+        }
+        return $key;
+    }
+
+    private static function meta_text($id, $key) {
+        $value = $key === '' ? '' : get_post_meta($id, $key, true);
+        return is_scalar($value) ? trim(wp_strip_all_tags((string) $value)) : '';
+    }
+
+    /** A URL, or a media ID resolved to its file URL; anything else is dropped. */
+    private static function meta_url($id, $key) {
+        $value = self::meta_text($id, $key);
+        if ($value !== '' && ctype_digit($value)) {
+            $value = (string) wp_get_attachment_url((int) $value);
+        }
+        return $value !== '' && preg_match('#^https?://#i', $value) ? esc_url_raw($value) : '';
+    }
+
     public static function items(array $settings) {
         if (!function_exists('get_post_types') || !class_exists('WP_Query')) {
             return [];
@@ -58,12 +81,20 @@ final class PCE_Content {
             'suppress_filters' => false,
         ];
         $taxonomy = is_string($settings['wp_taxonomy'] ?? null) ? $settings['wp_taxonomy'] : '';
-        $terms = PCE_Products::ids($settings['wp_term_ids'] ?? '');
-        if ($taxonomy !== '' && $terms) {
-            if (!taxonomy_exists($taxonomy) || !is_object_in_taxonomy($post_type, $taxonomy)) {
+        $tax_query = [];
+        foreach ([['wp_taxonomy', 'wp_term_ids'], ['wp_taxonomy_2', 'wp_term_ids_2']] as [$tax_key, $terms_key]) {
+            $slug = is_string($settings[$tax_key] ?? null) ? $settings[$tax_key] : '';
+            $terms = PCE_Products::ids($settings[$terms_key] ?? '');
+            if ($slug === '' || !$terms) {
+                continue;
+            }
+            if (!taxonomy_exists($slug) || !is_object_in_taxonomy($post_type, $slug)) {
                 return [];
             }
-            $args['tax_query'] = [['taxonomy' => $taxonomy, 'field' => 'term_id', 'terms' => $terms]];
+            $tax_query[] = ['taxonomy' => $slug, 'field' => 'term_id', 'terms' => $terms];
+        }
+        if ($tax_query) {
+            $args['tax_query'] = count($tax_query) > 1 ? array_merge(['relation' => 'AND'], $tax_query) : $tax_query;
         }
         $selected = [];
         if (($settings['wp_query'] ?? 'latest') === 'selected') {
@@ -77,6 +108,9 @@ final class PCE_Content {
         }
         $query = new WP_Query($args);
         $button = is_string($settings['wp_button_text'] ?? null) && $settings['wp_button_text'] !== '' ? $settings['wp_button_text'] : __('View', 'advanced-carousel-pro');
+        $price_key = self::meta_key($settings['wp_price_meta'] ?? '');
+        $btn2_key = self::meta_key($settings['wp_btn2_meta'] ?? '');
+        $btn2_text = is_string($settings['wp_btn2_text'] ?? null) ? $settings['wp_btn2_text'] : '';
         $items = [];
         foreach ((array) $query->posts as $post) {
             $id = (int) (is_object($post) ? $post->ID : $post);
@@ -95,11 +129,13 @@ final class PCE_Content {
                 'title' => get_the_title($id),
                 'category' => $badge,
                 'image' => ['id' => $image_id, 'url' => $image_id ? wp_get_attachment_image_url($image_id, 'large') : ''],
-                'price' => '',
+                'price' => self::meta_text($id, $price_key),
                 'price_html' => '',
                 'desc' => wp_trim_words(wp_strip_all_tags(strip_shortcodes((string) get_post_field('post_excerpt', $id))), 30),
                 'link' => ['url' => get_permalink($id)],
                 'btn_text' => $button,
+                'btn2_text' => $btn2_text,
+                'btn2_link' => ['url' => $btn2_text !== '' ? self::meta_url($id, $btn2_key) : ''],
             ];
             if (count($items) >= $limit) {
                 break;

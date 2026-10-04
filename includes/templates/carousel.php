@@ -52,9 +52,30 @@ $show = static function ($part) use ($settings) { return ($settings['show_' . $p
                         $this->add_render_attribute($link_key, 'rel', implode(' ', $rels), true);
                     }
                 }
+                $card_link = $url ? $this->sanitize_choice($settings['card_link'] ?? 'button', ['button', 'title', 'card'], 'button') : 'button';
+                $btn2_text = trim(PCE_Settings::text($item['btn2_text'] ?? ''));
+                $url2 = $btn2_text !== '' && is_array($item['btn2_link'] ?? null) ? esc_url_raw(PCE_Settings::text($item['btn2_link']['url'] ?? '')) : '';
+                if ($url2) {
+                    $link2_key = 'item_link2_' . $index;
+                    $this->remove_render_attribute($link2_key);
+                    $this->add_render_attribute($link2_key, 'href', $url2, true);
+                    $this->add_render_attribute($link2_key, 'class', 'pce-v5-btn pce-v5-btn-secondary', true);
+                    $this->add_render_attribute($link2_key, 'aria-label', $title ? $btn2_text . ': ' . $title : $btn2_text, true);
+                    $rels2 = [];
+                    if (!empty($item['btn2_link']['is_external'])) {
+                        $this->add_render_attribute($link2_key, 'target', '_blank', true);
+                        $rels2 = ['noopener', 'noreferrer'];
+                    }
+                    if (!empty($item['btn2_link']['nofollow'])) {
+                        $rels2[] = 'nofollow';
+                    }
+                    if ($rels2) {
+                        $this->add_render_attribute($link2_key, 'rel', implode(' ', $rels2), true);
+                    }
+                }
                 ?>
                 <article class="swiper-slide" data-pce-card="<?php echo esc_attr(PCE_Settings::text($item['_id'] ?? $index)); ?>">
-                    <div class="pce-v5-card">
+                    <div class="pce-v5-card<?php echo $card_link === 'card' ? ' pce-card-linked' : ''; ?>">
                         <?php if ($show('badge') && $badge !== '') : ?>
                             <span class="pce-v5-badge">
                                 <?php if (!empty($item['badge_icon']['value'])) : ?>
@@ -68,7 +89,7 @@ $show = static function ($part) use ($settings) { return ($settings['show_' . $p
                         <?php endif; ?>
                         <div class="pce-v5-body">
                             <?php if ($show('title') && $title !== '') : ?>
-                                <<?php echo esc_attr($title_tag); ?> class="pce-v5-title"><?php echo esc_html($title); ?></<?php echo esc_attr($title_tag); ?>>
+                                <<?php echo esc_attr($title_tag); ?> class="pce-v5-title"><?php if ($card_link !== 'button') : ?><a class="pce-v5-title-link" href="<?php echo esc_url($url); ?>"<?php echo !empty($item['link']['is_external']) ? ' target="_blank" rel="noopener noreferrer"' : ''; ?>><?php echo esc_html($title); ?></a><?php else : echo esc_html($title); endif; ?></<?php echo esc_attr($title_tag); ?>>
                             <?php endif; ?>
                             <?php if ($show('price') && (!empty($item['price_html']) || $price !== '')) : ?>
                                 <div class="pce-v5-price"><?php echo $source === 'woocommerce' ? wp_kses_post($item['price_html'] ?? '') : esc_html($price); ?></div>
@@ -89,6 +110,9 @@ $show = static function ($part) use ($settings) { return ($settings['show_' . $p
                                 <?php endif; ?>
                                 <span class="pce-v5-btn-label"><?php echo esc_html($btn_text); ?></span>
                                 <?php echo $url ? '</a>' : '</span>'; ?>
+                                <?php if ($url2) : ?>
+                                    <a <?php echo $this->get_render_attribute_string($link2_key); ?>><span class="pce-v5-btn-label"><?php echo esc_html($btn2_text); ?></span></a>
+                                <?php endif; ?>
                             </div>
                         <?php endif; ?>
                     </div>

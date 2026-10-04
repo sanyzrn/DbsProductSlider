@@ -13,6 +13,9 @@ msgstr "رنگ نقطهٔ فعال"
 msgid "Active Dot Width"
 msgstr "عرض نقطهٔ فعال"
 
+msgid "Added"
+msgstr "اضافه شد"
+
 msgid "After"
 msgstr "بعد"
 
@@ -112,11 +115,20 @@ msgstr "پیوند دکمه"
 msgid "Button Text"
 msgstr "متن دکمه"
 
+msgid "Button and title"
+msgstr "دکمه و عنوان"
+
+msgid "Button only"
+msgstr "فقط دکمه"
+
 msgid "Card"
 msgstr "کارت"
 
 msgid "Card Content"
 msgstr "اجزای کارت"
+
+msgid "Card Link"
+msgstr "لینک کارت"
 
 msgid "Card Preset"
 msgstr "ظاهر آمادهٔ کارت"
@@ -177,6 +189,9 @@ msgstr "دلخواه"
 
 msgid "Custom Width"
 msgstr "عرض دلخواه"
+
+msgid "Custom field holding a URL or a media file ID, such as a PDF. The button appears only on items that have a value."
+msgstr "فیلد سفارشی حاوی URL یا شناسه فایل رسانه، مثل PDF. دکمه فقط روی آیتم‌هایی که مقدار دارند نمایش داده می‌شود."
 
 msgid "Date"
 msgstr "تاریخ"
@@ -439,6 +454,9 @@ msgstr "اسلاید بعدی"
 msgid "No items match the selected source. Add items or adjust product filters."
 msgstr "هیچ آیتمی مطابق منبع انتخاب‌شده وجود ندارد. آیتم اضافه کنید یا فیلتر محصولات را تغییر دهید."
 
+msgid "No published items found."
+msgstr "آیتم منتشرشده‌ای پیدا نشد."
+
 msgid "None"
 msgstr "هیچ‌کدام"
 
@@ -459,6 +477,15 @@ msgstr "نامک دسته‌ها را با ویرگول جدا کنید؛ برا
 
 msgid "Optional comma-separated term IDs. Leave empty for all groups."
 msgstr "شناسه ترم‌ها با کاما (اختیاری). برای همه گروه‌ها خالی بگذارید."
+
+msgid "Optional custom field name (works with ACF field names). Private fields starting with an underscore are ignored."
+msgstr "نام فیلد سفارشی (اختیاری؛ با نام فیلدهای ACF هم کار می‌کند). فیلدهای خصوصی که با آندرلاین شروع می‌شوند نادیده گرفته می‌شوند."
+
+msgid "Optional, for example a PDF or brochure. Shown only when a link is set."
+msgstr "اختیاری، مثلاً PDF یا بروشور. فقط وقتی لینک تنظیم شده باشد نمایش داده می‌شود."
+
+msgid "Optional. Items must match both group filters."
+msgstr "اختیاری. آیتم‌ها باید با هر دو فیلتر گروه مطابقت داشته باشند."
 
 msgid "Optional. Must be registered for the selected content type."
 msgstr "اختیاری. باید برای نوع محتوای انتخاب‌شده ثبت شده باشد."
@@ -499,8 +526,14 @@ msgstr "عمودی (۴:۵)"
 msgid "Previous slide"
 msgstr "اسلاید قبلی"
 
+msgid "Price"
+msgstr "قیمت"
+
 msgid "Price / Label"
 msgstr "قیمت / برچسب"
+
+msgid "Price / Label Custom Field"
+msgstr "فیلد سفارشی قیمت / برچسب"
 
 msgid "Price Color"
 msgstr "رنگ قیمت"
@@ -549,6 +582,9 @@ msgstr "نوار پیشرفت"
 msgid "Purchase / select options"
 msgstr "خرید / انتخاب گزینه‌ها"
 
+msgid "Rating"
+msgstr "امتیاز"
+
 msgid "Release Mousewheel On Edges"
 msgstr "آزاد کردن اسکرول در ابتدا و انتها"
 
@@ -573,11 +609,35 @@ msgstr "چرخش هنگام قرار گرفتن ماوس (درجه)"
 msgid "Sale"
 msgstr "حراج"
 
+msgid "Sales"
+msgstr "فروش"
+
 msgid "Scale On Hover"
 msgstr "بزرگ‌نمایی هنگام قرار گرفتن ماوس"
 
 msgid "Scroll over the carousel to change slides. Page scrolling resumes at the edges when loop is off."
 msgstr "با چرخ ماوس روی اسلایدر، کارت‌ها را جابه‌جا کنید. وقتی حرکت پیوسته خاموش باشد، اسکرول صفحه در ابتدا و انتها آزاد می‌شود."
+
+msgid "Search by title or SKU…"
+msgstr "جست‌وجو بر اساس عنوان یا SKU…"
+
+msgid "Search failed. Try again."
+msgstr "جست‌وجو ناموفق بود. دوباره تلاش کنید."
+
+msgid "Second Button Link"
+msgstr "لینک دکمه دوم"
+
+msgid "Second Button Link Field"
+msgstr "فیلد لینک دکمه دوم"
+
+msgid "Second Button Text"
+msgstr "متن دکمه دوم"
+
+msgid "Second Group (Term) IDs"
+msgstr "شناسه گروه‌های دوم (ترم)"
+
+msgid "Second Group Taxonomy"
+msgstr "طبقه‌بندی گروه دوم"
 
 msgid "Select options"
 msgstr "انتخاب گزینه‌ها"
@@ -684,6 +744,9 @@ msgstr "مدت جابه‌جایی (میلی‌ثانیه)"
 msgid "Use negative values to push arrows outside the carousel."
 msgstr "با مقدار منفی می‌توانید فلش‌ها را بیرون از قاب اسلایدر قرار دهید."
 
+msgid "Uses the item link. The title link covers the card in whole-card mode; other links stay separately clickable."
+msgstr "از لینک خود آیتم استفاده می‌کند. در حالت کل کارت، لینک عنوان کل کارت را می‌پوشاند و بقیه لینک‌ها جداگانه قابل کلیک می‌مانند."
+
 msgid "Vertical Position"
 msgstr "جایگاه عمودی"
 
@@ -698,6 +761,9 @@ msgstr "مشاهدهٔ محصول"
 
 msgid "Visible Slides"
 msgstr "تعداد اسلایدهای نمایان"
+
+msgid "Whole card"
+msgstr "کل کارت"
 
 msgid "Width"
 msgstr "عرض"
