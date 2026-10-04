@@ -13,6 +13,11 @@ final class PCE_Settings {
         return is_numeric($value) && is_finite((float) $value) && $value >= $min && $value <= $max ? (float) $value : $fallback;
     }
 
+    /** Numeric values are limited to the allowed range; anything non-numeric uses the fallback. */
+    public static function clamp($value, $fallback, $min, $max) {
+        return is_numeric($value) && is_finite((float) $value) ? max($min, min($max, (float) $value)) : $fallback;
+    }
+
     public static function profiles(array $settings, ?array $raw_settings = null) {
         $explicit_settings = $raw_settings ?? $settings;
         $breakpoints = [

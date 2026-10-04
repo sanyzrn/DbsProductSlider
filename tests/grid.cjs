@@ -2,7 +2,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const { chromium } = require('playwright');
+const launch = require('./launch.cjs');
 const root = path.join(__dirname, '..');
 const variants = JSON.parse(fs.readFileSync(path.join(__dirname, '.generated/variants.json'), 'utf8'));
 const controls = JSON.parse(fs.readFileSync(path.join(__dirname, '.generated/controls.json'), 'utf8'));
@@ -13,8 +13,7 @@ const scripts = {
 };
 
 (async () => {
-    const systemChrome = process.platform === 'win32' && 'C:/Program Files/Google/Chrome/Application/chrome.exe';
-    const browser = await chromium.launch(systemChrome && fs.existsSync(systemChrome) ? { executablePath: systemChrome, headless: true } : { headless: true });
+    const browser = await launch();
     const page = await browser.newPage({ viewport: { width: 1200, height: 900 } });
     await page.setContent('<!doctype html><html><body style="margin:40px"><main style="max-width:1100px;margin:auto">' + variants.grid + '</main></body></html>');
     await page.addStyleTag({ path: path.join(root, 'assets/vendor/swiper/swiper-bundle.min.css') });
@@ -45,6 +44,32 @@ const scripts = {
     assert.equal(tuned.columns, 2, 'Grid columns control reaches computed CSS');
     assert.equal(tuned.gap, '7px', 'Grid gap control reaches computed CSS');
     assert.equal(await page.locator('.pce-v5-navigation, .swiper-pagination, .pce-v5-autoplay').count(), 0, 'No carousel controls in grid mode');
+    // A broken image is replaced once by the placeholder; a broken hover image is dropped.
+    await page.evaluate(() => {
+        const media = document.querySelector('.pce-v5-media');
+        const image = media.querySelector('img');
+        image.removeAttribute('data-pce-fallback');
+        image.src = 'https://invalid.invalid/missing.png';
+        const hover = document.createElement('img');
+        hover.className = 'pce-v5-hover-image';
+        media.appendChild(hover);
+        hover.src = 'https://invalid.invalid/hover.png';
+    });
+    await page.waitForFunction(() => document.querySelector('.pce-v5-media img').getAttribute('data-pce-fallback') === '1');
+    assert.ok((await page.locator('.pce-v5-media img').first().getAttribute('src')).endsWith('placeholder.png'), 'Broken image falls back to the placeholder');
+    await page.waitForFunction(() => !document.querySelector('.pce-v5-media .pce-v5-hover-image'));
+    // Hover lift and scale add vertical room so lifted cards are not clipped.
+    const padding = await page.evaluate(() => {
+        const slider = document.querySelector('.pce-v5-slider');
+        const base = parseFloat(getComputedStyle(slider).paddingTop);
+        slider.style.setProperty('--pce-hover-lift', '-40px');
+        slider.style.setProperty('--pce-hover-scale', '1.1');
+        const lifted = { top: parseFloat(getComputedStyle(slider).paddingTop), bottom: parseFloat(getComputedStyle(slider).paddingBottom) };
+        return { base, ...lifted };
+    });
+    assert.equal(padding.base, 0, 'Default padding is unchanged by the safe-space rule');
+    assert.equal(padding.top, 40 + 20, 'Top padding grows with lift and scale');
+    assert.equal(padding.bottom, 20, 'Bottom padding grows with scale');
     await browser.close();
     console.log('Grid checks passed');
 })().catch(error => { console.error(error); process.exit(1); });

@@ -4,7 +4,7 @@ Tags: elementor, carousel, slider, products
 Requires at least: 6.2
 Requires PHP: 7.4
 Requires Plugins: elementor
-Stable tag: 2.4.0
+Stable tag: 2.4.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -76,6 +76,14 @@ WordPress/Elementor/WooCommerce APIs and does not test a live database or Elemen
 Complete site/editor integration and touch/screen-reader checks are required before broad release.
 
 == Changelog ==
+
+= 2.4.1 =
+- Fixed the second button inheriting the primary button colors; it now has its own colors and hover colors.
+- Added vertical room for hover lift and scale so lifted cards and shadows are not clipped.
+- Broken card images now fall back to the placeholder and keep their space; a broken hover image is dropped.
+- Out-of-range item counts and summary lengths are limited to the allowed range instead of resetting to the default.
+- The editor search now lists the selected items by title and lets you remove them.
+- Test scripts can use an existing Chromium through PCE_CHROMIUM_PATH.
 
 = 2.4.0 =
 - Added a WordPress content source: any public content type with optional taxonomy filters, latest or selected IDs, ordering, exclusions and published-only output.
@@ -155,6 +163,10 @@ Complete site/editor integration and touch/screen-reader checks are required bef
 - Updated visual styling and responsive behavior
 
 == Upgrade Notice ==
+
+= 2.4.1 =
+Maintenance release. Custom button colors no longer fill the second button; set its colors in Style > Button > Second Button.
+Regenerate Elementor CSS and clear caches after upgrading.
 
 = 2.4.0 =
 New sources and layout options are additive; saved widgets keep their source, IDs and behavior.

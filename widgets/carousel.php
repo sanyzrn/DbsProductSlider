@@ -184,6 +184,7 @@ class PCE_Carousel_V5 extends Widget_Base {
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-card' => '--pce-card-hover-translate: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .pce-v5-slider' => '--pce-hover-lift: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -199,6 +200,7 @@ class PCE_Carousel_V5 extends Widget_Base {
                 'step' => 0.01,
                 'selectors' => [
                     '{{WRAPPER}} .pce-v5-card' => '--pce-card-hover-scale: {{VALUE}};',
+                    '{{WRAPPER}} .pce-v5-slider' => '--pce-hover-scale: {{VALUE}};',
                 ],
             ]
         );
@@ -1208,7 +1210,7 @@ class PCE_Carousel_V5 extends Widget_Base {
                 'label' => __('Text Color', 'advanced-carousel-pro'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .pce-v5-btn' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .pce-v5-btn:not(.pce-v5-btn-secondary)' => 'color: {{VALUE}};',
                     '{{WRAPPER}} .pce-v5-btn-icon' => 'color: {{VALUE}};',
                     '{{WRAPPER}} .pce-v5-btn-icon svg' => 'fill: {{VALUE}};',
                 ],
@@ -1221,7 +1223,7 @@ class PCE_Carousel_V5 extends Widget_Base {
                 'label' => __('Background', 'advanced-carousel-pro'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .pce-v5-btn' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .pce-v5-btn:not(.pce-v5-btn-secondary)' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -1232,7 +1234,7 @@ class PCE_Carousel_V5 extends Widget_Base {
                 'label' => __('Border Color', 'advanced-carousel-pro'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .pce-v5-btn' => 'border-color: {{VALUE}};',
+                    '{{WRAPPER}} .pce-v5-btn:not(.pce-v5-btn-secondary)' => 'border-color: {{VALUE}};',
                 ],
             ]
         );
@@ -1252,7 +1254,7 @@ class PCE_Carousel_V5 extends Widget_Base {
                 'label' => __('Text Color', 'advanced-carousel-pro'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .pce-v5-btn:hover, {{WRAPPER}} .pce-v5-btn:focus' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .pce-v5-btn:not(.pce-v5-btn-secondary):hover, {{WRAPPER}} .pce-v5-btn:not(.pce-v5-btn-secondary):focus' => 'color: {{VALUE}};',
                     '{{WRAPPER}} .pce-v5-btn:hover .pce-v5-btn-icon, {{WRAPPER}} .pce-v5-btn:focus .pce-v5-btn-icon' => 'color: {{VALUE}};',
                     '{{WRAPPER}} .pce-v5-btn:hover .pce-v5-btn-icon svg, {{WRAPPER}} .pce-v5-btn:focus .pce-v5-btn-icon svg' => 'fill: {{VALUE}};',
                 ],
@@ -1265,7 +1267,7 @@ class PCE_Carousel_V5 extends Widget_Base {
                 'label' => __('Background', 'advanced-carousel-pro'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .pce-v5-btn:hover, {{WRAPPER}} .pce-v5-btn:focus' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .pce-v5-btn:not(.pce-v5-btn-secondary):hover, {{WRAPPER}} .pce-v5-btn:not(.pce-v5-btn-secondary):focus' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -1276,7 +1278,7 @@ class PCE_Carousel_V5 extends Widget_Base {
                 'label' => __('Border Color', 'advanced-carousel-pro'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .pce-v5-btn:hover, {{WRAPPER}} .pce-v5-btn:focus' => 'border-color: {{VALUE}};',
+                    '{{WRAPPER}} .pce-v5-btn:not(.pce-v5-btn-secondary):hover, {{WRAPPER}} .pce-v5-btn:not(.pce-v5-btn-secondary):focus' => 'border-color: {{VALUE}};',
                 ],
             ]
         );
@@ -1329,6 +1331,21 @@ class PCE_Carousel_V5 extends Widget_Base {
         $this->end_controls_tab();
 
         $this->end_controls_tabs();
+
+        $this->add_control('btn2_heading', ['label' => __('Second Button', 'advanced-carousel-pro'), 'type' => Controls_Manager::HEADING, 'separator' => 'before']);
+        foreach ([
+            'btn2_color' => [__('Text Color', 'advanced-carousel-pro'), '.pce-v5-btn-secondary', 'color'],
+            'btn2_bg' => [__('Background', 'advanced-carousel-pro'), '.pce-v5-btn-secondary', 'background-color'],
+            'btn2_border_color' => [__('Border Color', 'advanced-carousel-pro'), '.pce-v5-btn-secondary', 'border-color'],
+            'btn2_color_hover' => [__('Text Color (Hover)', 'advanced-carousel-pro'), '.pce-v5-btn-secondary:hover, {{WRAPPER}} .pce-v5-btn-secondary:focus', 'color'],
+            'btn2_bg_hover' => [__('Background (Hover)', 'advanced-carousel-pro'), '.pce-v5-btn-secondary:hover, {{WRAPPER}} .pce-v5-btn-secondary:focus', 'background-color'],
+            'btn2_border_color_hover' => [__('Border Color (Hover)', 'advanced-carousel-pro'), '.pce-v5-btn-secondary:hover, {{WRAPPER}} .pce-v5-btn-secondary:focus', 'border-color'],
+        ] as $control_id => [$label, $selector, $property]) {
+            $this->add_control($control_id, [
+                'label' => $label, 'type' => Controls_Manager::COLOR,
+                'selectors' => ['{{WRAPPER}} ' . $selector => $property . ': {{VALUE}};'],
+            ]);
+        }
 
         $this->add_group_control(
             Group_Control_Border::get_type(),

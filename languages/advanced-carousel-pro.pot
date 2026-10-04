@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: DbsProductSlider 2.4.0\nLanguage:\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+msgstr "Project-Id-Version: DbsProductSlider 2.4.1\nLanguage:\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "Accessible Carousel Name"
 msgstr ""
@@ -70,6 +70,9 @@ msgstr ""
 msgid "Background"
 msgstr ""
 
+msgid "Background (Hover)"
+msgstr ""
+
 msgid "Background Color"
 msgstr ""
 
@@ -92,6 +95,9 @@ msgid "Best Seller"
 msgstr ""
 
 msgid "Border Color"
+msgstr ""
+
+msgid "Border Color (Hover)"
 msgstr ""
 
 msgid "Border Radius"
@@ -642,6 +648,9 @@ msgstr ""
 msgid "Release Mousewheel On Edges"
 msgstr ""
 
+msgid "Remove"
+msgstr ""
+
 msgid "Respect Reduced Motion Preference"
 msgstr ""
 
@@ -676,6 +685,9 @@ msgid "Search by title or SKU…"
 msgstr ""
 
 msgid "Search failed. Try again."
+msgstr ""
+
+msgid "Second Button"
 msgstr ""
 
 msgid "Second Button Link"
@@ -768,6 +780,9 @@ msgstr ""
 msgid "Text Color"
 msgstr ""
 
+msgid "Text Color (Hover)"
+msgstr ""
+
 msgid "This is the first slide"
 msgstr ""
 
@@ -847,6 +862,9 @@ msgid "Wrapper"
 msgstr ""
 
 msgid "carousel"
+msgstr ""
+
+msgid "unavailable"
 msgstr ""
 
 msgid "{{index}} of {{slidesLength}}"

@@ -32,7 +32,7 @@ final class PCE_Products {
         if (!function_exists('wc_get_products')) {
             return [];
         }
-        $limit = (int) PCE_Settings::number($settings['product_limit'] ?? '', 8, 1, 40);
+        $limit = (int) PCE_Settings::clamp($settings['product_limit'] ?? '', 8, 1, 40);
         $mode = $settings['product_query'] ?? 'latest';
         $args = [
             'status' => 'publish',
@@ -113,7 +113,7 @@ final class PCE_Products {
                 'image' => ['id' => $image_id, 'url' => $image_id ? wp_get_attachment_image_url($image_id, 'large') : ''],
                 'price' => '',
                 'price_html' => $product->get_price_html(),
-                'desc' => wp_trim_words(wp_strip_all_tags(strip_shortcodes($product->get_short_description())), (int) PCE_Settings::number($settings['desc_words'] ?? '', 30, 5, 100)),
+                'desc' => wp_trim_words(wp_strip_all_tags(strip_shortcodes($product->get_short_description())), (int) PCE_Settings::clamp($settings['desc_words'] ?? '', 30, 5, 100)),
                 'link' => ['url' => $url],
                 'btn_text' => $button,
             ];

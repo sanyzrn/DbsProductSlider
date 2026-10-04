@@ -1,5 +1,5 @@
 msgid ""
-msgstr "Project-Id-Version: DbsProductSlider 2.4.0\nLanguage: fa_IR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
+msgstr "Project-Id-Version: DbsProductSlider 2.4.1\nLanguage: fa_IR\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPlural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "Accessible Carousel Name"
 msgstr "نام اسلایدر برای دسترس‌پذیری"
@@ -70,6 +70,9 @@ msgstr "فاصلهٔ پخش خودکار (میلی‌ثانیه)"
 msgid "Background"
 msgstr "پس‌زمینه"
 
+msgid "Background (Hover)"
+msgstr "پس‌زمینه (هاور)"
+
 msgid "Background Color"
 msgstr "رنگ پس‌زمینه"
 
@@ -93,6 +96,9 @@ msgstr "پرفروش"
 
 msgid "Border Color"
 msgstr "رنگ حاشیه"
+
+msgid "Border Color (Hover)"
+msgstr "رنگ حاشیه (هاور)"
 
 msgid "Border Radius"
 msgstr "گردی گوشه‌ها"
@@ -642,6 +648,9 @@ msgstr "امتیاز"
 msgid "Release Mousewheel On Edges"
 msgstr "آزاد کردن اسکرول در ابتدا و انتها"
 
+msgid "Remove"
+msgstr "حذف"
+
 msgid "Respect Reduced Motion Preference"
 msgstr "رعایت ترجیح کاهش حرکت"
 
@@ -677,6 +686,9 @@ msgstr "جست‌وجو بر اساس عنوان یا SKU…"
 
 msgid "Search failed. Try again."
 msgstr "جست‌وجو ناموفق بود. دوباره تلاش کنید."
+
+msgid "Second Button"
+msgstr "دکمه دوم"
 
 msgid "Second Button Link"
 msgstr "لینک دکمه دوم"
@@ -768,6 +780,9 @@ msgstr "متن"
 msgid "Text Color"
 msgstr "رنگ متن"
 
+msgid "Text Color (Hover)"
+msgstr "رنگ متن (هاور)"
+
 msgid "This is the first slide"
 msgstr "این نخستین اسلاید است"
 
@@ -848,6 +863,9 @@ msgstr "قاب بیرونی"
 
 msgid "carousel"
 msgstr "اسلایدر"
+
+msgid "unavailable"
+msgstr "در دسترس نیست"
 
 msgid "{{index}} of {{slidesLength}}"
 msgstr "{{index}} از {{slidesLength}}"

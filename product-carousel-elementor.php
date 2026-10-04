@@ -3,7 +3,7 @@
  * Plugin Name: Product Carousel Elementor
  * Plugin URI: https://dbsgraphic.ir/
  * Description: Manual and optional WooCommerce product carousels for Elementor with responsive controls, Persian UI and accessible playback.
- * Version: 2.4.0
+ * Version: 2.4.1
  * Author: Saeed Zarrini
  * Author URI: https://dbsgraphic.ir/
  * Text Domain: advanced-carousel-pro
@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
 final class ACP_Plugin {
     private const MINIMUM_ELEMENTOR_VERSION = '3.15.0';
     private const MINIMUM_PHP_VERSION = '7.4';
-    private const VERSION = '2.4.0';
+    private const VERSION = '2.4.1';
 
     public function __construct() {
         $this->define_constants();

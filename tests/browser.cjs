@@ -1,7 +1,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
-const { chromium } = require('playwright');
+const launch = require('./launch.cjs');
 const root = path.join(__dirname, '..');
 const fixture = fs.readFileSync(path.join(__dirname, '.generated/carousel.html'), 'utf8');
 const variants = JSON.parse(fs.readFileSync(path.join(__dirname, '.generated/variants.json'), 'utf8'));
@@ -15,8 +15,7 @@ let checks = 0;
 function check(value, message) { assert.ok(value, message); checks++; }
 
 (async () => {
-    const systemChrome = process.platform === 'win32' && 'C:/Program Files/Google/Chrome/Application/chrome.exe';
-    const browser = await chromium.launch(systemChrome && fs.existsSync(systemChrome) ? { executablePath: systemChrome, headless: true } : { headless: true });
+    const browser = await launch();
     const page = await browser.newPage({ viewport: { width: 1280, height: 1000 } });
     const errors = [];
     const warnings = [];

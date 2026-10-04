@@ -21,7 +21,7 @@ $show = static function ($part) use ($settings) { return ($settings['show_' . $p
 ?>
 <div id="<?php echo esc_attr($widget_id); ?>" class="<?php echo esc_attr($wrapper_class); ?>" dir="<?php echo esc_attr($direction); ?>"
     role="region"<?php echo $is_grid ? '' : ' aria-roledescription="' . esc_attr__('carousel', 'advanced-carousel-pro') . '"'; ?> aria-label="<?php echo esc_attr($label); ?>"
-    data-widget-id="<?php echo esc_attr($widget_id); ?>" data-settings="<?php echo esc_attr(wp_json_encode($slider_options)); ?>">
+    data-widget-id="<?php echo esc_attr($widget_id); ?>" data-placeholder="<?php echo esc_url(\Elementor\Utils::get_placeholder_image_src()); ?>" data-settings="<?php echo esc_attr(wp_json_encode($slider_options)); ?>">
     <div id="<?php echo esc_attr($slider_id); ?>" class="swiper pce-v5-slider" tabindex="0">
         <div class="swiper-wrapper">
             <?php foreach ($items as $index => $item) :

@@ -268,7 +268,11 @@ namespace {
     check(PCE_Content::items(['wp_post_type' => 'secret_type']) === [] && PCE_Content::items(['wp_post_type' => 'attachment']) === [] && PCE_Content::items([]) === [], 'Unlisted content types rejected');
     check($cards[1]['image']['id'] === 0 && strpos(render(['source' => 'wordpress', 'wp_post_type' => 'gift']), 'placeholder.png') !== false, 'Content without image does not break render');
     PCE_Content::items(['wp_post_type' => 'gift', 'wp_limit' => 500]);
-    check($GLOBALS['wp_query_args']['posts_per_page'] === 8, 'Out-of-range limit falls back to bounded default');
+    check($GLOBALS['wp_query_args']['posts_per_page'] === 40, 'Oversized limit is clamped to the maximum');
+    PCE_Content::items(['wp_post_type' => 'gift', 'wp_limit' => 0]);
+    check($GLOBALS['wp_query_args']['posts_per_page'] === 1, 'Too-small limit is clamped to the minimum');
+    PCE_Content::items(['wp_post_type' => 'gift', 'wp_limit' => 'abc']);
+    check($GLOBALS['wp_query_args']['posts_per_page'] === 8 && PCE_Settings::clamp('', 8, 1, 40) === 8 && PCE_Settings::clamp(INF, 8, 1, 40) === 8 && PCE_Settings::clamp('12', 8, 1, 40) === 12.0, 'Non-numeric limit uses the default');
     $cards = PCE_Content::items(['wp_post_type' => 'gift', 'wp_query' => 'selected', 'wp_selected_ids' => '6,3,1,4,99']);
     check(array_column($cards, 'title') === ['Gift 6', 'Gift 1'] && $GLOBALS['wp_query_args']['orderby'] === 'post__in', 'Selected order kept, unpublished IDs dropped');
     check(PCE_Content::items(['wp_post_type' => 'gift', 'wp_query' => 'selected']) === [], 'Empty selection cannot expose all content');
@@ -337,7 +341,7 @@ namespace {
     check(strpos(render(['items' => [['title' => 'Bad', 'image_hover' => ['url' => 'javascript:alert(1)']]]]), 'pce-v5-hover-image') === false, 'Unsafe hover image URL rejected');
     check(strpos(render(['items' => [['title' => 'Bad', 'image_hover' => 'oops']]]), 'pce-v5-hover-image') === false, 'Malformed hover image ignored');
     check(PCE_Content::items(['wp_post_type' => 'gift', 'wp_hover_meta' => 'link_field'])[0]['image_hover']['url'] === 'https://example.test/file.pdf' && PCE_Content::items(['wp_post_type' => 'gift'])[0]['image_hover']['url'] === '', 'WordPress hover image from custom field');
-    check(PCE_Content::items(['wp_post_type' => 'gift', 'desc_words' => 5])[2]['desc'] === 'one two three four five' && PCE_Content::items(['wp_post_type' => 'gift', 'desc_words' => 1000])[2]['desc'] === 'one two three four five six seven', 'Summary length applied and bounded');
+    check(PCE_Content::items(['wp_post_type' => 'gift', 'desc_words' => 5])[2]['desc'] === 'one two three four five' && PCE_Content::items(['wp_post_type' => 'gift', 'desc_words' => 1000])[2]['desc'] === 'one two three four five six seven' && PCE_Content::items(['wp_post_type' => 'gift', 'desc_words' => 1])[2]['desc'] === 'one two three four five', 'Summary length applied and clamped');
     // Phase 4: grid layout.
     foreach (['layout', 'grid_columns', 'grid_gap'] as $control) { check(isset($widget->controls[$control]), 'Grid control registered: ' . $control); }
     check($widget->controls['layout']['default'] === 'carousel' && array_keys($widget->controls['layout']['options']) === ['carousel', 'grid'], 'Carousel stays the default layout');
@@ -347,6 +351,21 @@ namespace {
     $carousel_html = render(['items' => [$full_item, $full_item]]);
     check(strpos($carousel_html, 'pce-layout-grid') === false && strpos($carousel_html, 'pce-v5-navigation') !== false && strpos($carousel_html, 'aria-roledescription="carousel"') !== false, 'Carousel markup unchanged by default');
     check(strpos(render(['items' => [$full_item], 'layout' => 'bogus']), 'pce-layout-grid') === false, 'Unknown layout falls back to carousel');
+    // 2.4.1: second button styling, hover safe space, image fallback, selected-item titles.
+    foreach (['btn_color', 'btn_bg', 'btn_border_color', 'btn_color_hover', 'btn_bg_hover', 'btn_border_color_hover'] as $control) {
+        check(strpos(array_key_first($widget->controls[$control]['selectors']), 'not(.pce-v5-btn-secondary)') !== false, 'Primary-only color control: ' . $control);
+    }
+    foreach (['btn2_color', 'btn2_bg', 'btn2_border_color', 'btn2_color_hover', 'btn2_bg_hover', 'btn2_border_color_hover'] as $control) {
+        check(isset($widget->controls[$control]) && strpos(array_key_first($widget->controls[$control]['selectors']), '.pce-v5-btn-secondary') !== false, 'Second button control: ' . $control);
+    }
+    check(array_key_first($widget->controls['card_hover_translate']['selectors']) === '{{WRAPPER}} .pce-v5-card' && isset($widget->controls['card_hover_translate']['selectors']['{{WRAPPER}} .pce-v5-slider']) && isset($widget->controls['card_hover_scale']['selectors']['{{WRAPPER}} .pce-v5-slider']), 'Hover lift and scale reach the slider for safe space');
+    check(strpos(render(['items' => [$full_item]]), 'data-placeholder="https://example.test/placeholder.png"') !== false, 'Wrapper exposes the placeholder for image fallback');
+    $titles = PCE_Search::titles('gift', '6,3,1,4,99');
+    check(array_column($titles, 'id') === [6, 3, 1, 4, 99] && array_column($titles, 'available') === [true, false, true, false, false] && $titles[1]['title'] === '' && $titles[0]['title'] === 'Gift 6', 'Selected IDs resolve to titles; unpublished, protected and missing are flagged');
+    check(PCE_Search::titles('attachment', '1') === [] && PCE_Search::titles('gift', 'x,0') === [], 'Selected-title lookup rejects unlisted types and invalid IDs');
+    $_GET = ['post_type' => 'gift', 'ids' => '1,2'];
+    PCE_Search::handle();
+    check(array_column($GLOBALS['ajax']['out']['data'], 'id') === [1, 2], 'Search endpoint resolves selected IDs');
     $fixture_items = [];
     for ($i = 0; $i < 10; $i++) {
         $fixture_items[] = ['_id' => 'card-' . $i, 'title' => 'محصول ' . ($i + 1), 'category' => 'محصول', 'badge_icon' => ['value' => 'test'], 'btn_icon' => ['value' => 'test'], 'desc' => $i % 2 ? str_repeat('توضیحات محصول ', 20) : 'کوتاه', 'price' => '۱۰۰ تومان', 'link' => ['url' => '#product-' . $i]];

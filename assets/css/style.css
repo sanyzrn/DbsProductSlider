@@ -13,7 +13,17 @@
 }
 
 .pce-v5-slider {
-    padding: 12px 4px 24px;
+    /* Vertical room for hover lift and scale so cards and shadows are not clipped. */
+    --pce-hover-lift: 0px;
+    --pce-hover-scale: 1;
+    --pce-safe-top: calc(max(0px, var(--pce-hover-lift) * -1) + (var(--pce-hover-scale) - 1) * 200px);
+    --pce-safe-bottom: calc(max(0px, var(--pce-hover-lift)) + (var(--pce-hover-scale) - 1) * 200px);
+}
+
+/* The scoped Swiper stylesheet resets .swiper padding with higher specificity, so match it here.
+   With default hover settings both values are zero and the layout is unchanged. */
+.pce-v5-wrapper .pce-v5-slider {
+    padding: var(--pce-safe-top) 0 var(--pce-safe-bottom);
 }
 
 .pce-equal-height .swiper-wrapper { align-items: stretch; }
@@ -195,6 +205,9 @@
     color: var(--pce-color-accent);
     border-color: var(--pce-color-accent);
 }
+
+.pce-v5-btn-secondary:hover,
+.pce-v5-btn-secondary:focus { background: var(--pce-color-accent); color: #ffffff; }
 
 .pce-v5-title-link { color: inherit; text-decoration: none; }
 .pce-card-linked { position: relative; }
@@ -426,10 +439,6 @@
 }
 
 @media (max-width: 767px) {
-    .pce-v5-slider {
-        padding-bottom: 36px;
-    }
-
     .pce-v5-card {
         padding: 16px;
     }

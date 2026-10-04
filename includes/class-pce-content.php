@@ -62,7 +62,7 @@ final class PCE_Content {
         if (!isset(self::post_type_options()[$post_type])) {
             return [];
         }
-        $limit = (int) PCE_Settings::number($settings['wp_limit'] ?? '', 8, 1, 40);
+        $limit = (int) PCE_Settings::clamp($settings['wp_limit'] ?? '', 8, 1, 40);
         $orderby = self::ORDERBY[$settings['wp_orderby'] ?? ''] ?? 'date';
         $exclude = PCE_Products::ids($settings['wp_exclude_ids'] ?? '');
         if (($settings['wp_exclude_current'] ?? 'yes') === 'yes' && is_singular($post_type)) {
@@ -110,7 +110,7 @@ final class PCE_Content {
         $button = is_string($settings['wp_button_text'] ?? null) && $settings['wp_button_text'] !== '' ? $settings['wp_button_text'] : __('View', 'advanced-carousel-pro');
         $price_key = self::meta_key($settings['wp_price_meta'] ?? '');
         $hover_key = self::meta_key($settings['wp_hover_meta'] ?? '');
-        $words = (int) PCE_Settings::number($settings['desc_words'] ?? '', 30, 5, 100);
+        $words = (int) PCE_Settings::clamp($settings['desc_words'] ?? '', 30, 5, 100);
         $btn2_key = self::meta_key($settings['wp_btn2_meta'] ?? '');
         $btn2_text = is_string($settings['wp_btn2_text'] ?? null) ? $settings['wp_btn2_text'] : '';
         $items = [];
